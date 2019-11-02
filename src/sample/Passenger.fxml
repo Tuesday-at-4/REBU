@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="528.0" prefWidth="747.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Passenger_Controller">
+  <children>
+<Button layoutX="25.0" layoutY="439.0" mnemonicParsing="false" onAction="#returnHome" prefHeight="65.0" prefWidth="94.0" text="Home">
+<font>
+  <Font size="20.0" />
+</font>
+</Button>
+<Label layoutX="551.0" layoutY="52.0" text="Schedule A Ride">
+<font>
+  <Font size="18.0" />
+</font>
+</Label>
+<TextField fx:id="textFieldStartLocation" layoutX="500.0" layoutY="100.0" prefHeight="33.0" prefWidth="209.0" promptText="Start Location" />
+<TextField fx:id="textFieldEndLocation" layoutX="500.0" layoutY="150.0" prefHeight="33.0" prefWidth="209.0" promptText="End Location" />
+      <TextField fx:id="textFieldStartTime" layoutX="558.0" layoutY="217.0" prefHeight="33.0" prefWidth="94.0" promptText="Start Time" />
+      <TextField fx:id="textFieldStartDate" layoutX="534.0" layoutY="289.0" prefHeight="33.0" prefWidth="143.0" promptText="End Time" />
+      <TextArea fx:id="textAreaPendingRides" layoutX="25.0" layoutY="83.0" prefHeight="300.0" prefWidth="158.0" promptText="No Pending Rides" />
+      <Label layoutX="32.0" layoutY="39.0" text="My Pending Rides">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="textAreaAcceptedRides" layoutX="229.0" layoutY="83.0" prefHeight="300.0" prefWidth="158.0" promptText="No Accepted Rides" />
+      <Label layoutX="232.0" layoutY="39.0" text="My Accepted Rides">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnCreateRide" layoutX="558.0" layoutY="348.0" mnemonicParsing="false" onAction="#createRide" text="Create Ride" />
+      <Label layoutX="554.0" layoutY="192.0" text="Time (Ex: 22:24)" />
+      <Label layoutX="534.0" layoutY="264.0" prefHeight="17.0" prefWidth="143.0" text="Date (Ex: Year-Month-Day)" />
+  </children>
+</AnchorPane>
