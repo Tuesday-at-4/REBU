@@ -8,7 +8,7 @@ Benjamin Cano,
 Wilkenson Germain,
 Michael Carracino,
 Sabrina Kienholz,
-Breanna Rhodes,
+Breanna Rhodes
 
 Rebu is an application that allows people to sign up to get or provide a ride. 
 Users will be required to create a profile before they can access the core features. 
