@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Account_Summary_Controller">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Account_Summary_Controller">
   <children>
-    <Label layoutX="74.0" layoutY="35.0" text="Account Details" textFill="WHITE">
+    <Label layoutX="74.0" layoutY="35.0" stylesheets="@Style.css" text="Account Details">
       <font>
         <Font size="24.0" />
       </font>
@@ -19,39 +19,39 @@
         <Image url="@../images/politecat.png" />
       </image>
     </ImageView>
-    <Label fx:id="lblName" layoutX="74.0" layoutY="88.0" text="Name" textFill="WHITE">
+    <Label fx:id="lblName" layoutX="74.0" layoutY="88.0" text="Name">
       <font>
-        <Font size="18.0" />
+        <Font size="20.0" />
       </font>
     </Label>
-    <Label layoutX="94.0" layoutY="134.0" text="Email" textFill="WHITE">
+    <Label layoutX="124.0" layoutY="134.0" text="Email">
       <font>
         <Font size="18.0" />
       </font>
     </Label>
     <Button fx:id="btnDelete" layoutX="452.0" layoutY="328.0" mnemonicParsing="false" onAction="#deleteAccount" text="Delete Account" />
     <Button fx:id="btnDashboard" layoutX="60.0" layoutY="328.0" mnemonicParsing="false" onAction="#returnToDashboard" text="Return to Dashboard" />
-    <Label layoutX="36.0" layoutY="192.0" text="Date of Birth" textFill="WHITE">
+    <Label layoutX="60.0" layoutY="192.0" text="Date of Birth">
       <font>
         <Font size="18.0" />
       </font>
     </Label>
-    <Label fx:id="lblPhoneNum" layoutX="157.0" layoutY="164.0" text="placeholder" textFill="WHITE">
+    <Label fx:id="lblPhoneNum" layoutX="179.0" layoutY="164.0" text="placeholder">
       <font>
         <Font size="18.0" />
       </font>
     </Label>
-    <Label fx:id="lblDOB" layoutX="157.0" layoutY="192.0" text="placeholder" textFill="WHITE">
+    <Label fx:id="lblDOB" layoutX="179.0" layoutY="192.0" text="placeholder">
       <font>
         <Font size="18.0" />
       </font>
     </Label>
-    <Label fx:id="lblEmail" layoutX="157.0" layoutY="134.0" text="placeholder" textFill="WHITE">
+    <Label fx:id="lblEmail" layoutX="179.0" layoutY="134.0" text="placeholder">
       <font>
         <Font size="18.0" />
       </font>
     </Label>
-    <Label layoutX="70.0" layoutY="164.0" text="Phone #" textFill="WHITE">
+    <Label layoutX="98.0" layoutY="164.0" text="Phone #">
       <font>
         <Font size="18.0" />
       </font>

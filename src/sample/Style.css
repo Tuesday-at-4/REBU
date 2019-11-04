@@ -1,0 +1,24 @@
+.root {
+  -fx-font-family: Arial;
+}
+
+AnchorPane {
+  -fx-background-color: #1a1a1a;
+}
+
+.label {
+  -fx-text-fill: #eeeeee;
+  -fx-font-weight: bold;
+}
+
+.button {
+  -fx-background-color: #ff8a65;
+  -fx-text-fill: #121212;
+  -fx-border-style: hidden;
+  -fx-font-size: 13px;
+  -fx-font-weight: bold;
+}
+
+.button:hover {
+  -fx-background-color: #c75b39;
+}

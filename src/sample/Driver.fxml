@@ -23,9 +23,9 @@
           <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
               <children>
-                <AnchorPane prefHeight="569.6" prefWidth="796.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <AnchorPane prefHeight="569.6" prefWidth="796.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                   <children>
-                    <AnchorPane layoutX="25.0" layoutY="171.0" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: white;">
+                    <AnchorPane layoutX="25.0" layoutY="171.0" prefHeight="33.0" prefWidth="200.0">
                       <children>
                         <Label layoutX="14.0" layoutY="8.0" text="Rating:" />
                       </children>
@@ -83,7 +83,7 @@
                                 </GridPane>
                                 <ButtonBar layoutX="61.0" layoutY="192.0" prefHeight="40.0" prefWidth="222.0">
                                   <buttons>
-                                    <Button  fx:id="Add_Button" mnemonicParsing="false" onMouseClicked="#Add_Vehicle" text="Add" />
+                                    <Button fx:id="Add_Button" mnemonicParsing="false" onMouseClicked="#Add_Vehicle" text="Add" />
                                     <Button fx:id="Delete_Button" mnemonicParsing="false" onMouseClicked="#Delete_Item" prefHeight="32.0" prefWidth="79.0" text="Delete" />
                                   </buttons>
                                 </ButtonBar>
@@ -93,7 +93,7 @@
                         </SplitPane>
                       </children>
                     </AnchorPane>
-                    <Button fx:id="home_Button" layoutX="431.0" layoutY="99.0" mnemonicParsing="false" prefHeight="72.0" prefWidth="182.0" onAction = "#goHome" text="HOME">
+                    <Button fx:id="home_Button" layoutX="431.0" layoutY="99.0" mnemonicParsing="false" onAction="#goHome" prefHeight="72.0" prefWidth="182.0" text="HOME">
                       <font>
                         <Font size="16.0" />
                       </font>
@@ -129,7 +129,7 @@
                             <ButtonBar layoutX="580.0" layoutY="12.0" prefHeight="40.0" prefWidth="200.0">
                               <buttons>
                                 <Button fx:id="schedule_Delete" mnemonicParsing="false" onMouseClicked="#delete_Ride" text="Delete" />
-                                <Button  fx:id="schedule_Button" mnemonicParsing="false" onMouseClicked="#scheduleRide" text="Add" />
+                                <Button fx:id="schedule_Button" mnemonicParsing="false" onMouseClicked="#scheduleRide" text="Add" />
                               </buttons>
                             </ButtonBar>
                           </children>
@@ -163,7 +163,7 @@
                       <children>
                         <ButtonBar layoutX="580.0" layoutY="32.0" prefHeight="40.0" prefWidth="200.0">
                           <buttons>
-                            <Button  fx:id="accept_Ride" mnemonicParsing="false" onMouseClicked="#Accept_Ride" text="Accept" />
+                            <Button fx:id="accept_Ride" mnemonicParsing="false" onMouseClicked="#Accept_Ride" text="Accept" />
                             <Button fx:id="decline_Ride" mnemonicParsing="false" onMouseClicked="#Decline_Ride" text="Decline" />
                           </buttons>
                         </ButtonBar>

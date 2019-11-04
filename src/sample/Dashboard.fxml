@@ -7,19 +7,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorDashboard" prefHeight="350.0" prefWidth="600.0" style="-fx-background-color: Black;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Dashboard_Controller">
+<AnchorPane fx:id="anchorDashboard" prefHeight="350.0" prefWidth="600.0" style="-fx-background-color: Black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Dashboard_Controller">
    <children>
-      <Button layoutX="25.0" layoutY="125.0" minHeight="50.0" minWidth="150.0" mnemonicParsing="false" onAction="#handleDriverButton" text="Driver">
+      <Button layoutX="25.0" layoutY="150.0" minHeight="50.0" minWidth="150.0" mnemonicParsing="false" onAction="#handleDriverButton" text="Driver">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button layoutX="25.0" layoutY="25.0" minHeight="50.0" minWidth="150.0" mnemonicParsing="false" onAction="#handlePassengerButton" text="Passenger">
+      <Button layoutX="25.0" layoutY="58.0" minHeight="50.0" minWidth="150.0" mnemonicParsing="false" onAction="#handlePassengerButton" text="Passenger">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button layoutX="30.0" layoutY="250.0" minHeight="50.0" minWidth="150.0" mnemonicParsing="false" onAction="#handleAccountButton" text="My Account">
+      <Button layoutX="25.0" layoutY="248.0" minHeight="50.0" minWidth="150.0" mnemonicParsing="false" onAction="#handleAccountButton" text="My Account">
          <font>
             <Font size="18.0" />
          </font>
@@ -29,12 +29,7 @@
             <TextArea prefHeight="84.0" prefWidth="314.0" />
          </content>
       </ScrollPane>
-      <Label layoutX="194.0" layoutY="33.0" text="Welcome to REBU!" textFill="WHITE">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <Label layoutX="412.0" layoutY="33.0" text="[DEFAULT USER]" textFill="WHITE">
+      <Label layoutX="284.0" layoutY="36.0" text="Welcome to REBU!" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
