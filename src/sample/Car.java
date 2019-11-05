@@ -1,53 +1,83 @@
-/*
- * Car
- * Classifying cars by manufacturer, model, year, type, and license plate address.
- */
 package sample;
 
 import javafx.beans.property.SimpleStringProperty;
 
 public class Car {
-  private SimpleStringProperty manufacturer;
-  private SimpleStringProperty model;
-  private SimpleStringProperty year;
-  private SimpleStringProperty carType;
-  private SimpleStringProperty licensePlate;
 
-  Car(String manufacturer, String model, String year, String carType, String licensePlate){
-    this.manufacturer = new SimpleStringProperty(manufacturer);
-    this.model = new SimpleStringProperty(model);
-    this.year = new SimpleStringProperty(year);
-    this.carType = new SimpleStringProperty(carType);
-    this.licensePlate = new SimpleStringProperty(licensePlate);
+  private String manufacturer;
+  private String model;
+  private String year;
+  private String carType;
+  private String licensePlate;
+  private String CarColor;
+  private String NumSeats;
+
+
+  Car(String manufacturer, String model, String year, String carType, String licensePlate,
+      String CarColor, String NumSeats) {
+    this.manufacturer = manufacturer;
+    this.model = model;
+    this.year = year;
+    this.carType = carType;
+    this.licensePlate = licensePlate;
+    this.CarColor = CarColor;
+    this.NumSeats = NumSeats;
+
   }
-  public String getManufacturer(){
-    return manufacturer.get();
+
+  public String getManufacturer() {
+    return manufacturer;
   }
-  public void setManufacturer(String manufacturer){
-    this.manufacturer.set(manufacturer);
+
+  public void setManufacturer(String manufacturer) {
+    this.manufacturer = manufacturer;
   }
-  public String getModel(){
-    return model.get();
+
+  public String getModel() {
+    return model;
   }
-  public void setModel(String model){
-    this.model.set(model);
+
+  public void setModel(String model) {
+    this.model = model;
   }
-  public String getYear(){
-    return year.get();
+
+  public String getYear() {
+    return year;
   }
-  public void setYear(String year){
-    this.year.set(year);
+
+  public void setYear(String year) {
+    this.year = year;
   }
-  public String getCarType(){
-    return carType.get();
+
+  public String getCarType() {
+    return carType;
   }
-  public void setCarType(String carType){
-    this.carType.set(carType);
+
+  public void setCarType(String carType) {
+    this.carType = carType;
   }
-  public String getLicensePlate(){
-    return licensePlate.get();
+
+  public String getLicensePlate() {
+    return licensePlate;
   }
-  public void setLicensePlate(String licensePlate){
-    this.licensePlate.set(licensePlate);
+
+  public void setCarColor(String CarColor) {
+    this.CarColor = CarColor;
+  }
+
+  public String getCarColor() {
+    return CarColor;
+  }
+
+  public void setLicensePlate(String licensePlate) {
+    this.licensePlate = licensePlate;
+  }
+
+  public void setNumSeats(String NumSeats) {
+    this.NumSeats = NumSeats;
+  }
+
+  public String getNumSeats() {
+    return NumSeats;
   }
 }
