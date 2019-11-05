@@ -69,9 +69,9 @@ public class Pending_Rides implements Initializable {
   public ObservableList<Accepted_Rides> AcceptedRides = FXCollections.observableArrayList(new Accepted_Rides("breanna", LocalTime.of(4, 45), LocalDate.of(2019, Month.OCTOBER, 20)));
  @FXML
   public ObservableList<Rides> PendingRides = FXCollections.observableArrayList(
-      new Rides("J Cole", LocalTime.of(12, 45),LocalDate.of(2019,Month.NOVEMBER,12)),
-    new Rides("Kendrick Lamar", LocalTime.of(5, 35),LocalDate.of(2019,Month.NOVEMBER,23)),
-    new Rides("LeBron James", LocalTime.of(6, 45), LocalDate.of(2019,Month.NOVEMBER,30)));
+      new Rides("J Cole", LocalTime.of(12, 45),LocalDate.of(2019,Month.NOVEMBER,12),"Orlando","Miami"),
+    new Rides("Kendrick Lamar", LocalTime.of(5, 35),LocalDate.of(2019,Month.NOVEMBER,23),"Orlando","Miami"),
+    new Rides("LeBron James", LocalTime.of(6, 45), LocalDate.of(2019,Month.NOVEMBER,30),"Orlando","Miami"));
   public void initialize(URL url, ResourceBundle rb) {
     Passenger.setCellValueFactory(new PropertyValueFactory<Rides, String>("passengerName"));
     Date_OfRide.setCellValueFactory(new PropertyValueFactory<Rides, LocalDate>("Date_OfRide"));
