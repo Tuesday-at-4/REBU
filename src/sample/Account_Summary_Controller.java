@@ -6,6 +6,7 @@ package sample;
 
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 public class Account_Summary_Controller {
@@ -23,6 +24,9 @@ public class Account_Summary_Controller {
   private Label lblEmail;
 
   @FXML
+  private Button btnEditAccount;
+
+  @FXML
   private void returnToDashboard(Event event){
     Main.createNewScene(event, "Dashboard.fxml");
   }
@@ -36,6 +40,11 @@ public class Account_Summary_Controller {
     Account.currentUser = null;
     Main.createNewScene(event, "Login.fxml");
   }
+
+  /*@FXML
+  private void editAccount(Event event) {
+    Main.createNewScene(event, "EditAccount.fxml");
+  }*/
 
   /**
    * Initialize method to replace labels with corresponding values. Temporary for the sake of

@@ -10,9 +10,6 @@ public class Account {
 
   private String firstName, lastName, phone, username, password, email, dateOfBirth;
 
-  // static variable of a current user's account, for the sake of updating account details for now
-  public static Account currentUser;
-
   /*** ACCESSOR METHODS ***/
   public String getFirstName() {
     return firstName;

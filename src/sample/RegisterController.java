@@ -53,7 +53,7 @@ public class RegisterController {
     password = txtField_createPassword.getText();
 
     // creating a new registered user, holding their information
-    Account.currentUser = new Account (firstName, lastName, email, phone, DOB.toString(), username,
+    Main.currentUser = new Account (firstName, lastName, email, phone, DOB.toString(), username,
         password);
 
     // transitions to Account Details screen (AccountSummary) from Register Account screen

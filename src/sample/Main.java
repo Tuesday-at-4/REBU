@@ -19,6 +19,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+
+    // static variable of a current user's account, for the sake of updating account details for now
+    public static Account currentUser;
+
     static ArrayList<Rides> pendingRides= new ArrayList<Rides>();
     static ArrayList<Rides> confirmedRides = new ArrayList<Rides>();
 
