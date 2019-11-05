@@ -1,3 +1,9 @@
+/***********************************************************
+ * File   : Main.Java
+ * Author(s)  : Michael Carracino
+ * Class   : CEN 3031
+ * Purpose : Initializes the GUI program and holds a function for swapping scenes
+ ************************************************************/
 package sample;
 
 import java.io.IOException;

@@ -6,6 +6,7 @@ package sample;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -13,7 +14,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class DriverController {
+public class Driver_Controller {
 
   @FXML
   private TableView<Car> RegisteredVehicles;
@@ -96,9 +97,8 @@ public class DriverController {
 
 
   }
+  @FXML
+  private void goDriverPage(Event event){
+    Main.createNewScene(event, "Driver.fxml");
+  }
 }
-  //@FXML
-  //private void goHome(Event event){
-   // Main.createNewScene(event, "Dashboard.fxml");
-  //}
-//}

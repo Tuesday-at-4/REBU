@@ -1,7 +1,10 @@
-/*
- * Passenger
- * Sets up the scene for the passenger user
- */
+/***********************************************************
+ * File   : Account.Java
+ * Author(s)  : Michael Carracino, Wilkenson Germain
+ * Class   : CEN 3031
+ * Purpose : Allows the Passenger to create Rides, see their pending Rides, and their accepted Rides.
+ ************************************************************/
+
 package sample;
 /*
 import java.time.LocalDate;
