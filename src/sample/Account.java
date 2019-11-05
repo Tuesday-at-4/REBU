@@ -1,7 +1,9 @@
-/*
- * Account
- * Basic fields and methods related to a user's account.
- */
+/***********************************************************
+ * File   : Account.Java
+ * Author(s)  : Michael Carracino
+ * Class   : CEN 3031
+ * Purpose : Stores the user data pulled from the database
+ ************************************************************/
 package sample;
 
 public class Account {

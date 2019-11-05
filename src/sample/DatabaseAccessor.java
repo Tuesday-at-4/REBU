@@ -1,3 +1,10 @@
+/***********************************************************
+ * File   : DatabaseAccessor.Java
+ * Author(s)  : Michael Carracino
+ * Class   : CEN 3031
+ * Purpose : Manages all interactions with the database.
+ ************************************************************/
+
 package sample;
 
 import java.sql.Connection;

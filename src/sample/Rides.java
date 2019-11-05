@@ -1,7 +1,9 @@
-/*
- * Rides
- * Made by the passenger and accessed by the driver
- */
+/***********************************************************
+ * File   : Account.Java
+ * Author(s)  : Michael Carracino, Benjamin Cano
+ * Class   : CEN 3031
+ * Purpose : Stores the information from the database for a given Ride
+ ************************************************************/
 package sample;
 
 import java.time.LocalDate;
