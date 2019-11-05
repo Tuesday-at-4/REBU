@@ -7,12 +7,56 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DatabaseAccessor {
+/*
+  public int searchForAccount(String username, String password){
+    int userID = 0;
+    return userID;
+  }
+  public Account getAccount(int userID){
+    Account dummyAccount = new Account("","","","","","","");
+    return dummyAccount;
+  }
+  public void createAccount(Account dummyAccount){
+  }
+  public Account editAccount(Account givenAccount){
+    Account dummyAccount = new Account("","","","","","","");
+    return dummyAccount;
+  }
+  public void deleteAccount(int userID){
+  }
+  public String[] getNotifications(int userID){
+    String[] rideID = {""};
+    return rideID;
+  }
+  public void addNotification(int userID, int rideID){
+  }
+  public void deleteNotification(int userID, int rideID){
+  }
+  public Car[] getCars(int user_ID){
+    Car dummyCar[] = {new Car("","","","","")};
+    return dummyCar;
+  }
+  public void createCar(Car dummyCar){
+  }
+  public Car editCar(Car givenCar){
+    Car dummyCar = new Car("","","","","");
+    return dummyCar;
+  }
+  public void deleteCar(int car_ID){};
+  public Rides[] getRides(int user_ID){ 
+    Rides[] dummyRides = {new Rides()};
+    return dummyRides;
+  };
+  public void createRide(Rides dummyRide){};
+  public Rides editRide(Rides dummyRide){};
+  public void deleteRide(int rideID){};
+  */
 
-  /** IN PROGRESS
-   * This function will take in an account object and build a row in the database.
-   * The account will be assigned a unique ID number
+  /**
+   * This function will take in an account object and build a row in the database. The account will
+   * be assigned a unique ID number
    */
-  public static void add_account(){
+  public static void test_database() {
     final String JDBC_DRIVER = "res.org.h2.Driver";
     final String DB_URL = "jdbc:h2:./res/HR";
     final String PASS = "";
@@ -45,22 +89,5 @@ public class DatabaseAccessor {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-  }
-
-  /** IN PROGRESS
-   * This function searches for a row that has this username and password, then removes it from the database.
-   * The process is irreversible.
-   * @param accountID - The unique ID of the account
-   */
-  public static void deleteAccount(int accountID){
-  }
-
-  /**
-   * gets the users account from some parameters
-   * @return - The account of the desired user
-   */
-  public static Account getAccount(){
-    Account dummy = new Account("Kali","Ollie","dummy@email.com","123-456-7890","01/01/1001","user","pass");
-    return dummy;
   }
 }
