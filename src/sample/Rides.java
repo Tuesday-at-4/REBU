@@ -7,6 +7,7 @@ import java.util.Random;
 //import javafx.beans.property.SimpleStringProperty;  This can be string.
 
 // Needs to be changed to match the database structure
+
 public class Rides {
 
   private String passengerName;
@@ -23,14 +24,14 @@ public class Rides {
   public Rides(String passName, LocalTime vtime, LocalDate vDate, String startLoc, String endLoc) {
     this.passengerName = passName;
     this.driver = "None";
-    this.date_OfRide = vDate;
-    this.time_OfRide = vtime;
+    this.dateOfRide = vDate;
+    this.timeOfRide = vtime;
     this.startLocation = startLoc;
     this.endLocation = endLoc;
     Random rnd = new Random();
     this.rideID = rnd.nextInt(999999);
   }
-
+/*
   public String getPassengerName() {
     return passengerName.get();
   }
@@ -41,7 +42,7 @@ public class Rides {
 
   public LocalDate getDate_OfRide() {
 
-     return date_OfRide;
+     return dateOfRide;
   }
 
   public void setDate_OfRide(LocalDate date) {
@@ -57,5 +58,5 @@ public class Rides {
   public void setTime(LocalTime time) {
 
      this.time_OfRide = time;
-  }
+  }*/
 }

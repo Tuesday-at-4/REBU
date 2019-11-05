@@ -7,14 +7,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 
-public class Accepted_Rides {
+public class AcceptedRides {
 
 
   private String Passenger2;
   private LocalTime current_Time;
   private LocalDate current_Date;
 
-  Accepted_Rides(String Passenger2, LocalTime currentTime, LocalDate currentDate) {
+  AcceptedRides(String Passenger2, LocalTime currentTime, LocalDate currentDate) {
     this.Passenger2 = Passenger2;
     this.current_Date = currentDate;
     this.current_Time = currentTime;

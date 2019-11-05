@@ -13,7 +13,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class Driver_Controller {
+public class DriverController {
 
   @FXML
   private TableView<Car> RegisteredVehicles;
@@ -97,8 +97,8 @@ public class Driver_Controller {
 
   }
 }
-  @FXML
-  private void goHome(Event event){
-    Main.createNewScene(event, "Dashboard.fxml");
-  }
-}
+  //@FXML
+  //private void goHome(Event event){
+   // Main.createNewScene(event, "Dashboard.fxml");
+  //}
+//}

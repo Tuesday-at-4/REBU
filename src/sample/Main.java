@@ -18,11 +18,12 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent rootMain = FXMLLoader.load(getClass().getResource("Login.fxml"));
+        DatabaseAccessor.test_database();
+        /*Parent rootMain = FXMLLoader.load(getClass().getResource("Login.fxml"));
         Scene sceneMain = new Scene(rootMain);
         primaryStage.setScene(sceneMain);
         sceneMain.getStylesheets().add(Main.class.getResource("Style.css").toExternalForm());
-        primaryStage.show();
+        primaryStage.show();*/
     }
     static void createNewScene(Event event, String newFileFXML){
         Parent newRoot = null;

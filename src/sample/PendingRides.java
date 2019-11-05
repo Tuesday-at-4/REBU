@@ -1,5 +1,5 @@
 package sample;
-
+/*
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -17,7 +17,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 
-public class Pending_Rides implements Initializable {
+public class PendingRides implements Initializable {
 
 
   @FXML
@@ -51,22 +51,22 @@ public class Pending_Rides implements Initializable {
   private Tab accepted_Rides;
 
   @FXML
-  private TableView<Accepted_Rides> Rides_Accepted;
+  private TableView<sample.AcceptedRides> Rides_Accepted;
 
   @FXML
-  private TableColumn<Accepted_Rides, String> Passenger2;
+  private TableColumn<sample.AcceptedRides, String> Passenger2;
 
   @FXML
-  private TableColumn<Accepted_Rides, LocalDate> current_Date;
+  private TableColumn<sample.AcceptedRides, LocalDate> current_Date;
 
   @FXML
-  private TableColumn<Accepted_Rides, LocalTime> current_Time;
+  private TableColumn<sample.AcceptedRides, LocalTime> current_Time;
 
   @FXML
   private Button decline_Ride;
 
   @FXML
-  public ObservableList<Accepted_Rides> AcceptedRides = FXCollections.observableArrayList(new Accepted_Rides("breanna", LocalTime.of(4, 45), LocalDate.of(2019, Month.OCTOBER, 20)));
+  public ObservableList<sample.AcceptedRides> AcceptedRides = FXCollections.observableArrayList(new AcceptedRides("breanna", LocalTime.of(4, 45), LocalDate.of(2019, Month.OCTOBER, 20)));
  @FXML
   public ObservableList<Rides> PendingRides = FXCollections.observableArrayList(
       new Rides("J Cole", LocalTime.of(12, 45),LocalDate.of(2019,Month.NOVEMBER,12)),
@@ -77,9 +77,9 @@ public class Pending_Rides implements Initializable {
     Date_OfRide.setCellValueFactory(new PropertyValueFactory<Rides, LocalDate>("Date_OfRide"));
     Time_OfRide.setCellValueFactory(new PropertyValueFactory<Rides, LocalTime>("Time_OfRide"));
 
-    Passenger2.setCellValueFactory(new PropertyValueFactory<Accepted_Rides, String>("Passenger2"));
-    current_Date.setCellValueFactory(new PropertyValueFactory<Accepted_Rides, LocalDate>("Current_Date"));
-    current_Time.setCellValueFactory(new PropertyValueFactory<Accepted_Rides, LocalTime>("Current_Time"));
+    Passenger2.setCellValueFactory(new PropertyValueFactory<sample.AcceptedRides, String>("Passenger2"));
+    current_Date.setCellValueFactory(new PropertyValueFactory<sample.AcceptedRides, LocalDate>("Current_Date"));
+    current_Time.setCellValueFactory(new PropertyValueFactory<sample.AcceptedRides, LocalTime>("Current_Time"));
 
     Rides_Accepted.setItems(AcceptedRides);
     Pending_Rides.setItems(PendingRides);
@@ -89,3 +89,4 @@ public class Pending_Rides implements Initializable {
     Main.createNewScene(event, "CarRegistration.fxml");
   }
 }
+*/

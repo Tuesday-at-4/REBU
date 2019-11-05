@@ -3,7 +3,7 @@
  * Sets up the scene for the passenger user
  */
 package sample;
-
+/*
 import java.time.LocalDate;
 import java.time.LocalTime;
 import javafx.event.Event;
@@ -11,7 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-public class Passenger_Controller {
+public class PassengerController {
 
   @FXML
   TextField textFieldEndLocation;
@@ -68,3 +68,4 @@ public class Passenger_Controller {
     initialize();
   }
 }
+*/
