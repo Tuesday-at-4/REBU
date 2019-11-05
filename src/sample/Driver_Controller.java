@@ -6,6 +6,7 @@ package sample;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -96,9 +97,8 @@ public class Driver_Controller {
 
 
   }
-}
   @FXML
-  private void goHome(Event event){
-    Main.createNewScene(event, "Dashboard.fxml");
+  private void goDriverPage(Event event){
+    Main.createNewScene(event, "Driver.fxml");
   }
 }
