@@ -1,20 +1,34 @@
 package sample;
-
-import java.sql.Date;
+// Don't name your parameter variables the same as the class variables. It gets REALLY confusing.
+//import java.sql.Date; There should be no need for SQL
 import java.time.LocalDate;
 import java.time.LocalTime;
-import javafx.beans.property.SimpleStringProperty;
+import java.util.Random;
+//import javafx.beans.property.SimpleStringProperty;  This can be string.
 
+// Needs to be changed to match the database structure
 public class Rides {
 
-  private SimpleStringProperty passengerName;
-  private LocalTime time_OfRide;
-  private LocalDate date_OfRide;
-
-   Rides(String passengerName, LocalTime time, LocalDate Date) {
-    this.passengerName = new SimpleStringProperty(passengerName);
-    this.date_OfRide = Date;
-    this.time_OfRide = time;
+  private String passengerName;
+  private String driver;
+  private LocalTime timeOfRide;
+  private LocalDate dateOfRide;
+  private String startLocation;
+  private String endLocation;
+  private int rideID;
+  
+  /**
+   * Contructor for when the passenger creates a ride
+   */
+  public Rides(String passName, LocalTime vtime, LocalDate vDate, String startLoc, String endLoc) {
+    this.passengerName = passName;
+    this.driver = "None";
+    this.date_OfRide = vDate;
+    this.time_OfRide = vtime;
+    this.startLocation = startLoc;
+    this.endLocation = endLoc;
+    Random rnd = new Random();
+    this.rideID = rnd.nextInt(999999);
   }
 
   public String getPassengerName() {
