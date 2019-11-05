@@ -1,58 +1,47 @@
-/*
- * Rides
- * Made by the passenger and accessed by the driver
- */
 package sample;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Random;
+import javafx.beans.property.SimpleStringProperty;
 
 public class Rides {
-  private String passengerName;
+
+  private SimpleStringProperty passengerName;
   private LocalTime time_OfRide;
   private LocalDate date_OfRide;
-  private String startLocation;
-  private String endLocation;
-  private int rideID;
-  private String driver;
 
-  public Rides(String passName, LocalTime time, LocalDate Date, String startLoc, String endLoc) {
-    this.passengerName = passName;
+   Rides(String passengerName, LocalTime time, LocalDate Date) {
+    this.passengerName = new SimpleStringProperty(passengerName);
     this.date_OfRide = Date;
     this.time_OfRide = time;
-    this.startLocation = startLoc;
-    this.endLocation = endLoc;
-    Random rnd = new Random();
-    this.rideID = rnd.nextInt(999999);
-    this.driver = "None";
   }
 
   public String getPassengerName() {
-    return passengerName;
+    return passengerName.get();
+  }
+
+  public void setPassengerName(String passengerName) {
+    this.passengerName.set(passengerName);
   }
 
   public LocalDate getDate_OfRide() {
-    return date_OfRide;
+
+     return date_OfRide;
+  }
+
+  public void setDate_OfRide(LocalDate date) {
+
+     this.date_OfRide = date;
   }
 
   public LocalTime getTime_OfRide() {
-    return time_OfRide;
+
+     return time_OfRide;
   }
 
-  public String getEndLocation() {
-    return endLocation;
-  }
+  public void setTime(LocalTime time) {
 
-  public String getStartLocation() {
-    return startLocation;
-  }
-
-  public int getRideID() {
-    return rideID;
-  }
-
-  public String getDriver() {
-    return driver;
+     this.time_OfRide = time;
   }
 }
