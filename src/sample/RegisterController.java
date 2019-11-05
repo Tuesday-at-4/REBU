@@ -12,7 +12,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
-public class Register_Controller {
+public class RegisterController {
 
   @FXML
   private TextField txtField_firstName;

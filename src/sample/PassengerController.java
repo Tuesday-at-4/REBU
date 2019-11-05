@@ -1,9 +1,12 @@
-/*
- * Passenger
- * Sets up the scene for the passenger user
- */
-package sample;
+/***********************************************************
+ * File   : Account.Java
+ * Author(s)  : Michael Carracino, Wilkenson Germain
+ * Class   : CEN 3031
+ * Purpose : Allows the Passenger to create Rides, see their pending Rides, and their accepted Rides.
+ ************************************************************/
 
+package sample;
+/*
 import java.time.LocalDate;
 import java.time.LocalTime;
 import javafx.event.Event;
@@ -11,7 +14,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-public class Passenger_Controller {
+public class PassengerController {
 
   @FXML
   TextField textFieldEndLocation;
@@ -68,3 +71,4 @@ public class Passenger_Controller {
     initialize();
   }
 }
+*/

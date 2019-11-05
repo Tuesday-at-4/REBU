@@ -1,7 +1,9 @@
-/*
- * Dashboard
- * Initializes the dashboard for the home page
- */
+/***********************************************************
+ * File   : Dashboard_Controller.Java
+ * Author(s)  : Michael Carracino
+ * Class   : CEN 3031
+ * Purpose : Handles the events on the hompepage/dashboard
+ ************************************************************/
 package sample;
 
 import java.awt.TextField;
@@ -30,7 +32,4 @@ public class Dashboard_Controller {
     private void handleDriverButton(ActionEvent event){
         Main.createNewScene(event,"Driver.FXML");
     }
-
-
-
 }

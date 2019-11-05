@@ -1,3 +1,9 @@
+/***********************************************************
+ * File   : Main.Java
+ * Author(s)  : Michael Carracino
+ * Class   : CEN 3031
+ * Purpose : Initializes the GUI program and holds a function for swapping scenes
+ ************************************************************/
 package sample;
 
 import java.io.IOException;
@@ -18,11 +24,12 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent rootMain = FXMLLoader.load(getClass().getResource("Login.fxml"));
+        DatabaseAccessor.test_database();
+        /*Parent rootMain = FXMLLoader.load(getClass().getResource("Login.fxml"));
         Scene sceneMain = new Scene(rootMain);
         primaryStage.setScene(sceneMain);
         sceneMain.getStylesheets().add(Main.class.getResource("Style.css").toExternalForm());
-        primaryStage.show();
+        primaryStage.show();*/
     }
     static void createNewScene(Event event, String newFileFXML){
         Parent newRoot = null;

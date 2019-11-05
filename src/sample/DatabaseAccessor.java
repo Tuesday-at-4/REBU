@@ -1,3 +1,10 @@
+/***********************************************************
+ * File   : DatabaseAccessor.Java
+ * Author(s)  : Michael Carracino
+ * Class   : CEN 3031
+ * Purpose : Manages all interactions with the database.
+ ************************************************************/
+
 package sample;
 
 import java.sql.Connection;
@@ -57,8 +64,8 @@ public class DatabaseAccessor {
    * be assigned a unique ID number
    */
   public static void test_database() {
-    final String JDBC_DRIVER = "res.org.h2.Driver";
-    final String DB_URL = "jdbc:h2:./res/HR";
+    final String JDBC_DRIVER = "org.h2.Driver";
+    final String DB_URL = "jdbc:h2:./res/RebuDB";
     final String PASS = "";
     //  Database credentials
     Connection conn = null;
