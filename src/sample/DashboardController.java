@@ -30,6 +30,6 @@ public class DashboardController {
 
     @FXML
     private void handleDriverButton(ActionEvent event){
-        Main.createNewScene(event,"Driver.FXML");
+        Main.createNewScene(event,"Prompt.FXML");
     }
 }
