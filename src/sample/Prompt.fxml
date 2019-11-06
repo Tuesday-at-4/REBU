@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.DriverPrompt">
+   <children>
+      <AnchorPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label layoutX="211.0" layoutY="200.0" text="Register Your Vehicle Here" />
+            <GridPane layoutX="32.0" layoutY="234.0" prefHeight="134.0" prefWidth="228.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label text="Manufacturer" />
+                  <Label text="Model" GridPane.rowIndex="1" />
+                  <Label text="Year" GridPane.rowIndex="2" />
+                  <TextField fx:id="getManufacturer" GridPane.columnIndex="1" />
+                  <TextField fx:id="getModel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="getYear" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label text="Car Type" GridPane.rowIndex="3" />
+                  <Label text="License Plate" GridPane.rowIndex="4" />
+                  <TextField fx:id="txt_carType" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="txt_licensePlate" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+               </children>
+            </GridPane>
+            <ButtonBar layoutX="296.0" layoutY="336.0" prefHeight="40.0" prefWidth="222.0">
+               <buttons>
+                  <Button fx:id="OkButton" mnemonicParsing="false" onAction="#OkButton" text="OK" />
+                  <Button fx:id="CancelButton" mnemonicParsing="false" onAction="#CancelButton" prefHeight="22.0" prefWidth="79.0" text="Cancel" />
+               </buttons>
+            </ButtonBar>
+            <GridPane layoutX="307.0" layoutY="234.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label text="Car Color" />
+                  <Label text="Number of Seats" GridPane.rowIndex="1" />
+                  <TextField fx:id="getColor" GridPane.columnIndex="1" />
+                  <TextField fx:id="getSeats" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label text="Drivers License " GridPane.rowIndex="2" />
+                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+               </children>
+            </GridPane>
+            <Label layoutX="40.0" layoutY="36.0" text="If you are a Driver Please enter your information and press ok.">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label layoutX="97.0" layoutY="78.0" text="If you do not wish to be a driver press cancel.">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
