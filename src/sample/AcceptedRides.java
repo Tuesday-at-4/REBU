@@ -1,3 +1,9 @@
+/***********************************************************
+ * File   : AcceptedRides.Java
+ * Author(s)  : Benjamin Cano
+ * Class   : CEN 3031
+ * Purpose : allows the for population in the tableview for accepted rides tab
+ ************************************************************/
 package sample;
 
 import java.time.LocalDate;
