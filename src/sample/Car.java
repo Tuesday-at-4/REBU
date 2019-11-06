@@ -1,3 +1,9 @@
+/***********************************************************
+ * File   : Car.Java
+ * Author(s)  : Benjamin Cano
+ * Class   : CEN 3031
+ * Purpose : Allows the table view that stores the car information to populate.
+ ************************************************************/
 package sample;
 
 import javafx.beans.property.SimpleStringProperty;
