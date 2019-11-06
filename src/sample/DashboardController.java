@@ -1,5 +1,5 @@
 /***********************************************************
- * File   : Dashboard_Controller.Java
+ * File   : DashboardController.Java
  * Author(s)  : Michael Carracino
  * Class   : CEN 3031
  * Purpose : Handles the events on the hompepage/dashboard
@@ -11,7 +11,7 @@ import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
-public class Dashboard_Controller {
+public class DashboardController {
 
     @FXML
     TextField textFieldNews;

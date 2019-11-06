@@ -104,6 +104,7 @@ public class LoginController {
        * username and password are equal to the username and password that are entered into the
        * text fields.
        */
+
       String sqlVerify = "SELECT USER_NAME, USER_PASSWORD FROM RebuDB where USER_NAME = 'username', USER_PASSWORD = 'password'";
       ResultSet rsVerify = stmt.executeQuery(sqlVerify);
       while(rsVerify.next()){
@@ -130,9 +131,9 @@ public class LoginController {
             String email = rs.getString("USER_EMAIL");
             String phone = rs.getString("PHONE_NUMBER");
             String DOB = rs.getString("DATE_OF_BIRTH");
-          Account.currentUser =
-              new Account(
-                  firstName, lastName, email, phone, DOB, verifiableUsername, verifiablePassword);
+          Main.currentUser =
+              new Account(0,
+                  firstName, lastName, email, phone, DOB, verifiableUsername, verifiablePassword,0,0);
           Main.createNewScene(event, "Dashboard.fxml");
           System.out.println("It matches!");
       }
@@ -159,7 +160,7 @@ public class LoginController {
 
     System.out.println("Logging " + username + " in.");
     if (username.equals("Kali") & password.equals("Ollie")){
-      Account.currentUser = new Account("Kali","The Destroyer", "OfWorlds@aol.com","123-456-7890","00/00/0001", "Kali","Ollie");
+      Main.currentUser = new Account(0,"Kali","The Destroyer", "OfWorlds@aol.com","123-456-7890","00/00/0001", "Kali","Ollie",0,0);
       Main.createNewScene(event, "Dashboard.fxml");
       System.out.println("It matches!");
     } else {

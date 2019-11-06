@@ -8,10 +8,24 @@ package sample;
 
 public class Account {
 
-  private String firstName, lastName, phone, username, password, email, dateOfBirth;
-
+  private  static String firstName, lastName, phone, username, password, email, dateOfBirth;
+  private static int userID, carOneID, carTwoID;
   // static variable of a current user's account, for the sake of updating account details for now
-  public static Account currentUser;
+
+
+  public Account(int userID, String username, String password,String firstName, String lastName, String email, String phone, String dateOfBirth,int carOneID,int carTwoID) {
+    this.userID = userID;
+    this.username = username;
+    this.password = password;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.phone = phone;
+    this.email = email;
+    this.dateOfBirth = dateOfBirth;
+    this.carOneID = carOneID;
+    this.carTwoID = carTwoID;
+  }
+
 
   /*** ACCESSOR METHODS ***/
   public String getFirstName() {
@@ -71,19 +85,49 @@ public class Account {
     this.password = password;
   }
 
+  public void setCarTwoID(int carTwoID) {
+    this.carTwoID = carTwoID;
+  }
+
+  public void setCarOneID(int carOneID) {
+    this.carOneID = carOneID;
+  }
+
+  public void setUser_id(int user_id) {
+    this.userID = user_id;
+  }
+
   /*** HELPER METHOD ***/
   public String getName() {
     return getFirstName() + " " + getLastName();
   }
 
-  public Account(String firstName, String lastName, String email, String phone, String dateOfBirth,
-      String username, String password) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.email = email;
-    this.phone = phone;
-    this.dateOfBirth = dateOfBirth;
-    this.username = username;
-    this.password = password;
+  public int getUser_id() {
+    return userID;
+  }
+
+  public int getCarOneID() {
+    return carOneID;
+  }
+
+  public int getCarTwoID() {
+    return carTwoID;
+  }
+
+  /**
+   * A print Account for verifying your account with print statements
+   */
+  public void printAccountDetails(){
+    System.out.println(""
+        + "\nUserID:  "+userID
+        + "\nUsername:  "+username
+        + "\nPassword:  "+password
+        + "\nFirstName:  "+firstName
+        + "\nLastName:  "+lastName
+        + "\nPhone:  "+phone
+        + "\nEmail:  "+email
+        + "\nDateOfBirth:  "+dateOfBirth
+        + "\nCarOneID:  "+carOneID
+        + "\nCarTwoID:  "+carTwoID);
   }
 }

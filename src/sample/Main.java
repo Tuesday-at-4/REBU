@@ -21,15 +21,15 @@ import javafx.stage.Stage;
 public class Main extends Application {
     static ArrayList<Rides> pendingRides= new ArrayList<Rides>();
     static ArrayList<Rides> confirmedRides = new ArrayList<Rides>();
+    public static Account currentUser;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        DatabaseAccessor.test_database();
-        /*Parent rootMain = FXMLLoader.load(getClass().getResource("Login.fxml"));
+        Parent rootMain = FXMLLoader.load(getClass().getResource("Login.fxml"));
         Scene sceneMain = new Scene(rootMain);
         primaryStage.setScene(sceneMain);
         sceneMain.getStylesheets().add(Main.class.getResource("Style.css").toExternalForm());
-        primaryStage.show();*/
+        primaryStage.show();
     }
     static void createNewScene(Event event, String newFileFXML){
         Parent newRoot = null;

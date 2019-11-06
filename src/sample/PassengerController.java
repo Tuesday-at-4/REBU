@@ -6,7 +6,7 @@
  ************************************************************/
 
 package sample;
-/*
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import javafx.event.Event;
@@ -62,7 +62,7 @@ public class PassengerController {
     String[] timeString = textFieldStartTime.getText().split(":");
     String[] dateString = textFieldStartDate.getText().split("-");
     Rides dummy = new Rides(
-        Account.currentUser.getUsername(),
+        Main.currentUser.getUsername(),
         LocalTime.of(Integer.parseInt(timeString[0]),Integer.parseInt(timeString[1])),
         LocalDate.of(Integer.parseInt(dateString[0]), Integer.parseInt(dateString[1]), Integer.parseInt(dateString[2])),
         textFieldStartLocation.getText(),
@@ -71,4 +71,3 @@ public class PassengerController {
     initialize();
   }
 }
-*/

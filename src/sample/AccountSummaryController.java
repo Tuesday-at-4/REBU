@@ -8,7 +8,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class Account_Summary_Controller {
+public class AccountSummaryController {
 
   @FXML
   private Label lblName;
@@ -33,7 +33,7 @@ public class Account_Summary_Controller {
    */
   @FXML
   private void deleteAccount(Event event){
-    Account.currentUser = null;
+    Main.currentUser = null;
     Main.createNewScene(event, "Login.fxml");
   }
 
@@ -43,10 +43,10 @@ public class Account_Summary_Controller {
    */
   @FXML
   public void initialize() {
-    lblName.setText(Account.currentUser.getName());
-    lblEmail.setText(Account.currentUser.getEmail());
-    lblPhoneNum.setText(Account.currentUser.getPhone());
-    lblDOB.setText(Account.currentUser.getDateOfBirth());
+    lblName.setText(Main.currentUser.getName());
+    lblEmail.setText(Main.currentUser.getEmail());
+    lblPhoneNum.setText(Main.currentUser.getPhone());
+    lblDOB.setText(Main.currentUser.getDateOfBirth());
   }
 
 }
