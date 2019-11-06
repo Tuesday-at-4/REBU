@@ -1,5 +1,5 @@
 package sample;
-/*
+
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -51,42 +51,62 @@ public class PendingRides implements Initializable {
   private Tab accepted_Rides;
 
   @FXML
-  private TableView<sample.AcceptedRides> Rides_Accepted;
+  private TableView<AcceptedRides> Rides_Accepted;
 
   @FXML
-  private TableColumn<sample.AcceptedRides, String> Passenger2;
+  private TableColumn<AcceptedRides, String> Passenger2;
 
   @FXML
-  private TableColumn<sample.AcceptedRides, LocalDate> current_Date;
+  private TableColumn<AcceptedRides, LocalDate> current_Date;
 
   @FXML
-  private TableColumn<sample.AcceptedRides, LocalTime> current_Time;
+  private TableColumn<AcceptedRides, LocalTime> current_Time;
 
   @FXML
   private Button decline_Ride;
 
   @FXML
-  public ObservableList<sample.AcceptedRides> AcceptedRides = FXCollections.observableArrayList(new AcceptedRides("breanna", LocalTime.of(4, 45), LocalDate.of(2019, Month.OCTOBER, 20)));
- @FXML
+  private TableColumn<Rides, String> startLocation;
+
+  @FXML
+  private TableColumn<Rides, String> endLocation;
+
+  @FXML
+  private TableColumn<AcceptedRides, String> start_Loc;
+
+  @FXML
+  private TableColumn<AcceptedRides, String> end_Loc;
+  @FXML
+  public ObservableList<AcceptedRides> AcceptedRides = FXCollections.observableArrayList(
+      new AcceptedRides("breanna", LocalTime.of(4, 45), LocalDate.of(2019, Month.OCTOBER, 20),"Orlando","Miami"));
+  @FXML
   public ObservableList<Rides> PendingRides = FXCollections.observableArrayList(
-      new Rides("J Cole", LocalTime.of(12, 45),LocalDate.of(2019,Month.NOVEMBER,12),"Orlando","Miami"),
-    new Rides("Kendrick Lamar", LocalTime.of(5, 35),LocalDate.of(2019,Month.NOVEMBER,23),"Orlando","Miami"),
-    new Rides("LeBron James", LocalTime.of(6, 45), LocalDate.of(2019,Month.NOVEMBER,30),"Orlando","Miami"));
+      new Rides("J Cole", LocalTime.of(12, 45),LocalDate.of(2019,Month.NOVEMBER,12),"Fort Myers","Orlando"),
+      new Rides("Kendrick Lamar", LocalTime.of(5, 35),LocalDate.of(2019,Month.NOVEMBER,23),"Sarasota","Tallahassee"),
+      new Rides("LeBron James", LocalTime.of(6, 45), LocalDate.of(2019,Month.NOVEMBER,30),"Jacksonville","Gainesville"));
   public void initialize(URL url, ResourceBundle rb) {
     Passenger.setCellValueFactory(new PropertyValueFactory<Rides, String>("passengerName"));
     Date_OfRide.setCellValueFactory(new PropertyValueFactory<Rides, LocalDate>("Date_OfRide"));
     Time_OfRide.setCellValueFactory(new PropertyValueFactory<Rides, LocalTime>("Time_OfRide"));
+    startLocation.setCellValueFactory(new PropertyValueFactory<Rides, String>("startLocation"));
+    endLocation.setCellValueFactory(new PropertyValueFactory<Rides, String>("endLocation"));
 
-    Passenger2.setCellValueFactory(new PropertyValueFactory<sample.AcceptedRides, String>("Passenger2"));
-    current_Date.setCellValueFactory(new PropertyValueFactory<sample.AcceptedRides, LocalDate>("Current_Date"));
-    current_Time.setCellValueFactory(new PropertyValueFactory<sample.AcceptedRides, LocalTime>("Current_Time"));
+    Passenger2.setCellValueFactory(new PropertyValueFactory<AcceptedRides, String>("Passenger2"));
+    current_Date.setCellValueFactory(new PropertyValueFactory<AcceptedRides, LocalDate>("Current_Date"));
+    current_Time.setCellValueFactory(new PropertyValueFactory<AcceptedRides, LocalTime>("Current_Time"));
+    start_Loc.setCellValueFactory(new PropertyValueFactory<AcceptedRides, String>("start_Loc"));
+    end_Loc.setCellValueFactory(new PropertyValueFactory<AcceptedRides, String>("end_Loc"));
 
     Rides_Accepted.setItems(AcceptedRides);
     Pending_Rides.setItems(PendingRides);
   }
+
   @FXML
   private void goEdit_Registration(Event event){
     Main.createNewScene(event, "CarRegistration.fxml");
   }
+  @FXML
+  private void goHome(Event event){
+    Main.createNewScene(event, "Dashboard.fxml");
+  }
 }
-*/
