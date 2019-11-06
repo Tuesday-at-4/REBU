@@ -1,3 +1,9 @@
+/***********************************************************
+ * File   : DriverPrompt.Java
+ * Author(s)  : Benjamin Cano
+ * Class   : CEN 3031
+ * Purpose : Initializes the GUI program that creates a scene that prompts the user to enter their driver information.
+ ************************************************************/
 package sample;
 
 import javafx.event.Event;
