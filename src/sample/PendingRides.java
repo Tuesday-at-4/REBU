@@ -1,3 +1,9 @@
+/***********************************************************
+ * File   : PendingRides.Java
+ * Author(s)  : Benjamin Cano
+ * Class   : CEN 3031
+ * Purpose : This is the controller for the Driver.fxml containing all the functionality for the driver page
+ ************************************************************/
 package sample;
 
 import java.net.URL;
