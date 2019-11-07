@@ -8,11 +8,15 @@
 package sample;
 
 import com.sun.istack.internal.NotNull;
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
 
 public class DatabaseAccessor {
   private static String JDBC_DRIVER = "org.h2.Driver";
@@ -58,6 +62,13 @@ public class DatabaseAccessor {
     }
     return userID;
   }
+
+  /**
+   * Returns the Account built from the associated row in the database, returns an Account of 0's and blanks if data is not found.
+   * NOTE: there is no functionality for repeated USER_IDs in the database
+   * @param userID - the user ID associated with the
+   * @return - returns an Account object, either full of data, or 0's and blanks if the USER_ID is not found
+   */
   public static Account getAccount(int userID){
     Account dummyAccount = new Account(0,"","","","","","","",0,0);
 
@@ -77,7 +88,7 @@ public class DatabaseAccessor {
       if (rs.next()) {
         System.out.println("Account Found");
         dummyAccount = new Account(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getInt(9),rs.getInt(10));
-        dummyAccount.printAccountDetails();
+        //dummyAccount.printAccountDetails();
       } else {
         System.out.println("Account not found");
       }
@@ -91,6 +102,11 @@ public class DatabaseAccessor {
     }
     return dummyAccount;
   }
+
+  /**
+   * Takes an object of the Account class and adds its data to the database
+   * @param dummyAccount - the account to be added
+   */
   public static void addAccount(Account dummyAccount){
     //  Database credentials
     Connection conn = null;
@@ -125,6 +141,11 @@ public class DatabaseAccessor {
       e.printStackTrace();
     }
   }
+
+  /**
+   * Takes in a user_id and deletes the associated account
+   * @param userID - the ID for the account to be deleted
+   */
   public static void deleteAccount(int userID){
     //  Database credentials
     Connection conn = null;
@@ -148,7 +169,154 @@ public class DatabaseAccessor {
       e.printStackTrace();
     }
   }
-  /*public String[] getNotifications(int userID){
+
+  /**
+   * A Test function to print out all Ride data from an ArrayList<Rides>.
+   * @param dummyArray - the Array of Rides to be printed
+   */
+  public static void printAllRides(ArrayList<Rides> dummyArray){
+    System.out.println("************All stored Rides************");
+    for (Rides x : dummyArray){
+      System.out.println(
+          "RideID: "+x.getRideID()+
+          "\nPassengerID: "+x.getPassenger()+
+          "\nDriverID: "+x.getDriver()+
+          "\nStartDate: "+x.getDate_OfRide()+
+          "\nStartLocation: "+x.getStartLocation()+
+          "\nEndLocation: "+x.getEndLocation()+
+          "\nStartTime: "+x.getTime_OfRide()+
+          "\nRideStatusID: "+x.getRide_status_id());
+    }
+    System.out.println("************End of stored Rides************");
+  }
+  
+  /**
+   * Returns an ArrayList of all Rides in the DB
+   * @return - An ArrayList of every Ride stored in the Database
+   */
+  public static ArrayList<Rides> getAllRides(){
+    ArrayList<Rides> dummyRideArray = new ArrayList<Rides>();
+    //  Database credentials
+    Connection conn = null;
+    Statement stmt = null;
+    try {
+      // STEP 1: Register JDBC driver
+      Class.forName(JDBC_DRIVER);
+      conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+      //STEP 3: Execute a query
+      stmt = conn.createStatement();
+      String sql = "SELECT * FROM RIDES_LIST";
+      ResultSet rs = stmt.executeQuery(sql);
+      while(rs.next()){
+        dummyRideArray.add(new Rides(
+            rs.getInt(1),
+            rs.getInt(2),
+            rs.getInt(3),
+            LocalDate.parse(rs.getString(4)),
+            rs.getString(5),
+            rs.getString(6),
+            LocalTime.parse(rs.getString(7)),
+            rs.getInt(8)));
+      }
+      // STEP 4: Clean-up environment
+      stmt.close();
+      conn.close();
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return dummyRideArray;
+  }
+
+  /**
+   * Returns an ArrayList of all Rides in the DB that have a matching DriverID
+   * @param driverUserID - the userID of the Driver
+   * @return - ArrayList of all rides where userID = driverID
+   */
+  public static ArrayList<Rides> getDriverRides(int driverUserID){
+    ArrayList<Rides> dummyRideArray = new ArrayList<Rides>();
+    //  Database credentials
+    Connection conn = null;
+    Statement stmt = null;
+    try {
+      // STEP 1: Register JDBC driver
+      Class.forName(JDBC_DRIVER);
+      conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+      //STEP 3: Execute a query
+      stmt = conn.createStatement();
+      String sql = "SELECT * FROM RIDES_LIST WHERE DRIVER_ID = '"+driverUserID+"'";
+      ResultSet rs = stmt.executeQuery(sql);
+      while(rs.next()){
+        dummyRideArray.add(new Rides(
+            rs.getInt(1),
+            rs.getInt(2),
+            rs.getInt(3),
+            LocalDate.parse(rs.getString(4)),
+            rs.getString(5),
+            rs.getString(6),
+            LocalTime.parse(rs.getString(7)),
+            rs.getInt(8)));
+      }
+      // STEP 4: Clean-up environment
+      stmt.close();
+      conn.close();
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return dummyRideArray;
+  }
+  
+  /**
+   * Returns an ArrayList of all Rides in the DB that have a matching PassengerID
+   * @param passengerID - the userID of the Passenger
+   * @return - ArrayList of all rides where userID = passengerID
+   */
+  public static ArrayList<Rides> getPassengerRides(int passengerID){
+    ArrayList<Rides> dummyRideArray = new ArrayList<Rides>();
+    //  Database credentials
+    Connection conn = null;
+    Statement stmt = null;
+    try {
+      // STEP 1: Register JDBC driver
+      Class.forName(JDBC_DRIVER);
+      conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+      //STEP 3: Execute a query
+      stmt = conn.createStatement();
+      String sql = "SELECT * FROM RIDES_LIST WHERE PASSENGER_ID = '"+passengerID+"'";
+      ResultSet rs = stmt.executeQuery(sql);
+      while(rs.next()){
+        dummyRideArray.add(new Rides(
+            rs.getInt(1),
+            rs.getInt(2),
+            rs.getInt(3),
+            LocalDate.parse(rs.getString(4)),
+            rs.getString(5),
+            rs.getString(6),
+            LocalTime.parse(rs.getString(7)),
+            rs.getInt(8)));
+      }
+      // STEP 4: Clean-up environment
+      stmt.close();
+      conn.close();
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return dummyRideArray;
+  }
+
+  //public void createRide(Rides dummyRide){};
+  //public static void editRideStatus(Rides dummyRide, int statusFlag){};
+  //public void deleteRide(int rideID){};
+  /*
+  public String[] getNotifications(int userID){
     String[] rideID = {""};
     return rideID;
   }
@@ -163,16 +331,9 @@ public class DatabaseAccessor {
   public void createCar(Car dummyCar){
   }
   public Car editCar(Car givenCar){
-    Car dummyCar = new Car("","","","","");
+    Car dummyCar = new Car("","","","","","","");
     return dummyCar;
   }
   public void deleteCar(int car_ID){};
-  public Rides[] getRides(int user_ID){ 
-    Rides[] dummyRides = {new Rides()};
-    return dummyRides;
-  };
-  public void createRide(Rides dummyRide){};
-  public Rides editRide(Rides dummyRide){};
-  public void deleteRide(int rideID){};
-  */
+   */
 }
