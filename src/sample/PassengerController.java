@@ -61,25 +61,25 @@ public class Passenger_Controller {
     private Tab tabPendingRides;
 
     @FXML
-    private TableView<Viaje> tvPendingRides;
+    private TableView<Trip> tvPendingRides;
 
     @FXML
-    private TableView<Viaje> tvAcceptedRides;
+    private TableView<Trip> tvAcceptedRides;
 
     @FXML
-    private TableColumn<Viaje, String> pendRideId;
+    private TableColumn<Trip, String> pendRideId;
 
     @FXML
-    private TableColumn<Viaje, String> pendFrom;
+    private TableColumn<Trip, String> pendFrom;
 
     @FXML
-    private TableColumn<Viaje, String> pendTo;
+    private TableColumn<Trip, String> pendTo;
 
     @FXML
-    private TableColumn<Viaje, LocalDate> pendDate;
+    private TableColumn<Trip, LocalDate> pendDate;
 
     @FXML
-    private TableColumn<Viaje, LocalTime> pendTime;
+    private TableColumn<Trip, LocalTime> pendTime;
 
     @FXML
     private Tab tabAccptedRides;
@@ -126,20 +126,20 @@ public class Passenger_Controller {
      * They're used together get values to populate on the table view columns and cells */
 
     public void initialize() {
-        ObservableList<Viaje> data = populateList();
-        pendRideId.setCellValueFactory(new PropertyValueFactory<Viaje, String>("pendRideId"));
-        pendFrom.setCellValueFactory(new PropertyValueFactory<Viaje, String>("pendFrom"));
-        pendTo.setCellValueFactory(new PropertyValueFactory<Viaje, String>("pendTo"));
-        pendDate.setCellValueFactory(new PropertyValueFactory<Viaje, LocalDate>("pendDate"));
-        pendTime.setCellValueFactory(new PropertyValueFactory<Viaje, LocalTime>("pendTime"));
+        ObservableList<Trip> data = populateList();
+        pendRideId.setCellValueFactory(new PropertyValueFactory<Trip, String>("pendRideId"));
+        pendFrom.setCellValueFactory(new PropertyValueFactory<Trip, String>("pendFrom"));
+        pendTo.setCellValueFactory(new PropertyValueFactory<Trip, String>("pendTo"));
+        pendDate.setCellValueFactory(new PropertyValueFactory<Trip, LocalDate>("pendDate"));
+        pendTime.setCellValueFactory(new PropertyValueFactory<Trip, LocalTime>("pendTime"));
 
         tvPendingRides.setItems(data);
     }
 
     /* Line 138 - 141 placeholder values until DB works */
 
-    public static ObservableList<Viaje> populateList() {
-        return FXCollections.observableArrayList(new Viaje("121289", "Miami", "Orlando", LocalDate.of(2019, Month.NOVEMBER, 12), LocalTime.of(2, 23)));
+    public static ObservableList<Trip> populateList() {
+        return FXCollections.observableArrayList(new Trip("121289", "Miami", "Orlando", LocalDate.of(2019, Month.NOVEMBER, 12), LocalTime.of(2, 23)));
 
     }
 }
