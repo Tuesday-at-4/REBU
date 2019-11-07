@@ -26,7 +26,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Month;
 
-public class Passenger_Controller {
+public class PassengerController {
 
     /* all of the @FXML code does with controls and containers used in the Passenger.fxml  */
 
