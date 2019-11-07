@@ -119,8 +119,8 @@ public class DatabaseAccessor {
       //STEP 3: Execute a query
       stmt = conn.createStatement();
       String sql = "INSERT INTO USER_ACCOUNT(user_id, user_name, user_password, first_name, last_name, phone_number, user_email, date_of_birth, car_id_one, car_id_two)"+
-      "VALUES("
-          + dummyAccount.getUser_id() + ",'"
+      "VALUES('"
+          + dummyAccount.getUser_id() + "','"
           + dummyAccount.getUsername() + "','"
           + dummyAccount.getPassword() + "','"
           + dummyAccount.getFirstName() + "','"
@@ -175,10 +175,10 @@ public class DatabaseAccessor {
    * @param dummyArray - the Array of Rides to be printed
    */
   public static void printAllRides(ArrayList<Rides> dummyArray){
-    System.out.println("************All stored Rides************");
+    System.out.println("\n************All stored Rides************");
     for (Rides x : dummyArray){
       System.out.println(
-          "RideID: "+x.getRideID()+
+          "\nRideID: "+x.getRideID()+
           "\nPassengerID: "+x.getPassenger()+
           "\nDriverID: "+x.getDriver()+
           "\nStartDate: "+x.getDate_OfRide()+
@@ -189,7 +189,7 @@ public class DatabaseAccessor {
     }
     System.out.println("************End of stored Rides************");
   }
-  
+
   /**
    * Returns an ArrayList of all Rides in the DB
    * @return - An ArrayList of every Ride stored in the Database
@@ -270,7 +270,7 @@ public class DatabaseAccessor {
     }
     return dummyRideArray;
   }
-  
+
   /**
    * Returns an ArrayList of all Rides in the DB that have a matching PassengerID
    * @param passengerID - the userID of the Passenger
@@ -312,9 +312,97 @@ public class DatabaseAccessor {
     return dummyRideArray;
   }
 
-  //public void createRide(Rides dummyRide){};
-  //public static void editRideStatus(Rides dummyRide, int statusFlag){};
-  //public void deleteRide(int rideID){};
+  public static void addRide(Rides dummyRide){
+    //  Database credentials
+    Connection conn = null;
+    Statement stmt = null;
+    try {
+      // STEP 1: Register JDBC driver
+      Class.forName(JDBC_DRIVER);
+      conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+      //STEP 3: Execute a query
+      stmt = conn.createStatement();
+      String sql = "INSERT INTO RIDES_LIST(RIDE_ID, PASSENGER_ID, DRIVER_ID, START_DATE, START_LOCATION, END_LOCATION, START_TIME, RIDE_STATUS_ID)"+
+          "VALUES('"
+          + dummyRide.getRideID() + "','"
+          + dummyRide.getPassengerName() + "','"
+          + dummyRide.getDriver() + "','"
+          + dummyRide.getDate_OfRide().toString() + "','"
+          + dummyRide.getStartLocation() + "','"
+          + dummyRide.getEndLocation() + "','"
+          + dummyRide.getTime_OfRide().toString() + "','"
+          + dummyRide.getRide_status_id()+"');";
+      stmt.executeUpdate(sql);
+      System.out.println("Ride "+dummyRide.getRideID()+" has been added!");
+      // STEP 4: Clean-up environment
+      stmt.close();
+      conn.close();
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
+  /**
+   * Changes the RideStatusID of a particular Ride
+   *  Ride Status ID's
+   *    0 - 'INACTIVE'
+   * 	  1 - 'ACTIVE'
+   * 	  2 - 'Cancelled by Driver'
+   * 	  3 - 'Cancelled by Passenger'
+   * @param dummyRideID - The ID of the ride in question
+   * @param rideStatusID - The status flag of the ride in question
+   */
+  public static void editRideStatus(int dummyRideID, int rideStatusID){
+    //  Database credentials
+    Connection conn = null;
+    Statement stmt = null;
+    try {
+      // STEP 1: Register JDBC driver
+      Class.forName(JDBC_DRIVER);
+      conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+      //STEP 3: Execute a query
+      stmt = conn.createStatement();
+      String sql = "UPDATE RIDES_LIST SET RIDE_STATUS_ID = "+rideStatusID+" WHERE RIDE_ID = " + dummyRideID;
+      stmt.executeUpdate(sql); //There is no resultSet for an update statement
+
+      // STEP 4: Clean-up environment
+      stmt.close();
+      conn.close();
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public void deleteRide(int rideID){
+    //  Database credentials
+    Connection conn = null;
+    Statement stmt = null;
+    try {
+      // STEP 1: Register JDBC driver
+      Class.forName(JDBC_DRIVER);
+      conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+      //STEP 3: Execute a query
+      stmt = conn.createStatement();
+      String sql = "DELETE FROM RIDES_LIST WHERE RIDE_ID='"+rideID+"'";
+      stmt.executeUpdate(sql);
+      System.out.println("Ride "+rideID+" has been deleted!");
+      // STEP 4: Clean-up environment
+      stmt.close();
+      conn.close();
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  };
+  
   /*
   public String[] getNotifications(int userID){
     String[] rideID = {""};
@@ -337,3 +425,4 @@ public class DatabaseAccessor {
   public void deleteCar(int car_ID){};
    */
 }
+
