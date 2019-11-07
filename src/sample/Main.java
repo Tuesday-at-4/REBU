@@ -19,9 +19,12 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+
+    // static variable of a current user's account, for the sake of updating account details for now
+    public static Account currentUser;
+
     static ArrayList<Rides> pendingRides= new ArrayList<Rides>();
     static ArrayList<Rides> confirmedRides = new ArrayList<Rides>();
-    public static Account currentUser;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -39,6 +42,7 @@ public class Main extends Application {
             e.printStackTrace();
         }
         Scene newScene = new Scene(newRoot);
+        newScene.getStylesheets().add(Main.class.getResource("Style.css").toExternalForm());
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(newScene);
         window.show();
