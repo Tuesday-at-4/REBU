@@ -11,7 +11,7 @@ package sample;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class Viaje {
+public class Trip {
     private String pendRideId;
     private String pendFrom;
     private String pendTo;
