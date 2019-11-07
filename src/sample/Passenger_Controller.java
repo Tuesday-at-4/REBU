@@ -21,124 +21,125 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Month;
 
 public class Passenger_Controller {
 
-  /* all of the @FXML code does with controls and containers used in the Passenger.fxml  */
-
-  @FXML
-  private Tab tabPassengerMain;
-
-  @FXML
-  private Button home_Button;
-
-  @FXML
-  private Button Edit_Account;
-
-  @FXML
-  private Tab tabRideScheduler;
-
-  @FXML
-  private TextField textFieldStartLocation;
-
-  @FXML
-  private TextField textFieldEndLocation;
-
-  @FXML
-  private TextField textFieldStartTime;
-
-  @FXML
-  private TextField textFieldStartDate;
-
-  @FXML
-  private Button btnCreateRide;
-
-  @FXML
-  private Tab tabPendingRides;
-
-  @FXML
-  private TableView<Viaje> tvPendingRides;
-
-  @FXML
-  private TableView<Viaje> tvAcceptedRides;
-
-  @FXML
-  private TableColumn<Viaje, String> pendRideId;
-
-  @FXML
-  private TableColumn<Viaje, String> pendFrom;
-
-  @FXML
-  private TableColumn<Viaje, String> pendTo;
-
-  @FXML
-  private TableColumn<Viaje, LocalDate> pendDate;
-
-  @FXML
-  private TableColumn<Viaje, LocalTime> pendTime;
-
-  @FXML
-  private Tab tabAccptedRides;
-
-  @FXML
-  private TableColumn<?, String> accptRideId;
-
-  @FXML
-  private TableColumn<?, String> accptFrom;
-
-  @FXML
-  private TableColumn<?, String> accptTo;
-
-  @FXML
-  private TableColumn<?, String> accptDate;
-
-  @FXML
-  private TableColumn<?, String> accptTime;
-
-  /* 103-106 will be expanded upon to record scheduled rides and have them stored in the DB when it works */
-
-  @FXML
-  void createRide(ActionEvent event) {
-
-  }
-
-  /* The next block of code (108-111) returns you to the dashboard via the home button. */
-
-  @FXML
-  void returnHome(ActionEvent event) {
-    Main.createNewScene(event, "Dashboard.fxml");
-  }
-
-  /*  The next block of code (115-118) returns you to the account summary page via the edit account button. */
+    /* all of the @FXML code does with controls and containers used in the Passenger.fxml  */
 
     @FXML
-    private void edit_Account(Event event){
-      Main.createNewScene(event, "Account_Summary.fxml");
-  }
+    private Tab tabPassengerMain;
 
-  /* cellValueFactory - set to specify how to populate all cells within a single TableColumn
-   * propertyValueFactory<1, 2>  1- takes a parameter for type of the class contained within the TableView list
-                                 *2- takes a another parameter type of the class contained within the TableColumn cells
-   * They're used together get values to populate on the table view columns and cells */
+    @FXML
+    private Button home_Button;
 
-  public void initialize(){
-    ObservableList<Viaje> data = populateList();
-    pendRideId.setCellValueFactory(new PropertyValueFactory<Viaje, String>("pendRideId"));
-    pendFrom.setCellValueFactory(new PropertyValueFactory<Viaje, String>("pendFrom"));
-    pendTo.setCellValueFactory(new PropertyValueFactory<Viaje, String>("pendTo"));
-    pendDate.setCellValueFactory(new PropertyValueFactory<Viaje, LocalDate>("pendDate"));
-    pendTime.setCellValueFactory(new PropertyValueFactory<Viaje, LocalTime>("pendTime"));
+    @FXML
+    private Button Edit_Account;
 
-    tvPendingRides.setItems(data);
-  }
+    @FXML
+    private Tab tabRideScheduler;
 
-  /* Line 138 - 141 placeholder values until DB works */
+    @FXML
+    private TextField textFieldStartLocation;
 
-public static ObservableList<Viaje> populateList(){
-    return FXCollections.observableArrayList(new Viaje("121289","Miami","Orlando",LocalDate.of(2019, Month.NOVEMBER,12),LocalTime.of(2,23)));
+    @FXML
+    private TextField textFieldEndLocation;
 
-}
+    @FXML
+    private TextField textFieldStartTime;
+
+    @FXML
+    private TextField textFieldStartDate;
+
+    @FXML
+    private Button btnCreateRide;
+
+    @FXML
+    private Tab tabPendingRides;
+
+    @FXML
+    private TableView<Viaje> tvPendingRides;
+
+    @FXML
+    private TableView<Viaje> tvAcceptedRides;
+
+    @FXML
+    private TableColumn<Viaje, String> pendRideId;
+
+    @FXML
+    private TableColumn<Viaje, String> pendFrom;
+
+    @FXML
+    private TableColumn<Viaje, String> pendTo;
+
+    @FXML
+    private TableColumn<Viaje, LocalDate> pendDate;
+
+    @FXML
+    private TableColumn<Viaje, LocalTime> pendTime;
+
+    @FXML
+    private Tab tabAccptedRides;
+
+    @FXML
+    private TableColumn<?, String> accptRideId;
+
+    @FXML
+    private TableColumn<?, String> accptFrom;
+
+    @FXML
+    private TableColumn<?, String> accptTo;
+
+    @FXML
+    private TableColumn<?, String> accptDate;
+
+    @FXML
+    private TableColumn<?, String> accptTime;
+
+    /* 103-106 will be expanded upon to record scheduled rides and have them stored in the DB when it works */
+
+    @FXML
+    void createRide(ActionEvent event) {
+
+    }
+
+    /* The next block of code (108-111) returns you to the dashboard via the home button. */
+
+    @FXML
+    void returnHome(ActionEvent event) {
+        Main.createNewScene(event, "Dashboard.fxml");
+    }
+
+    /*  The next block of code (115-118) returns you to the account summary page via the edit account button. */
+
+    @FXML
+    private void edit_Account(Event event) {
+        Main.createNewScene(event, "Account_Summary.fxml");
+    }
+
+    /* cellValueFactory - set to specify how to populate all cells within a single TableColumn
+     * propertyValueFactory<1, 2>  1- takes a parameter for type of the class contained within the TableView list
+     *2- takes a another parameter type of the class contained within the TableColumn cells
+     * They're used together get values to populate on the table view columns and cells */
+
+    public void initialize() {
+        ObservableList<Viaje> data = populateList();
+        pendRideId.setCellValueFactory(new PropertyValueFactory<Viaje, String>("pendRideId"));
+        pendFrom.setCellValueFactory(new PropertyValueFactory<Viaje, String>("pendFrom"));
+        pendTo.setCellValueFactory(new PropertyValueFactory<Viaje, String>("pendTo"));
+        pendDate.setCellValueFactory(new PropertyValueFactory<Viaje, LocalDate>("pendDate"));
+        pendTime.setCellValueFactory(new PropertyValueFactory<Viaje, LocalTime>("pendTime"));
+
+        tvPendingRides.setItems(data);
+    }
+
+    /* Line 138 - 141 placeholder values until DB works */
+
+    public static ObservableList<Viaje> populateList() {
+        return FXCollections.observableArrayList(new Viaje("121289", "Miami", "Orlando", LocalDate.of(2019, Month.NOVEMBER, 12), LocalTime.of(2, 23)));
+
+    }
 }
