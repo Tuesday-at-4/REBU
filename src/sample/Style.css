@@ -6,13 +6,25 @@ AnchorPane {
   -fx-background-color: #1a1a1a;
 }
 
+VBox {
+  -fx-spacing: 15;
+}
+
+VBox .label {
+  -fx-min-height: 23px;
+}
+
+HBox .label {
+  -fx-font-size: 18px;
+}
+
 .label {
   -fx-text-fill: #eeeeee;
   -fx-font-weight: bold;
 }
 
 .button {
-  -fx-background-color: #ff8a65;
+  -fx-background-color: #03DAC5;
   -fx-text-fill: #121212;
   -fx-border-style: hidden;
   -fx-font-size: 13px;
@@ -20,5 +32,5 @@ AnchorPane {
 }
 
 .button:hover {
-  -fx-background-color: #c75b39;
+  -fx-background-color: #02A898;
 }

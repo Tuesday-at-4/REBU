@@ -29,11 +29,11 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         DatabaseAccessor.test_database();
-        /*Parent rootMain = FXMLLoader.load(getClass().getResource("Login.fxml"));
+        Parent rootMain = FXMLLoader.load(getClass().getResource("Login.fxml"));
         Scene sceneMain = new Scene(rootMain);
         primaryStage.setScene(sceneMain);
         sceneMain.getStylesheets().add(Main.class.getResource("Style.css").toExternalForm());
-        primaryStage.show();*/
+        primaryStage.show();
     }
     static void createNewScene(Event event, String newFileFXML){
         Parent newRoot = null;
@@ -43,6 +43,7 @@ public class Main extends Application {
             e.printStackTrace();
         }
         Scene newScene = new Scene(newRoot);
+        newScene.getStylesheets().add(Main.class.getResource("Style.css").toExternalForm());
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(newScene);
         window.show();

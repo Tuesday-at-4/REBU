@@ -24,6 +24,9 @@ public class Account_Summary_Controller {
   private Label lblEmail;
 
   @FXML
+  private Label lblUsername;
+
+  @FXML
   private Button btnEditAccount;
 
   @FXML
@@ -37,14 +40,14 @@ public class Account_Summary_Controller {
    */
   @FXML
   private void deleteAccount(Event event){
-    Account.currentUser = null;
+    Main.currentUser = null;
     Main.createNewScene(event, "Login.fxml");
   }
 
-  /*@FXML
+  @FXML
   private void editAccount(Event event) {
     Main.createNewScene(event, "EditAccount.fxml");
-  }*/
+  }
 
   /**
    * Initialize method to replace labels with corresponding values. Temporary for the sake of
@@ -52,11 +55,11 @@ public class Account_Summary_Controller {
    */
   @FXML
   public void initialize() {
-    lblName.setText(Account.currentUser.getName());
-    lblEmail.setText(Account.currentUser.getEmail());
-    lblPhoneNum.setText(Account.currentUser.getPhone());
-    lblDOB.setText(Account.currentUser.getDateOfBirth());
+    lblName.setText(Main.currentUser.getName());
+    lblEmail.setText(Main.currentUser.getEmail());
+    lblPhoneNum.setText(Main.currentUser.getPhone());
+    lblDOB.setText(Main.currentUser.getDateOfBirth());
+    lblUsername.setText(Main.currentUser.getUsername());
   }
-
 }
 
