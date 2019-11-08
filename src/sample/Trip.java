@@ -18,7 +18,7 @@ public class Trip {
     private LocalDate pendDate;
     private LocalTime pendTime;
 
-    Viaje(String pendRideId, String pendFrom, String pendTo, LocalDate pendDate, LocalTime pendTime) {
+    Trip(String pendRideId, String pendFrom, String pendTo, LocalDate pendDate, LocalTime pendTime) {
         this.pendDate = pendDate;
         this.pendFrom = pendFrom;
         this.pendRideId = pendRideId;
