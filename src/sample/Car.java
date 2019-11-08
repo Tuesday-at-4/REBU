@@ -1,26 +1,19 @@
-/***********************************************************
- * File   : Car.Java
- * Author(s)  : Benjamin Cano
- * Class   : CEN 3031
- * Purpose : Allows the table view that stores the car information to populate.
- ************************************************************/
 package sample;
 
-import javafx.beans.property.SimpleStringProperty;
-
 public class Car {
-
+  private int carID;
   private String manufacturer;
   private String model;
-  private String year;
+  private int year;
   private String carType;
   private String licensePlate;
   private String CarColor;
-  private String NumSeats;
+  private int NumSeats;
 
 
-  Car(String manufacturer, String model, String year, String carType, String licensePlate,
-      String CarColor, String NumSeats) {
+  Car(int carID, String manufacturer, String model, int year, String carType, String licensePlate,
+      String CarColor, int NumSeats) {
+    this.carID = carID;
     this.manufacturer = manufacturer;
     this.model = model;
     this.year = year;
@@ -47,11 +40,11 @@ public class Car {
     this.model = model;
   }
 
-  public String getYear() {
+  public int getYear() {
     return year;
   }
 
-  public void setYear(String year) {
+  public void setYear(int year) {
     this.year = year;
   }
 
@@ -79,11 +72,19 @@ public class Car {
     this.licensePlate = licensePlate;
   }
 
-  public void setNumSeats(String NumSeats) {
+  public void setNumSeats(int NumSeats) {
     this.NumSeats = NumSeats;
   }
 
-  public String getNumSeats() {
+  public int getNumSeats() {
     return NumSeats;
+  }
+
+  public int getCarID() {
+    return carID;
+  }
+
+  public void setCarID(int carID) {
+    this.carID = carID;
   }
 }
