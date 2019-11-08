@@ -23,7 +23,9 @@ public class DatabaseAccessor {
   private static String DB_URL = "jdbc:h2:./res/RebuDB";
   private static String PASS = "";
   private static String USER = "";
-
+//////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////    Account Methods   ////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
   /**
    * Searches for an account with this username and password
    * @param username - the unique username of the user
@@ -170,6 +172,10 @@ public class DatabaseAccessor {
     }
   }
 
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////    Rides Methods   /////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
   /**
    * A Test function to print out all Ride data from an ArrayList<Rides>.
    * @param dummyArray - the Array of Rides to be printed
@@ -191,7 +197,8 @@ public class DatabaseAccessor {
   }
 
   /**
-   * Returns an ArrayList of all Rides in the DB
+   * Returns an ArrayList of all Rides in the DB. Not very useful, except in conjunction with printAllRides in order
+   *    to manually see the status of the rides in the DB.
    * @return - An ArrayList of every Ride stored in the Database
    */
   public static ArrayList<Rides> getAllRides(){
@@ -231,11 +238,13 @@ public class DatabaseAccessor {
   }
 
   /**
-   * Returns an ArrayList of all Rides in the DB that have a matching DriverID
+   * Returns an ArrayList of all Rides in the DB that have a matching DriverID and that have the Accepted status
+   *    This array is a list of rides that this driver has accepted.
+   *    Built specifically for the Accepted Rides tabPane in the driver screen
    * @param driverUserID - the userID of the Driver
    * @return - ArrayList of all rides where userID = driverID
    */
-  public static ArrayList<Rides> getDriverRides(int driverUserID){
+  public static ArrayList<Rides> getDriverAcceptedRides(int driverUserID){
     ArrayList<Rides> dummyRideArray = new ArrayList<Rides>();
     //  Database credentials
     Connection conn = null;
@@ -247,7 +256,7 @@ public class DatabaseAccessor {
 
       //STEP 3: Execute a query
       stmt = conn.createStatement();
-      String sql = "SELECT * FROM RIDES_LIST WHERE DRIVER_ID = '"+driverUserID+"'";
+      String sql = "SELECT * FROM RIDES_LIST WHERE DRIVER_ID = '"+driverUserID+"' AND RIDE_STATUS_ID = 0";
       ResultSet rs = stmt.executeQuery(sql);
       while(rs.next()){
         dummyRideArray.add(new Rides(
@@ -272,11 +281,13 @@ public class DatabaseAccessor {
   }
 
   /**
-   * Returns an ArrayList of all Rides in the DB that have a matching PassengerID
-   * @param passengerID - the userID of the Passenger
-   * @return - ArrayList of all rides where userID = passengerID
+   * Returns an array of all Rides where the Driver ID's DON'T match and the rides have the Pending status
+   *    This is an array of Rides that the Driver has not accepted.
+   *    Made specifically for the Pending Rides tabPane in the driver screen
+   * @param driverUserID - The driverID that is matched to Rides
+   * @return - ArrayList of all rides that are both pending and not associated with the driver
    */
-  public static ArrayList<Rides> getPassengerRides(int passengerID){
+  public static ArrayList<Rides> getDriverPendingRides(int driverUserID){
     ArrayList<Rides> dummyRideArray = new ArrayList<Rides>();
     //  Database credentials
     Connection conn = null;
@@ -288,7 +299,7 @@ public class DatabaseAccessor {
 
       //STEP 3: Execute a query
       stmt = conn.createStatement();
-      String sql = "SELECT * FROM RIDES_LIST WHERE PASSENGER_ID = '"+passengerID+"'";
+      String sql = "SELECT * FROM RIDES_LIST WHERE DRIVER_ID != '"+driverUserID+"' AND RIDE_STATUS_ID = 1"; // Returns only pending rides not associated with the driver
       ResultSet rs = stmt.executeQuery(sql);
       while(rs.next()){
         dummyRideArray.add(new Rides(
@@ -312,6 +323,94 @@ public class DatabaseAccessor {
     return dummyRideArray;
   }
 
+  /**
+   * Returns an ArrayList of all Rides in the DB that have a matching PassengerID and the pending status
+   *    MAde specifically for the Pending Rides in the Passenger Screen
+   * @param passengerID - the userID of the Passenger
+   * @return - ArrayList of all rides where userID = passengerID
+   */
+  public static ArrayList<Rides> getPassengerPendingRides(int passengerID){
+    ArrayList<Rides> dummyRideArray = new ArrayList<Rides>();
+    //  Database credentials
+    Connection conn = null;
+    Statement stmt = null;
+    try {
+      // STEP 1: Register JDBC driver
+      Class.forName(JDBC_DRIVER);
+      conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+      //STEP 3: Execute a query
+      stmt = conn.createStatement();
+      String sql = "SELECT * FROM RIDES_LIST WHERE PASSENGER_ID = '"+passengerID+"' AND RIDE_STATUS_ID = 1";
+      ResultSet rs = stmt.executeQuery(sql);
+      while(rs.next()){
+        dummyRideArray.add(new Rides(
+            rs.getInt(1),
+            rs.getInt(2),
+            rs.getInt(3),
+            LocalDate.parse(rs.getString(4)),
+            rs.getString(5),
+            rs.getString(6),
+            LocalTime.parse(rs.getString(7)),
+            rs.getInt(8)));
+      }
+      // STEP 4: Clean-up environment
+      stmt.close();
+      conn.close();
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return dummyRideArray;
+  }
+
+  /**
+   * Returns an array of all Rides where the PassengerID's match, and the Rides have the accepted status
+   *    Made specifically for the Accepted Rides tabPane in the Passenger screen.
+   * @param passengerID - The userID of the passenger
+   * @return - an arrayList of Rides that have both a matching passengerID and the accepted status
+   */
+  public static ArrayList<Rides> getPassengerAcceptedRides(int passengerID){
+    ArrayList<Rides> dummyRideArray = new ArrayList<Rides>();
+    //  Database credentials
+    Connection conn = null;
+    Statement stmt = null;
+    try {
+      // STEP 1: Register JDBC driver
+      Class.forName(JDBC_DRIVER);
+      conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+      //STEP 3: Execute a query
+      stmt = conn.createStatement();
+      String sql = "SELECT * FROM RIDES_LIST WHERE PASSENGER_ID = '"+passengerID+"' AND RIDE_STATUS_ID = 0";
+      ResultSet rs = stmt.executeQuery(sql);
+      while(rs.next()){
+        dummyRideArray.add(new Rides(
+            rs.getInt(1),
+            rs.getInt(2),
+            rs.getInt(3),
+            LocalDate.parse(rs.getString(4)),
+            rs.getString(5),
+            rs.getString(6),
+            LocalTime.parse(rs.getString(7)),
+            rs.getInt(8)));
+      }
+      // STEP 4: Clean-up environment
+      stmt.close();
+      conn.close();
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return dummyRideArray;
+  }
+
+  /**
+   * Stores the data in a Ride object in the database
+   * @param dummyRide - The filled Ride to be stored
+   */
   public static void addRide(Rides dummyRide){
     //  Database credentials
     Connection conn = null;
@@ -347,12 +446,14 @@ public class DatabaseAccessor {
 
   /**
    * Changes the RideStatusID of a particular Ride
-   *  Ride Status ID's
-   *    0 - 'INACTIVE'
-   * 	  1 - 'ACTIVE'
-   * 	  2 - 'Cancelled by Driver'
-   * 	  3 - 'Cancelled by Passenger'
-   * @param dummyRideID - The ID of the ride in question
+   *  List of Ride Status ID's:
+   *      0, Accepted
+   * 	    1, Pending
+   * 	    2, Completed
+   * 	    3, Expired
+   * 	    4, Cancelled by Driver
+   * 	    5, Cancelled by Passenger
+   * @param dummyRideID - The rideID of the ride in question
    * @param rideStatusID - The status flag of the ride in question
    */
   public static void editRideStatus(int dummyRideID, int rideStatusID){
@@ -379,7 +480,11 @@ public class DatabaseAccessor {
     }
   }
 
-  public void deleteRide(int rideID){
+  /**
+   * Deletes any rides with a matching rideID
+   * @param rideID - the ride to be deleted
+   */
+  public static void deleteRide(int rideID){
     //  Database credentials
     Connection conn = null;
     Statement stmt = null;
@@ -402,7 +507,10 @@ public class DatabaseAccessor {
       e.printStackTrace();
     }
   };
-  
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////    Notification Methods   //////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
   /*
   public String[] getNotifications(int userID){
     String[] rideID = {""};
@@ -412,17 +520,110 @@ public class DatabaseAccessor {
   }
   public void deleteNotification(int userID, int rideID){
   }
-  public Car[] getCars(int user_ID){
-    Car dummyCar[] = {new Car("","","","","")};
-    return dummyCar;
-  }
-  public void createCar(Car dummyCar){
-  }
-  public Car editCar(Car givenCar){
-    Car dummyCar = new Car("","","","","","","");
-    return dummyCar;
-  }
-  public void deleteCar(int car_ID){};
+  */
+//////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////    Car Methods   //////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
+  /**
+   * returns the Car object of the carID
+   * @param  - the target car, base on the carID
+   * @return - a car object, filled with the relevant data
    */
-}
+  public Car getCarFromID(int carID){
+    Car dummyCar = new Car(0,"","",000,"","","",0);
+    //  Database credentials
+    Connection conn = null;
+    Statement stmt = null;
+    try {
+      // STEP 1: Register JDBC driver
+      Class.forName(JDBC_DRIVER);
+      conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
+      //STEP 3: Execute a query
+      stmt = conn.createStatement();
+      String sql = "SELECT * FROM CAR_DETAILS WHERE CAR_ID='"+carID+"'";
+      ResultSet rs = stmt.executeQuery(sql);
+
+      if (rs.next()) {
+        System.out.println("Car Found");
+        dummyCar = new Car(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getInt(8));
+      } else {
+        System.out.println("Car not found");
+      }
+      // STEP 4: Clean-up environment
+      stmt.close();
+      conn.close();
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return dummyCar;
+  }
+
+  /**
+   * Adds a car object to the database
+   * @param dummyCar
+   */
+  public void addCar(Car dummyCar){
+    //  Database credentials
+    Connection conn = null;
+    Statement stmt = null;
+    try {
+      // STEP 1: Register JDBC driver
+      Class.forName(JDBC_DRIVER);
+      conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+      //STEP 3: Execute a query
+      stmt = conn.createStatement();
+      String sql = "INSERT INTO CAR_DETAILS(CAR_ID, CAR_MANUFACTURER, CAR_MODEL, CAR_YEAR, CAR_TYPE, LICENSE_PLATE, CAR_COLOR, CAR_SEATING)"+
+          "VALUES('"
+          + dummyCar.getCarID() + "','"
+          + dummyCar.getManufacturer() + "','"
+          + dummyCar.getModel() + "','"
+          + dummyCar.getYear() + "','"
+          + dummyCar.getCarType() + "','"
+          + dummyCar.getLicensePlate() + "','"
+          + dummyCar.getCarColor() + "','"
+          + dummyCar.getNumSeats() + "');";
+      stmt.executeUpdate(sql);
+
+      System.out.println("Car "+dummyCar.getCarID()+" has been added!");
+      // STEP 4: Clean-up environment
+      stmt.close();
+      conn.close();
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
+  /**
+   * Takes a carID and deletes all cars that match it in the DB
+   * @param car_ID the car_id to be added
+   */
+  public void deleteCar(int car_ID){
+    //  Database credentials
+    Connection conn = null;
+    Statement stmt = null;
+    try {
+      // STEP 1: Register JDBC driver
+      Class.forName(JDBC_DRIVER);
+      conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+      //STEP 3: Execute a query
+      stmt = conn.createStatement();
+      String sql = "DELETE FROM CAR_DETAILS WHERE CAR_ID='"+car_ID+"'";
+      stmt.executeUpdate(sql);
+      System.out.println("Car "+car_ID+" has been deleted!");
+      // STEP 4: Clean-up environment
+      stmt.close();
+      conn.close();
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  };
+}
