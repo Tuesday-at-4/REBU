@@ -37,7 +37,7 @@
                         <Font size="16.0" />
                       </font>
                     </Button>
-                              <Button fx:id="Edit_Registration" layoutX="432.0" layoutY="223.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="182.0" onAction = "#goEdit_Registration" text="Edit Car Registration" />
+                    <Button fx:id="Edit_Registration" layoutX="432.0" layoutY="223.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="182.0" onAction = "#goEdit_Registration" text="Edit Car Registration" />
                   </children>
                 </AnchorPane>
               </children>
