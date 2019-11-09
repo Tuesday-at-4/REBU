@@ -1,7 +1,11 @@
-/*
- * Account Summary Controller
- * Displays account information of the user that is currently logged in.
- */
+/***********************************************************
+ * File   : AccountSummaryController.java
+ * Author(s)  : Sabrina Kienholz
+ * Class   : CEN 3031
+ * Purpose : Displays account info of the user that is
+ * currently logged in.
+ ************************************************************/
+
 package sample;
 
 import javafx.event.Event;
@@ -40,7 +44,7 @@ public class AccountSummaryController {
    */
   @FXML
   private void deleteAccount(Event event){
-    Main.currentUser = null;
+    DatabaseAccessor.deleteAccount(Main.currentUser.getUser_id());
     Main.createNewScene(event, "Login.fxml");
   }
 

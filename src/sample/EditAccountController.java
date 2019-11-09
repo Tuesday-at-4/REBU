@@ -1,3 +1,10 @@
+/***********************************************************
+ * File   : EditAccountController.java
+ * Author(s)  : Sabrina Kienholz
+ * Class   : CEN 3031
+ * Purpose : Edits the current user's account.
+ ************************************************************/
+
 package sample;
 
 import java.time.LocalDate;
@@ -50,9 +57,9 @@ public class EditAccountController {
     password = txtField_createPassword.getText();
 
     // creating a new registered user, holding their information
-    Main.currentUser = new Account (firstName, lastName, email, phone, DOB.toString(), username,
-        password);
+    Main.currentUser = new Account (Main.currentUser.getUser_id(), username, password, firstName, lastName, email, phone, DOB.toString(), Main.currentUser.getCarOneID(), Main.currentUser.getCarTwoID());
 
+    DatabaseAccessor.editAccount(Main.currentUser);
     // transitions to Account Details screen (AccountSummary) from Register Account screen
     Main.createNewScene(event, "Account_Summary.fxml");
 
