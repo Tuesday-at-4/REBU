@@ -17,6 +17,7 @@ public class DashboardController {
     TextField textFieldNews;
 
     public void initialize(){
+        System.out.println("");
     }
 
     public void handlePassengerButton(ActionEvent event){
@@ -25,7 +26,7 @@ public class DashboardController {
 
     @FXML
     private void handleAccountButton(ActionEvent event){
-        Main.createNewScene(event,"Account_Summary.FXML");
+        Main.createNewScene(event,"AccountSummary.FXML");
     }
 
     @FXML
