@@ -1,6 +1,9 @@
 /**
- * ********************************************************* File : DatabaseAccessor.Java Author(s)
- * : Michael Carracino Class : CEN 3031 Purpose : Manages all interactions with the database.
+ * *********************************************************
+ * File : DatabaseAccessor.Java
+ * Author(s): Michael Carracino, Breanna Rhodes, Sabrina Kienholz
+ * Class : CEN 3031
+ * Purpose : Manages all interactions with the database.
  * **********************************************************
  */
 package sample;
