@@ -1,16 +1,21 @@
 /***********************************************************
- * File   : PendingRides.Java
+ * File   : PendingRidesController.Java
  * Author(s)  : Benjamin Cano
  * Class   : CEN 3031
- * Purpose : This is the controller for the Driver.fxml containing all the functionality for the driver page
+ * Purpose : This is the controller for the Driver.fxml
  ************************************************************/
 package sample;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.Month;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
@@ -23,8 +28,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 
-public class PendingRides implements Initializable {
-
+public class PendingRides implements Initializable{
+  private static String JDBC_DRIVER = "org.h2.Driver";
+  private static String DB_URL = "jdbc:h2:./res/RebuDB";
+  private static String PASS = "";
+  private static String USER = "";
 
   @FXML
   private Tab DriverTab;
@@ -51,61 +59,17 @@ public class PendingRides implements Initializable {
   private TableColumn<Rides, LocalDate> Date_OfRide;
 
   @FXML
-  private Button Accept_Ride;
-
-  @FXML
-  private Tab accepted_Rides;
-
-  @FXML
-  private TableView<AcceptedRides> Rides_Accepted;
-
-  @FXML
-  private TableColumn<AcceptedRides, String> Passenger2;
-
-  @FXML
-  private TableColumn<AcceptedRides, LocalDate> current_Date;
-
-  @FXML
-  private TableColumn<AcceptedRides, LocalTime> current_Time;
-
-  @FXML
-  private Button decline_Ride;
-
-  @FXML
   private TableColumn<Rides, String> startLocation;
 
   @FXML
   private TableColumn<Rides, String> endLocation;
 
   @FXML
-  private TableColumn<AcceptedRides, String> start_Loc;
+  private Button Accept_Ride;
 
   @FXML
-  private TableColumn<AcceptedRides, String> end_Loc;
-  @FXML
-  public ObservableList<AcceptedRides> AcceptedRides = FXCollections.observableArrayList(
-      new AcceptedRides("breanna", LocalTime.of(4, 45), LocalDate.of(2019, Month.OCTOBER, 20),"Orlando","Miami"));
-  @FXML
-  public ObservableList<Rides> PendingRides = FXCollections.observableArrayList(
-      new Rides("J Cole", LocalTime.of(12, 45),LocalDate.of(2019,Month.NOVEMBER,12),"Fort Myers","Orlando"),
-      new Rides("Kendrick Lamar", LocalTime.of(5, 35),LocalDate.of(2019,Month.NOVEMBER,23),"Sarasota","Tallahassee"),
-      new Rides("LeBron James", LocalTime.of(6, 45), LocalDate.of(2019,Month.NOVEMBER,30),"Jacksonville","Gainesville"));
-  public void initialize(URL url, ResourceBundle rb) {
-    Passenger.setCellValueFactory(new PropertyValueFactory<Rides, String>("passengerName"));
-    Date_OfRide.setCellValueFactory(new PropertyValueFactory<Rides, LocalDate>("Date_OfRide"));
-    Time_OfRide.setCellValueFactory(new PropertyValueFactory<Rides, LocalTime>("Time_OfRide"));
-    startLocation.setCellValueFactory(new PropertyValueFactory<Rides, String>("startLocation"));
-    endLocation.setCellValueFactory(new PropertyValueFactory<Rides, String>("endLocation"));
+  private Tab accepted_Rides;
 
-    Passenger2.setCellValueFactory(new PropertyValueFactory<AcceptedRides, String>("Passenger2"));
-    current_Date.setCellValueFactory(new PropertyValueFactory<AcceptedRides, LocalDate>("Current_Date"));
-    current_Time.setCellValueFactory(new PropertyValueFactory<AcceptedRides, LocalTime>("Current_Time"));
-    start_Loc.setCellValueFactory(new PropertyValueFactory<AcceptedRides, String>("start_Loc"));
-    end_Loc.setCellValueFactory(new PropertyValueFactory<AcceptedRides, String>("end_Loc"));
-
-    Rides_Accepted.setItems(AcceptedRides);
-    Pending_Rides.setItems(PendingRides);
-  }
 
   @FXML
   private void goEdit_Registration(Event event){
@@ -114,5 +78,28 @@ public class PendingRides implements Initializable {
   @FXML
   private void goHome(Event event){
     Main.createNewScene(event, "Dashboard.fxml");
+  }
+
+  private ObservableList<Rides> oblist2 =FXCollections.observableArrayList();
+  @Override
+  public void initialize(URL location, ResourceBundle resources) {
+    try{
+      Connection conn = DriverManager.getConnection(DB_URL,USER,PASS);
+      ResultSet rs = conn.createStatement().executeQuery("select * from RIDES_LIST");
+      while(rs.next()){
+        oblist2.add(new Rides(rs.getInt(0),rs.getInt(0),rs.getInt(0),rs.getDate("start_date").toLocalDate(),rs.getString("start_location"),rs.getString("end_location"),
+            rs.getTime("start_time").toLocalTime(),rs.getInt(0)));
+      }
+    }catch(SQLException ex){
+      Logger.getLogger(CarRegistrationController.class.getName()).log(Level.SEVERE,null,ex);
+    }
+
+    Passenger.setCellValueFactory(new PropertyValueFactory<>("Manufacturer"));
+    Time_OfRide.setCellValueFactory(new PropertyValueFactory<>("Model"));
+    Date_OfRide.setCellValueFactory(new PropertyValueFactory<>("licensePlate"));
+    startLocation.setCellValueFactory(new PropertyValueFactory<>("year"));
+    endLocation.setCellValueFactory(new PropertyValueFactory<>("carType"));
+
+    Pending_Rides.setItems(oblist2);
   }
 }
