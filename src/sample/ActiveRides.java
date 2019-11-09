@@ -55,9 +55,9 @@ public class ActiveRides {
 
   public ObservableList<Rides> getRides() {
     ObservableList<Rides> TableView = FXCollections.observableArrayList();
-    TableView.add(new Rides(0,0,0, LocalDate.of(2019, Month.NOVEMBER, 19),"Miami", "Orlando",LocalTime.of(12, 45),1));
-    TableView.add(new Rides(0,0,0, LocalDate.of(2019, Month.NOVEMBER, 30),"Fort Myers", "Tallahassee",LocalTime.of(9, 45),1));
-    TableView.add(new Rides(0,0,0, LocalDate.of(2019, Month.NOVEMBER, 21),"Tampa", "Naples",LocalTime.of(3, 20),1));
+    TableView.add(new Rides(0,1,1, LocalDate.of(2019, Month.NOVEMBER, 19),"Miami", "Orlando",LocalTime.of(12, 45),1));
+    TableView.add(new Rides(0,1,1, LocalDate.of(2019, Month.NOVEMBER, 30),"Fort Myers", "Tallahassee",LocalTime.of(9, 45),1));
+    TableView.add(new Rides(0,1,1, LocalDate.of(2019, Month.NOVEMBER, 21),"Tampa", "Naples",LocalTime.of(3, 20),1));
     return TableView;
   }
 
