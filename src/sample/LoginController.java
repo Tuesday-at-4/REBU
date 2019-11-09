@@ -67,10 +67,6 @@ public class LoginController {
   @FXML
   private PasswordField password_textField;
 
-  @FXML
-  private void initialize(){
-    System.out.println("Login Credentials were rejected.");
-  }
   /**
    * Once the login button is clicked by the mouse, the data entered into the text fields
    * will be read using .getText(), and compared the information in the database
@@ -84,87 +80,11 @@ public class LoginController {
     username = txtField_username.getText();
     password = password_textField.getText();
 
-        /*
-    Verfiable user and password are variables that will hold information
-    from the database, so it can be compared to the text fields
-    that the user has entered their information into.
-     */
-    String verifiableUsername;
-    String verifiablePassword;
-
-
-    try{
-      //Connect to database
-      Class.forName(jcbdDriver);
-      conn = DriverManager.getConnection(jcbdDriver, databaseUsername, databasePassword);
-      stmt = conn.createStatement();
-
-      /**
-       * Statement that selects the username and password from the database where the
-       * username and password are equal to the username and password that are entered into the
-       * text fields.
-       */
-
-      String sqlVerify = "SELECT USER_NAME, USER_PASSWORD FROM RebuDB where USER_NAME = 'username', USER_PASSWORD = 'password'";
-      ResultSet rsVerify = stmt.executeQuery(sqlVerify);
-      while(rsVerify.next()){
-        verifiableUsername = rsVerify.getString("USER_NAME");
-        verifiablePassword = rsVerify.getString("USER_PASSWORD");
-        if (username.equals(verifiableUsername) & password.equals(verifiablePassword)) {
-          String sql = "SELECT USER_ID,"
-              + " USER_NAME,"
-              + " USER_PASSWORD,"
-              + " FIRST_NAME,"
-              + " LAST_NAME, "
-              + "PHONE_NUMBER, "
-              + "USER_EMAIL, "
-              + "DATE_OF_BIRTH, "
-              + "CAR_ID FROM RebuDB WHERE USERNAME = 'username'";
-          ResultSet rs = stmt.executeQuery(sql);
-          //While running though the database, the variables are set.
-          while (rs.next()) {
-            verifiableUsername = rs.getString("USER_NAME");
-            verifiablePassword = rs.getString("USER_PASSWORD");
-            int id = rs.getInt("USER_ID");
-            String firstName = rs.getString("FIRST_NAME");
-            String lastName = rs.getString("LAST_NAME");
-            String email = rs.getString("USER_EMAIL");
-            String phone = rs.getString("PHONE_NUMBER");
-            String DOB = rs.getString("DATE_OF_BIRTH");
-          Main.currentUser =
-              new Account(0,
-                  firstName, lastName, email, phone, DOB, verifiableUsername, verifiablePassword,0,0);
-          Main.createNewScene(event, "Dashboard.fxml");
-          System.out.println("It matches!");
-      }
-          }else {
-          initialize();
-          txtField_username.clear();
-          password_textField.clear();
-          Anchor_Login.getChildren()
-              .add(new Label("Oops! no account with that username/password, please try again!"));
-        }
-      }
-      //close the connection
-      stmt.close();
-      conn.close();
-    } catch (ClassNotFoundException | SQLException e) {
-      e.printStackTrace();
-
-    }
-
-
-
-
-
-
-    System.out.println("Logging " + username + " in.");
-    if (username.equals("Kali") & password.equals("Ollie")){
-      Main.currentUser = new Account(0,"Kali","The Destroyer", "OfWorlds@aol.com","123-456-7890","00/00/0001", "Kali","Ollie",0,0);
+    int userID = DatabaseAccessor.searchForAccount(username, password);
+    if(userID != 0){
+      Main.currentUser = DatabaseAccessor.getAccount(userID);
       Main.createNewScene(event, "Dashboard.fxml");
-      System.out.println("It matches!");
-    } else {
-      initialize();
+    }else {
       txtField_username.clear();
       password_textField.clear();
       Anchor_Login.getChildren().add(new Label("Oops! no account with that username/password, please try again!"));
