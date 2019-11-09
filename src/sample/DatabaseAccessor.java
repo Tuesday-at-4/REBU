@@ -720,7 +720,6 @@ public class DatabaseAccessor {
     }
   }
 
-  /** @param dummyAccount */
   public static void editAccount(Account dummyAccount) {
     //  Database credentials
     Connection conn = null;
@@ -734,17 +733,16 @@ public class DatabaseAccessor {
       stmt = conn.createStatement();
       String sql =
           "UPDATE USER_ACCOUNT "
-              + "SET USER_ID = '" + dummyAccount.getUser_id() + "','"
-              + "USER_NAME = '" + dummyAccount.getUsername() + "','"
-              + "USER_PASSWORD = '" + dummyAccount.getPassword() + "','"
-              + "FIRST_NAME = '" + dummyAccount.getFirstName() + "','"
-              + " LAST_NAME = '" + dummyAccount.getLastName() + "','"
-              + " PHONE_NUMBER = '" + dummyAccount.getPhone() + "','"
-              + "USER_EMAIL = '" + dummyAccount.getEmail() + "','"
-              + " DATE_OF_BIRTH ='" + dummyAccount.getDateOfBirth() + "','"
-              + " CAR_ID_ONE = '" + dummyAccount.getCarOneID() + "','"
-              + "CAR_ID_TWO = '" + dummyAccount.getCarTwoID() + "','"
-              + "WHERE USER_ID = '" + dummyAccount.getUser_id()+"';";
+              + "SET USER_NAME = " + dummyAccount.getUsername()+","
+              + "USER_PASSWORD = " + dummyAccount.getPassword()+","
+              + "FIRST_NAME = " + dummyAccount.getFirstName()+","
+              + " LAST_NAME = " + dummyAccount.getLastName()+","
+              + " PHONE_NUMBER = " + dummyAccount.getPhone()+","
+              + "USER_EMAIL = " + dummyAccount.getEmail()+","
+              + " DATE_OF_BIRTH =" + dummyAccount.getDateOfBirth()+","
+              + " CAR_ID_ONE = " + dummyAccount.getCarOneID()+","
+              + "CAR_ID_TWO = " + dummyAccount.getCarTwoID()+","
+              + "WHERE USER_ID = " + dummyAccount.getUser_id();
       stmt.executeUpdate(sql);
       System.out.println("Account " + dummyAccount.getUser_id() + " has been updated!");
       // STEP 4: Clean-up environment
