@@ -55,7 +55,7 @@ public class EditAccountController {
         carID2);
     DatabaseAccessor.editAccount(dummyAccount);
     // transitions to Account Details screen (AccountSummary) from Register Account screen
-    Main.createNewScene(event, "Account_Summary.fxml");
+    Main.createNewScene(event, "AccountSummary.fxml");
     System.out.println("You have edited your account! \nConfirm information below is correct.");
   }
 
