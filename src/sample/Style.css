@@ -19,7 +19,7 @@ HBox .label {
 }
 
 .label {
-  -fx-text-fill: #eeeeee;
+  -fx-text-fill: rgba(184, 187, 188, 0.88);
   -fx-font-weight: bold;
 }
 
