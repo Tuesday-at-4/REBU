@@ -36,7 +36,7 @@ CREATE TABLE RIDES_LIST(
 	start_date			varchar(255),
 	start_location	varchar(255),
 	end_location		varchar(255),
-	start_time			int,
+	start_time			varchar(255),
 	ride_status_id	int
 );
 
@@ -72,17 +72,18 @@ VALUES
 
 INSERT INTO RIDES_LIST(ride_id, passenger_id, driver_id, start_date, start_location, end_location, start_time, ride_status_id)
 VALUES
-	(1,1,2, '11-4-2019','Orlando','Miami',1345,1);
+	(1,1,2, '2019-04-11','Orlando','Miami','13:45',1);
 
 	INSERT INTO RIDE_STATUS(ride_status_id, ride_status_description)
 VALUES
-	(0,'INACTIVE'),
-	(1,'ACTIVE'),
-	(2,'Cancelled by Driver'),
-	(3,'Cancelled by Passenger');
+	(0,'Accepted'),
+	(1,'Pending'),
+	(2,'Completed'),
+	(3,'Expired'),
+	(4,'Cancelled by Driver'),
+	(5,'Cancelled by Passenger');
 	
 INSERT INTO CAR_DETAILS(car_id, car_manufacturer, car_model, car_year, car_type, license_plate, car_color, car_seating)
 VALUES
 	(0, 'NO_CAR', 'NO_CAR', 0, 'NO_CAR', 'NO_CAR','NO_CAR',0),
 	(1, 'Chevy', 'Camaro', 1990, 'Coupe', 'A9H1E', 'NO_CAR',0);
-a
