@@ -1,6 +1,11 @@
-/*
- * Driver
- * Sets up the driver scene
+
+/**
+ * *********************************************************
+ * File : DatabaseAccessor.Java
+ * Author(s): Ben Cano
+ * Class : CEN 3031
+ * Purpose : Populates the tables of regsitered vehicles of the user.
+ * **********************************************************
  */
 package sample;
 
@@ -93,17 +98,17 @@ public class CarRegistrationController implements Initializable {
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     try{
-    Class.forName(JDBC_DRIVER);
-    Connection conn = DriverManager.getConnection(DB_URL,USER,PASS);
-    ResultSet rs = conn.createStatement().executeQuery("select * from CAR_LIST");
-while(rs.next()){
-  oblist.add(new Car(rs.getInt(0),rs.getString("Manufacturer"),
-      rs.getString("Model"),rs.getInt("year"),rs.getString("carType")
-      ,rs.getString("licensePlate"),rs.getString("CarColor"),rs.getInt("NumSeats")));
-}
+      Class.forName(JDBC_DRIVER);
+      Connection conn = DriverManager.getConnection(DB_URL,USER,PASS);
+      ResultSet rs = conn.createStatement().executeQuery("select * from CAR_LIST");
+      while(rs.next()){
+        oblist.add(new Car(rs.getInt(0),rs.getString("Manufacturer"),
+            rs.getString("Model"),rs.getInt("year"),rs.getString("carType")
+            ,rs.getString("licensePlate"),rs.getString("CarColor"),rs.getInt("NumSeats")));
+      }
     }catch(SQLException | ClassNotFoundException ex){
-   Logger.getLogger(CarRegistrationController.class.getName()).log(Level.SEVERE,null,ex);
-  }
+      Logger.getLogger(CarRegistrationController.class.getName()).log(Level.SEVERE,null,ex);
+    }
 
     manufacturer.setCellValueFactory(new PropertyValueFactory<>("Manufacturer"));
     model.setCellValueFactory(new PropertyValueFactory<>("Model"));
