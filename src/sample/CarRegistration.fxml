@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.DriverController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.CarRegistrationController">
    <children>
       <SplitPane dividerPositions="0.5402010050251256" layoutX="-2.0" layoutY="90.0" orientation="VERTICAL" prefHeight="554.0" prefWidth="658.0" AnchorPane.bottomAnchor="-154.0" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="-56.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -20,13 +20,13 @@
                <children>
                   <TableView fx:id="RegisteredVehicles" prefHeight="212.0" prefWidth="598.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <columns>
-                        <TableColumn fx:id="manufacturer" prefWidth="129.6000366806984" text="Manufacturer" />
-                        <TableColumn fx:id="model" prefWidth="74.39996337890625" text="Model" />
+                        <TableColumn fx:id="manufacturer" prefWidth="124.0" text="Manufacturer" />
+                        <TableColumn fx:id="model" prefWidth="80.5" text="Model" />
                         <TableColumn fx:id="year" prefWidth="51.19999694824219" text="Year" />
-                        <TableColumn fx:id="carType" prefWidth="81.5999755859375" text="CarType" />
-                        <TableColumn fx:id="licensePlate" prefWidth="103.20001220703125" text="LicensePlate" />
-                        <TableColumn fx:id="CarColor" prefWidth="108.0" text="Color" />
-                        <TableColumn fx:id="NumSeats" prefWidth="112.0" text="Number of Seats" />
+                        <TableColumn fx:id="carType" prefWidth="81.5999755859375" text="Car Type" />
+                        <TableColumn fx:id="licensePlate" prefWidth="120.5" text="License Plate" />
+                        <TableColumn fx:id="CarColor" prefWidth="88.0" text="Color" />
+                        <TableColumn fx:id="NumSeats" prefWidth="115.0" text="Seats" />
                      </columns>
                   </TableView>
                </children>
@@ -61,14 +61,13 @@
                               <TextField fx:id="txt_licensePlate" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                            </children>
                         </GridPane>
-                        <ButtonBar layoutX="317.0" layoutY="126.0" prefHeight="40.0" prefWidth="222.0">
+                        <ButtonBar layoutX="317.0" layoutY="126.0" prefHeight="40.0" prefWidth="267.0">
                            <buttons>
                               <Button fx:id="Add_Button" mnemonicParsing="false" text="Add" />
                               <Button fx:id="Delete_Button" mnemonicParsing="false" prefHeight="22.0" prefWidth="79.0" text="Delete" />
-                              <Button fx:id="DriverPage" mnemonicParsing="false" onAction="#goDriverPage" text="Driver Home" />
                            </buttons>
                         </ButtonBar>
-                        <GridPane layoutX="260.0" layoutY="42.0">
+                        <GridPane layoutX="260.0" layoutY="42.0" prefHeight="90.0" prefWidth="250.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -85,6 +84,7 @@
                               <TextField fx:id="getSeats" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                            </children>
                         </GridPane>
+                        <Button fx:id="DriverPage" layoutX="416.0" layoutY="174.0" mnemonicParsing="false" onAction="#goDriverPage" prefHeight="26.0" prefWidth="169.0" text="Return to Driver Panel" />
                      </children>
                   </AnchorPane>
                </children>

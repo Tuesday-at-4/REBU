@@ -11,7 +11,7 @@ VBox {
 }
 
 VBox .label {
-  -fx-min-height: 23px;
+  -fx-min-height: 25px;
 }
 
 HBox .label {
@@ -19,7 +19,7 @@ HBox .label {
 }
 
 .label {
-  -fx-text-fill: rgba(184, 187, 188, 0.88);
+  -fx-text-fill: #eeeeee;
   -fx-font-weight: bold;
 }
 
@@ -33,4 +33,48 @@ HBox .label {
 
 .button:hover {
   -fx-background-color: #02A898;
+}
+
+.date-picker:editable .label {
+  -fx-text-fill: #121212;
+}
+
+.split-pane-divider {
+  -fx-background-color: #4d4d4d;
+}
+
+.table-view:row-selection .placeholder {
+  -fx-background-color: #1a1a1a;
+}
+
+.table-view .column-header-background .nested-column-header .table-column {
+  -fx-font-size: 16px;
+  -fx-background-color: #03DAC5;
+  -fx-border-color: #02A898;
+}
+.table-view .nested-column-header .label {
+  -fx-font-size: 16px;
+  -fx-text-fill: #121212;
+}
+
+.text-field {
+  -fx-background-color: #5e5e5e;
+}
+
+.tab-header-background {
+  -fx-background-color: #222;
+}
+.tab {
+  -fx-background-color: #03DAC5;
+}
+.tab:selected {
+  -fx-background-color: #02A898;
+}
+/* Setting color of focused tab to transparent to remove tab highlighting */
+.tab-pane:focused > .tab-header-area > .headers-region > .tab:selected .focus-indicator {
+  -fx-border-color: transparent;
+}
+
+.text-area .scroll-pane:fitToWidth:fitToHeight .viewport .content{
+  -fx-background-color: #eeeeee;
 }
