@@ -1,3 +1,12 @@
+/**
+ * *********************************************************
+ * File : Car.Java
+ * Author(s): Ben Cano
+ * Class : CEN 3031
+ * Purpose : Creates the car object.
+ * **********************************************************
+ */
+
 package sample;
 
 public class Car {
