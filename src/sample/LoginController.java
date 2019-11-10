@@ -1,6 +1,14 @@
-/*
- * Login
- * Handles the login screen where users enter their registered username & password
+/**
+ * *********************************************************
+ * File : LoginController.Java
+ * Author(s): Breanna Rhodes
+ * Class : CEN 3031
+ * Purpose : Allows the user to enter their information into text fields and
+ * then the user is directed to their dashboard. If the user does not
+ * enter sufficient credentials, the text fields will clear and a message
+ * will pop-up telling the user to enter the information again. The database
+ * is searched for the credentials, if they are not there,the pop-up will take place.
+ * **********************************************************
  */
 package sample;
 
@@ -31,7 +39,7 @@ public class LoginController {
 
   @FXML
   private PasswordField password_textField;
-  
+
   @FXML
   private void login(MouseEvent event) {
 
