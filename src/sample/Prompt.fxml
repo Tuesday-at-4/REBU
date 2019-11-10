@@ -14,14 +14,14 @@
    <children>
       <AnchorPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label layoutX="203.0" layoutY="169.0" text="Register Your Vehicle">
+            <Label layoutX="203.0" layoutY="161.0" text="Register Your Vehicle">
                <font>
                   <Font size="18.0" />
                </font></Label>
-            <GridPane layoutX="32.0" layoutY="234.0" prefHeight="134.0" prefWidth="228.0">
+            <GridPane layoutX="32.0" layoutY="204.0" prefHeight="164.0" prefWidth="228.0">
                <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="114.0" minWidth="10.0" prefWidth="114.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="114.0" minWidth="10.0" prefWidth="114.0" />
                </columnConstraints>
                <rowConstraints>
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -49,7 +49,7 @@
                   <Button fx:id="CancelButton" mnemonicParsing="false" onAction="#CancelButton" prefHeight="22.0" prefWidth="79.0" text="Cancel" />
                </buttons>
             </ButtonBar>
-            <GridPane layoutX="307.0" layoutY="234.0" prefHeight="90.0" prefWidth="215.0">
+            <GridPane layoutX="307.0" layoutY="207.0" prefHeight="117.0" prefWidth="228.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -66,7 +66,7 @@
                   <TextField fx:id="txt_seats" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
-            <Label layoutX="38.0" layoutY="89.0" text="FOR DRIVERS: Please complete all fields below.">
+            <Label layoutX="32.0" layoutY="91.0" text="FOR DRIVERS: Please complete all fields below.">
                <font>
                   <Font size="24.0" />
                </font>
