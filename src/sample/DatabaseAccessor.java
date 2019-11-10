@@ -651,7 +651,7 @@ public class DatabaseAccessor {
    *
    * @param dummyCar
    */
-  public void addCar(Car dummyCar) {
+  public static void addCar(Car dummyCar) {
     //  Database credentials
     Connection conn = null;
     Statement stmt = null;
@@ -682,7 +682,6 @@ public class DatabaseAccessor {
               + dummyCar.getNumSeats()
               + "');";
       stmt.executeUpdate(sql);
-
       System.out.println("Car " + dummyCar.getCarID() + " has been added!");
       // STEP 4: Clean-up environment
       stmt.close();
@@ -723,6 +722,12 @@ public class DatabaseAccessor {
     }
   }
 
+  /**
+   * Updates the data for a particular item in the database.
+   *
+   * @param dummyAccount
+   */
+
   public static void editAccount(Account dummyAccount) {
     //  Database credentials
     Connection conn = null;
@@ -757,4 +762,5 @@ public class DatabaseAccessor {
       e.printStackTrace();
     }
   }
+
 }
