@@ -1,6 +1,13 @@
-/*
- * Register
- * Registers a new account for a user with the information inputted in the provided text fields.
+
+/**
+ * *********************************************************
+ * File : RegsiterController.Java
+ * Author(s): Breanna Rhodes
+ * Class : CEN 3031
+ * Purpose : Allows the user to create a new account by prompting them to enter
+ * their information into text fields. The text fields are then stored into a variable
+ * and the variable stored in the database.
+ * **********************************************************
  */
 package sample;
 
