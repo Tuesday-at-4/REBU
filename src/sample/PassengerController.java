@@ -117,7 +117,7 @@ public class PassengerController {
 
     @FXML
     private void edit_Account(Event event) {
-        Main.createNewScene(event, "Account_Summary.fxml");
+        Main.createNewScene(event, "AccountSummary.fxml");
     }
 
     /* cellValueFactory - set to specify how to populate all cells within a single TableColumn
