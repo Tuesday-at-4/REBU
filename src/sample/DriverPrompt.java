@@ -1,6 +1,9 @@
 /**
- * ********************************************************* File : DriverPrompt.Java Author(s) :
- * Benjamin Cano Class : CEN 3031 Purpose : Initializes the GUI program that creates a scene that
+ * *********************************************************
+ *File : DriverPrompt.Java Author(s) :
+ * Benjamin Cano, Breanna Rhodes
+ * Class : CEN 3031
+ * Purpose : Initializes the GUI program that creates a scene that
  * prompts the user to enter their driver information.
  * **********************************************************
  */
@@ -58,16 +61,15 @@ public class DriverPrompt {
 
   @FXML private TextField txtSeats;
 
-  public void initialize() {}
-
+  // When cancel button is selected, it directs the user back to dashboard.
   @FXML
   private void CancelButton(Event event) {
     Main.createNewScene(event, "Dashboard.fxml");
   }
 
+  // When Okay button is selected, it adds a car to database.
   @FXML
-  private Car OkButton(MouseEvent event)  {
-
+  private void OkButton(MouseEvent event) {
     String manufacturer = txtManufacturer.getText();
     String model = txtModel.getText();
     int year = Integer.parseInt(txtYear.getText());
@@ -75,53 +77,59 @@ public class DriverPrompt {
     String licensePlate = txtlicensePlate.getText();
     String CarColor = txtColor.getText();
     int NumSeats = Integer.parseInt(txtSeats.getText());
-    int carID = 2;
+    int carID = 3;
     Car dummyCar =
         new Car(carID, manufacturer, model, year, carType, licensePlate, CarColor, NumSeats);
     DatabaseAccessor.addCar(dummyCar);
+    Main.createNewScene(event, "Driver.fxml");
+  }
+    }
 
-    try {
+
+
+   // DatabaseAccessor.addCar(dummyCar);
+
+   // try {
       // STEP 1: Register JDBC driver
 
-      conn = DriverManager.getConnection(DB_URL, USER, PASS);
+      //conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
       // STEP 3: Execute a query
-      stmt = conn.createStatement();
-      String sql = "SELECT * FROM CAR_DETAILS WHERE CAR_ID='" + carID + "'";
-      ResultSet rs = stmt.executeQuery(sql);
-      if (rs.next()) {
-        System.out.println("Car Found");
-        dummyCar =
-            new Car(
-                rs.getInt(1),
-                rs.getString(2),
-                rs.getString(3),
-                rs.getInt(4),
-                rs.getString(5),
-                rs.getString(6),
-                rs.getString(7),
-                rs.getInt(8));
-        Main.createNewScene(event, "Driver.fxml");
-      } else {
-        System.out.println("Car not found");
-        sql =
-            "INSERT INTO CAR_DETAILS(CAR_ID, CAR_MANUFACTURER, CAR_MODEL, CAR_YEAR, CAR_TYPE, LICENSE_PLATE, CAR_COLOR, CAR_SEATING)"
-                +
-                "VALUES('"
-                + dummyCar.getCarID() + "','"
-                + dummyCar.getManufacturer() + "','"
-                + dummyCar.getModel() + "','"
-                + dummyCar.getYear() + "','"
-                + dummyCar.getCarType() + "','"
-                + dummyCar.getLicensePlate() + "','"
-                + dummyCar.getCarColor() + "','"
-                + dummyCar.getNumSeats() + "');";
-        stmt.executeUpdate(sql);
+     // stmt = conn.createStatement();
+     // String sql = "SELECT * FROM CAR_DETAILS WHERE CAR_ID='" + carID + "'";
+     // ResultSet rs = stmt.executeQuery(sql);
+     // if(rs.next()) {
+      //  System.out.println("Car Found");
+      //  dummyCar =
+            //new Car(
+               // rs.getInt(1),
+              //  rs.getString(2),
+               // rs.getString(3),
+                //rs.getInt(4),
+               // rs.getString(5),
+               // rs.getString(6),
+              //  rs.getString(7),
+              //  rs.getInt(8));
+       // Main.createNewScene(event, "Driver.fxml");
+      //} else {
+      //  System.out.println("Car not found");
+        //sql =
+           // "INSERT INTO CAR_DETAILS(CAR_ID, CAR_MANUFACTURER, CAR_MODEL, CAR_YEAR, CAR_TYPE, LICENSE_PLATE, CAR_COLOR, CAR_SEATING)"
+             //   +
+              //  "VALUES('"
+              //  + dummyCar.getCarID() + "','"
+              //  + dummyCar.getManufacturer() + "','"
+              //  + dummyCar.getModel() + "','"
+              //  + dummyCar.getYear() + "','"
+               // + dummyCar.getCarType() + "','"
+             //   + dummyCar.getLicensePlate() + "','"
+              //  + dummyCar.getCarColor() + "','"
+              //  + dummyCar.getNumSeats() + "');";
+      //  stmt.executeUpdate(sql);
 
-      }
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
-    return dummyCar;
-  }
-  }
+    //  }
+   // } catch (SQLException e) {
+   //   e.printStackTrace();
+    //}
+   // return dummyCar;
+
