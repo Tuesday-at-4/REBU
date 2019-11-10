@@ -663,8 +663,7 @@ public class DatabaseAccessor {
       // STEP 3: Execute a query
       stmt = conn.createStatement();
       String sql =
-          "INSERT INTO CAR_DETAILS(CAR_ID, CAR_MANUFACTURER, CAR_MODEL, CAR_YEAR, CAR_TYPE, LICENSE_PLATE, CAR_COLOR, CAR_SEATING)"
-              + "VALUES('"
+          "INSERT INTO CAR_DETAILS(CAR_ID, CAR_MANUFACTURER, CAR_MODEL, CAR_YEAR, CAR_TYPE, LICENSE_PLATE, CAR_COLOR, CAR_SEATING) VALUES('"
               + dummyCar.getCarID()
               + "','"
               + dummyCar.getManufacturer()
@@ -680,7 +679,7 @@ public class DatabaseAccessor {
               + dummyCar.getCarColor()
               + "','"
               + dummyCar.getNumSeats()
-              + "');";
+              + "')";
       stmt.executeUpdate(sql);
       System.out.println("Car " + dummyCar.getCarID() + " has been added!");
       // STEP 4: Clean-up environment

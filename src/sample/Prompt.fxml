@@ -34,9 +34,9 @@
                   <Label text="Manufacturer" />
                   <Label text="Model" GridPane.rowIndex="1" />
                   <Label text="Year" GridPane.rowIndex="2" />
-                  <TextField fx:id="getManufacturer" GridPane.columnIndex="1" />
-                  <TextField fx:id="getModel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField fx:id="getYear" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="txt_manufacturer" GridPane.columnIndex="1" />
+                  <TextField fx:id="txt_model" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="txt_year" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label text="Car Type" GridPane.rowIndex="3" />
                   <Label text="License Plate" GridPane.rowIndex="4" />
                   <TextField fx:id="txt_carType" GridPane.columnIndex="1" GridPane.rowIndex="3" />
@@ -45,7 +45,7 @@
             </GridPane>
             <ButtonBar layoutX="296.0" layoutY="336.0" prefHeight="40.0" prefWidth="222.0">
                <buttons>
-                  <Button fx:id="OkButton" mnemonicParsing="false" onAction="#OkButton" text="OK" />
+                  <Button fx:id="OkButton" mnemonicParsing="false" onMouseClicked="#OkButton" text="OK" />
                   <Button fx:id="CancelButton" mnemonicParsing="false" onAction="#CancelButton" prefHeight="22.0" prefWidth="79.0" text="Cancel" />
                </buttons>
             </ButtonBar>
@@ -62,10 +62,8 @@
                <children>
                   <Label text="Car Color" />
                   <Label text="Number of Seats" GridPane.rowIndex="1" />
-                  <TextField fx:id="getColor" GridPane.columnIndex="1" />
-                  <TextField fx:id="getSeats" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label text="Drivers License " GridPane.rowIndex="2" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="txt_color" GridPane.columnIndex="1" />
+                  <TextField fx:id="txt_seats" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
             <Label layoutX="38.0" layoutY="89.0" text="FOR DRIVERS: Please complete all fields below.">
