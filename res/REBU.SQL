@@ -62,8 +62,8 @@ CREATE TABLE CAR_DETAILS(
 
 INSERT INTO USER_ACCOUNT(user_id, user_name, user_password, first_name, last_name, phone_number, user_email, date_of_birth, car_id_one,car_id_two)
 VALUES
-	(1,'Kali','Ollie','Kali The Destroyer','Of Worlds','555-636-9921','destroyer@LOL.com', '122-919-9912',0,0),
-	(2,'USERNAME','PASSWORD','Joe','Biden', '123-456-7890', 'Prez4Ev@LOL.com', '010-118-3735',1,0);
+	(1,'Kali','Ollie','Kali The Destroyer','Of Worlds','555-636-9921','destroyer@LOL.com', '1999-03-13',0,0),
+	(2,'USERNAME','PASSWORD','Joe','Biden', '123-456-7890', 'Prez4Ev@LOL.com', '2010-02-22',1,0);
 
 INSERT INTO USER_NOTIFICATIONS(user_id, ride_id)
 VALUES
