@@ -1,7 +1,7 @@
 
 /**
  * *********************************************************
- * File : DatabaseAccessor.Java
+ * File : CarRegistrationController.Java
  * Author(s): Ben Cano
  * Class : CEN 3031
  * Purpose : Populates the tables of regsitered vehicles of the user.
