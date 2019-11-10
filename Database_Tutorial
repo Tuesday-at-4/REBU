@@ -1,0 +1,66 @@
+Welcome to my breakdown of how to use a database, or what i like to call, "Why we keep DB interactions to a single class!"
+This text file will cover the following topics:
+    Section 1:  The basics of coding with a database
+    Section 2:  An analysis of our current database structure
+    Section 3:  A brief description of our DatabaseAccessor class
+    Section 4:  FAQ
+    
+    
+Section 1: Database basics
+      A database is a system for storing dand retreving data. This can come in a lot of forms, but in our project we will be using H2, a 
+  commonly used database in java applications. H2 supports and is most commonly accessed by SQL. SQL is a type of language that is used 
+  for efficiently searching and storing data in databases. We use SQL in all of our interactions with this database. Our database is set up
+  with a username and password to access it, but in this case they are null strings or "". Databases should be thought of as a bunch of 
+  tables, where we set up the columns and store the information in the rows.
+      To access this type of database, we use a Java Database Connectivity(JDBC) driver. This means that to connect to the DB we need a few 
+  lines to setup our connection. Vanselow and a lot of ther websites have great tutorials on how to do this, but just know that isn't 
+  something you'll be expected to do from memory. Every database has it's own methods to open a connection and close it. For our purposes
+  it helps to coverknow that we need to open a connection to the DB, execute SQL code, then close the connection.
+      The SQL statement is how we interact with the DB. Verifying your SQL statements is the most important part of your database usage.
+  Databases are just a storage system for data. they don't have error checking or GUIs or any sort of support system to politely tell you
+  you have a problem. In most cases, you just get cascading failures throughout your app that have a generic error message. The only thing
+  to stop you from adding bad data is the data type storage. For example, if you want to store a phone number as a string in your DB, there
+  is no differentiation from '123-456-7890' and 'Twas many and many a year ago, in a kingdom by the sea'. The DB will not care. We can do
+  some error checking by changing our datatypes stored in the DB.
+      The first line of defense in a DB is the data type of a column. If we say that the phone number column is an int, then it won't accept
+  strings. But if we go back to storing phon numbers as Strings, we lose this method of error checking. Strings in databases are stored as
+  variable character strings of size 255, commonly written varchar(255). We can reduce this number to add a second type of error checking.
+  If we shorten the String to be varchar(12), then we can only fit a stirng of size 12. This doesn't stop us from entering bad data, but it
+  helps.
+
+
+Section 2:  Our database
+    COMING SOON!
+    Feel free to look at our REBU.SQL file to see the entirety of our DB. That is all you need.
+    
+Section 3: Our Database Accessor class
+    Put briefly, it lets me keep tabs on our database inputs so we don't get bad data. It is good form to only access a database in one 
+    class so peole who read your code don't hate you.
+    
+ Section 4: FAQ
+    Why do we need a database?
+      - Databases make it easier to store data from app to app, while also making it easier for code reviewers to read your code
+      
+    Why do we put it our database access in one class?
+      - Database accessors are very easy to break, and hard to debug. Putting your accessors in one class makes it easier to track down
+          errors while making upgrades or edits much quicker.
+          
+    But what if I have my database access already perfect?
+      - Don't do it!
+      
+    But it worked in my other project?
+      - DON'T DO IT.
+    But..
+      - DO.NOT.DO.IT.
+      
+    But why?
+      - It is INCREDIBLY easy to lose an error in a database, and if we can sanitize our input and output for the database, then we can 
+          massively reduce the number of errors. by adding your own accessor, you both show a lack of concern for the person who 
+          maintains the database, but you put the entire project in jeopardy of crashing. A single bad line in your UPDATE statement can 
+          cause every section of the project to break.
+          
+    What if the DatabaseAccessor class is actually missing a method that i need?
+      - Feel free to contact me, Michael, by text, discord, carrier pigeon, telegraph, or (the quickest option) pick up your phone and 
+          CALL ME.
+    
+    
