@@ -2,16 +2,17 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="533.0" prefWidth="796.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.PendingRides">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="796.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.PendingRides">
   <children>
     <TabPane layoutX="254.0" layoutY="147.0" prefHeight="600.0" prefWidth="796.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <tabs>
@@ -19,19 +20,20 @@
           <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
               <children>
-                <AnchorPane prefHeight="375.0" prefWidth="796.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <AnchorPane prefHeight="569.6" prefWidth="796.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                   <children>
-                    <Button fx:id="home_Button" layoutX="431.0" layoutY="99.0" mnemonicParsing="false" prefHeight="72.0" prefWidth="182.0" text="HOME">
+                    <Button fx:id="home_Button" layoutX="491.0" layoutY="64.0" mnemonicParsing="false" onAction="#goHome" prefHeight="72.0" prefWidth="182.0" text="HOME">
                       <font>
                         <Font size="16.0" />
                       </font>
                     </Button>
-                    <Button fx:id="Edit_Registration" layoutX="432.0" layoutY="223.0" mnemonicParsing="false" onAction="#goEdit_Registration" prefHeight="65.0" prefWidth="182.0" text="Edit Car Registration" />
-                              <Text fill="#f8f8f8" layoutX="57.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Driver">
-                                 <font>
-                                    <Font size="72.0" />
-                                 </font>
-                              </Text>
+                    <Button fx:id="Edit_Registration" layoutX="491.0" layoutY="171.0" mnemonicParsing="false" onAction="#goEdit_Registration" prefHeight="65.0" prefWidth="182.0" text="Edit Car Registration" />
+                    <TextArea layoutX="62.0" layoutY="318.0" prefHeight="200.0" prefWidth="703.0" />
+                    <Label layoutX="81.0" layoutY="100.0" text="Driver" textFill="#f8f3f3">
+                      <font>
+                        <Font size="96.0" />
+                      </font>
+                    </Label>
                   </children>
                 </AnchorPane>
               </children>
@@ -44,16 +46,18 @@
               <children>
                 <AnchorPane layoutX="225.0" layoutY="116.0" prefHeight="569.6" prefWidth="796.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                   <children>
-                    <SplitPane dividerPositions="0.7433628318584071" orientation="VERTICAL" prefHeight="569.6" prefWidth="796.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <SplitPane dividerPositions="0.8826638477801269" orientation="VERTICAL" prefHeight="569.6" prefWidth="796.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                       <items>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                           <children>
                             <AnchorPane layoutX="162.0" layoutY="55.0" prefHeight="281.6" prefWidth="794.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                            <TableView fx:id="Pending_Rides" layoutX="31.0" layoutY="18.0" prefHeight="565.0" prefWidth="794.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <TableView fx:id="Pending_Rides" layoutX="31.0" layoutY="18.0" prefHeight="281.6" prefWidth="794.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                               <columns>
-                                <TableColumn fx:id="Passenger" prefWidth="275.9999756217003" text="Passenger" />
-                                <TableColumn fx:id="Time_OfRide" prefWidth="244.80001831054688" text="Time" />
-                                <TableColumn fx:id="Date_OfRide" prefWidth="276.0" text="Date" />
+                                <TableColumn fx:id="Passenger" prefWidth="142.3999542593956" text="Passenger" />
+                                <TableColumn fx:id="Time_OfRide" prefWidth="170.3999786376953" text="Time" />
+                                <TableColumn fx:id="Date_OfRide" prefWidth="148.0" text="Date" />
+                                <TableColumn fx:id="startLocation" prefWidth="148.0" text="Start Location" />
+                                <TableColumn fx:id="endLocation" prefWidth="184.79996337890623" text="End Location" />
                               </columns>
                             </TableView>
                           </children>
@@ -85,9 +89,11 @@
                       <children>
                         <TableView fx:id="Rides_Accepted" layoutX="-1.0" prefHeight="470.0" prefWidth="794.0" AnchorPane.bottomAnchor="-11.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columns>
-                            <TableColumn fx:id="Passenger2" prefWidth="339.2000366449356" text="Passenger" />
-                            <TableColumn fx:id="current_Date" prefWidth="243.99996948242188" text="Current Date" />
-                            <TableColumn fx:id="current_Time" prefWidth="212.7999267578125" text="Current Time" />
+                            <TableColumn fx:id="Passenger2" prefWidth="171.99999088048935" text="Passenger" />
+                            <TableColumn fx:id="current_Date" prefWidth="117.59999084472656" text="Current Date" />
+                            <TableColumn fx:id="current_Time" prefWidth="116.79998779296875" text="Current Time" />
+                            <TableColumn fx:id="start_Loc" prefWidth="191.20004272460938" text="Starting Location" />
+                            <TableColumn fx:id="end_Loc" prefWidth="196.0" text="End Location" />
                           </columns>
                         </TableView>
                       </children>
