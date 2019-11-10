@@ -39,27 +39,22 @@ public class RegisterController {
 
   @FXML
   void create_account(MouseEvent event) {
-    String email, firstName, lastName, phone, username, password;
-    LocalDate DOB;
 
     // storing information from text fields
     int userID = 3;
-    DOB = dateB_DOB.getValue();
-    String DOBstring = DOB.toString();
-    firstName = txtField_firstName.getText();
-    lastName = txtField_lastName.getText();
-    email = txtField_email.getText();
-    phone = txtField_phone.getText();
-    username = txtField_createUsername.getText();
-    password = txtField_createPassword.getText();
+    LocalDate DOB = dateB_DOB.getValue();
+    String firstName = txtField_firstName.getText();
+    String lastName = txtField_lastName.getText();
+    String email = txtField_email.getText();
+    String phone = txtField_phone.getText();
+    String username = txtField_createUsername.getText();
+    String password = txtField_createPassword.getText();
     int carID = 0;
     int carID2 = 0;
     // creating a new registered user, holding their information
-    Account dummy = new Account(userID, firstName, lastName, email, phone, DOBstring, username, password, carID,
+    Account dummy = new Account(userID, username, password, firstName, lastName, phone, email, DOB.toString(), carID,
         carID2);
     DatabaseAccessor.addAccount(dummy);
     Main.createNewScene(event, "AccountSummary.fxml");
-
-
   }
 }
