@@ -94,12 +94,12 @@ public class PendingRides implements Initializable{
       Logger.getLogger(CarRegistrationController.class.getName()).log(Level.SEVERE,null,ex);
     }
 
-    Passenger.setCellValueFactory(new PropertyValueFactory<>("Manufacturer"));
-    Time_OfRide.setCellValueFactory(new PropertyValueFactory<>("Model"));
-    Date_OfRide.setCellValueFactory(new PropertyValueFactory<>("licensePlate"));
-    startLocation.setCellValueFactory(new PropertyValueFactory<>("year"));
-    endLocation.setCellValueFactory(new PropertyValueFactory<>("carType"));
-
+    Passenger.setCellValueFactory(new PropertyValueFactory<>("Passenger"));
+    Time_OfRide.setCellValueFactory(new PropertyValueFactory<>("Time_OfRide"));
+    Date_OfRide.setCellValueFactory(new PropertyValueFactory<>("Date_OfRide"));
+    startLocation.setCellValueFactory(new PropertyValueFactory<>("startLocation"));
+    endLocation.setCellValueFactory(new PropertyValueFactory<>("endLocation"));
+    
     Pending_Rides.setItems(oblist2);
   }
 }
