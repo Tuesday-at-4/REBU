@@ -728,31 +728,27 @@ public class DatabaseAccessor {
    */
 
   public static void editAccount(Account dummyAccount) {
-    //  Database credentials
     Connection conn = null;
     Statement stmt = null;
     try {
-      // STEP 1: Register JDBC driver
       Class.forName(JDBC_DRIVER);
       conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
-      // STEP 3: Execute a query
       stmt = conn.createStatement();
       String sql =
           "UPDATE USER_ACCOUNT "
-              + "SET USER_NAME = " + dummyAccount.getUsername()+","
-              + "USER_PASSWORD = " + dummyAccount.getPassword()+","
-              + "FIRST_NAME = " + dummyAccount.getFirstName()+","
-              + " LAST_NAME = " + dummyAccount.getLastName()+","
-              + " PHONE_NUMBER = " + dummyAccount.getPhone()+","
-              + "USER_EMAIL = " + dummyAccount.getEmail()+","
-              + " DATE_OF_BIRTH =" + dummyAccount.getDateOfBirth()+","
-              + " CAR_ID_ONE = " + dummyAccount.getCarOneID()+","
-              + "CAR_ID_TWO = " + dummyAccount.getCarTwoID()+","
-              + "WHERE USER_ID = " + dummyAccount.getUser_id();
+              + "SET USER_NAME = '" + dummyAccount.getUsername()+"',"
+              + "USER_PASSWORD = '" + dummyAccount.getPassword()+"',"
+              + "FIRST_NAME = '" + dummyAccount.getFirstName()+"',"
+              + "LAST_NAME = '" + dummyAccount.getLastName()+"',"
+              + "PHONE_NUMBER = '" + dummyAccount.getPhone()+"',"
+              + "USER_EMAIL = '" + dummyAccount.getEmail()+"',"
+              + "DATE_OF_BIRTH = '" + dummyAccount.getDateOfBirth()+"',"
+              + "CAR_ID_ONE = '" + dummyAccount.getCarOneID()+"',"
+              + "CAR_ID_TWO = '" + dummyAccount.getCarTwoID()+"'"
+              + " WHERE USER_ID = '" + dummyAccount.getUser_id() + "'";
       stmt.executeUpdate(sql);
       System.out.println("Account " + dummyAccount.getUser_id() + " has been updated!");
-      // STEP 4: Clean-up environment
       stmt.close();
       conn.close();
     } catch (ClassNotFoundException e) {
