@@ -24,48 +24,53 @@ public class Car {
 
   }
 
+  //Accessor Methods:
+
   public String getManufacturer() {
     return manufacturer;
-  }
-
-  public void setManufacturer(String manufacturer) {
-    this.manufacturer = manufacturer;
   }
 
   public String getModel() {
     return model;
   }
 
-  public void setModel(String model) {
-    this.model = model;
-  }
-
-  public int getYear() {
-    return year;
-  }
-
-  public void setYear(int year) {
-    this.year = year;
-  }
+  public int getYear() { return year; }
 
   public String getCarType() {
     return carType;
-  }
-
-  public void setCarType(String carType) {
-    this.carType = carType;
   }
 
   public String getLicensePlate() {
     return licensePlate;
   }
 
-  public void setCarColor(String CarColor) {
-    this.CarColor = CarColor;
-  }
-
   public String getCarColor() {
     return CarColor;
+  }
+
+  public int getNumSeats() { return NumSeats; }
+
+  public void setCarID(int carID) {
+    this.carID = carID;
+  }
+
+  //Setter Methods:
+  public void setManufacturer(String manufacturer) {
+    this.manufacturer = manufacturer;
+  }
+
+  public void setModel(String model) {
+    this.model = model;
+  }
+
+  public void setYear(int year) {
+    this.year = year;
+  }
+
+  public void setCarType(String carType) { this.carType = carType; }
+
+  public void setCarColor(String CarColor) {
+    this.CarColor = CarColor;
   }
 
   public void setLicensePlate(String licensePlate) {
@@ -76,15 +81,8 @@ public class Car {
     this.NumSeats = NumSeats;
   }
 
-  public int getNumSeats() {
-    return NumSeats;
-  }
-
   public int getCarID() {
     return carID;
   }
 
-  public void setCarID(int carID) {
-    this.carID = carID;
-  }
 }
