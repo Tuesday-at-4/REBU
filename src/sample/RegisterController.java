@@ -62,6 +62,7 @@ public class RegisterController {
     Account dummy = new Account(userID, username, password, firstName, lastName, phone, email, DOB.toString(), carID,
         carID2);
     DatabaseAccessor.addAccount(dummy);
+    Main.currentUser = dummy;
     Main.createNewScene(event, "AccountSummary.fxml");
   }
 }
