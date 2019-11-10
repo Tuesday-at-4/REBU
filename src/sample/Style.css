@@ -59,6 +59,7 @@ HBox .label {
 
 .text-field {
   -fx-background-color: #5e5e5e;
+  -fx-text-fill: #eeeeee;
 }
 
 .tab-header-background {
