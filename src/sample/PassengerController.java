@@ -1,5 +1,5 @@
 /***********************************************************
- * File   : Passenger_Controller.Java
+ * File   : PassengerController.Java
  * Author  :  Wilkenson Germain, Benjamin Cano
  * Class   : CEN 3031
  * Purpose : Allows the Passenger to create Rides, see their pending Rides, and their accepted Rides.
