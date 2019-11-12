@@ -4,7 +4,7 @@
  * Class   : CEN 3031
  * Purpose : Stores the information from the database for a given Ride
  ************************************************************/
-package sample;
+package github.Tuesday_at_4.REBU;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

@@ -7,7 +7,7 @@
  * Purpose : Populates the tables of regsitered vehicles of the user.
  * **********************************************************
  */
-package sample;
+package github.Tuesday_at_4.REBU;
 
 
 import java.net.URL;

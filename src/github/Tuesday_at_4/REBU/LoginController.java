@@ -10,7 +10,7 @@
  * is searched for the credentials, if they are not there,the pop-up will take place.
  * **********************************************************
  */
-package sample;
+package github.Tuesday_at_4.REBU;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -60,6 +60,6 @@ public class LoginController {
 
   @FXML
   private void signUp(ActionEvent event) {
-    Main.createNewScene(event, "Register.fxml");
+    Main.createNewScene(event, "AccountRegistration.fxml");
   }
 }

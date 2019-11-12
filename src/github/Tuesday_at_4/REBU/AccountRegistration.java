@@ -9,24 +9,17 @@
  * and the variable stored in the database.
  * **********************************************************
  */
-package sample;
+package github.Tuesday_at_4.REBU;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.time.LocalDate;
-import java.util.Random;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javax.xml.crypto.Data;
 
-public class RegisterController {
+public class AccountRegistration {
 
   @FXML private TextField txtField_firstName;
 

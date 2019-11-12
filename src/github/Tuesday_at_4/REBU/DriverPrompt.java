@@ -6,13 +6,8 @@
  * prompts the user to enter their driver information.
  * **********************************************************
  */
-package sample;
+package github.Tuesday_at_4.REBU;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

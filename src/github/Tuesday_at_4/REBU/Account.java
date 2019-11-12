@@ -4,7 +4,7 @@
  * Class   : CEN 3031
  * Purpose : Stores the user data pulled from the database
  ************************************************************/
-package sample;
+package github.Tuesday_at_4.REBU;
 
 public class Account {
 

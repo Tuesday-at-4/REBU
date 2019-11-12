@@ -6,7 +6,7 @@
  * currently logged in.
  ************************************************************/
 
-package sample;
+package github.Tuesday_at_4.REBU;
 
 import javafx.event.Event;
 import javafx.fxml.FXML;

@@ -6,10 +6,8 @@
  * Purpose : Manages all interactions with the database.
  * **********************************************************
  */
-package sample;
+package github.Tuesday_at_4.REBU;
 
-import com.sun.istack.internal.NotNull;
-import java.sql.Array;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;

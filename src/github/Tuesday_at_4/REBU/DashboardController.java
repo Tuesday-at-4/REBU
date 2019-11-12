@@ -4,10 +4,9 @@
  * Class   : CEN 3031
  * Purpose : Handles the events on the hompepage/dashboard
  ************************************************************/
-package sample;
+package github.Tuesday_at_4.REBU;
 
 import java.awt.TextField;
-import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
@@ -31,6 +30,6 @@ public class DashboardController {
 
     @FXML
     private void handleDriverButton(ActionEvent event){
-        Main.createNewScene(event,"Prompt.FXML");
+        Main.createNewScene(event,"DriverPrompt.FXML");
     }
 }

@@ -4,7 +4,7 @@
  * Class   : CEN 3031
  * Purpose : This is the controller for the Driver.fxml
  ************************************************************/
-package sample;
+package github.Tuesday_at_4.REBU;
 
 import java.net.URL;
 import java.sql.Connection;

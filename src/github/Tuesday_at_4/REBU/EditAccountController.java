@@ -1,4 +1,4 @@
-package sample;
+package github.Tuesday_at_4.REBU;
 
 import java.time.LocalDate;
 import javafx.fxml.FXML;

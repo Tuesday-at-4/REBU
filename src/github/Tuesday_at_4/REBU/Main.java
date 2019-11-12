@@ -4,12 +4,10 @@
  * Class   : CEN 3031
  * Purpose : Initializes the GUI program and holds a function for swapping scenes
  ************************************************************/
-package sample;
+package github.Tuesday_at_4.REBU;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import javafx.application.Application;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
