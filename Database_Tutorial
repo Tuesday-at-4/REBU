@@ -6,7 +6,7 @@ This text file will cover the following topics:
     Section 4:  FAQ
     
     
-Section 1: Database basics
+/////////////////////////////////// Section 1: Database basics  ///////////////////////////////////
       A database is a system for storing dand retreving data. This can come in a lot of forms, but in our project we will be using H2, a 
   commonly used database in java applications. H2 supports and is most commonly accessed by SQL. SQL is a type of language that is used 
   for efficiently searching and storing data in databases. We use SQL in all of our interactions with this database. Our database is set up
@@ -27,15 +27,110 @@ Section 1: Database basics
   variable character strings of size 255, commonly written varchar(255). We can reduce this number to add a second type of error checking.
   If we shorten the String to be varchar(12), then we can only fit a stirng of size 12. This doesn't stop us from entering bad data, but it
   helps.
+  
+  
+/////////////////////////////////// Section 2:  Our database ///////////////////////////////////
+  In this section I will breakdown how to read this database and explain some of the choices.
+  
+  Here we drop all of our tables, removing them from the database. SQL on its own doesn't keep track of tables well, so we always drop 
+    our tables to keep track of them. It also allows us to use this file as a sort of clean up of the tables, allowing us to rebuild 
+    them.
+        DROP TABLE USER_ACCOUNT;
+        DROP TABLE USER_NOTIFICATIONS;
+        DROP TABLE RIDES_LIST;
+        DROP TABLE RIDE_STATUS;
+        DROP TABLE CAR_DETAILS;
+        DROP TABLE NOTIFICATION_TYPES;
+        
+   This is our first table we create. The "CREATE TABLE" statement is just setting up the column names and what datatypes they accept.
+     This is all pretty standard SQL table building, except for auto-increment. Auto-increment automatically generates an integer higher
+     than the previous one, allowing our database to keep unique IDs for our users.
+        CREATE TABLE USER_ACCOUNT (
+            user_id						int		AUTO_INCREMENT,
+            user_name					varchar(255),
+            user_password			    varchar(255),
+            first_name				    varchar(255),
+            last_name					varchar(255),
+            phone_number			    varchar(10),
+            user_email				    varchar(255),
+            date_of_birth			    varchar(10),
+            credit_card				    varchar(255),
+            car_id						int
+        );
+	
+   This is our Notification table. It allows us to store data for our users that is outside of the Account table. This includes things 
+     like "Driver cancelled ride" or "Passenger's ride was accepted by Driver". The notification type is giving us another way of 
+     distinguishing the types of notifications. As in, Admin notifications should be different than Driver notificatons. This also 
+     gives us a way to share important info with users, such as changes in pricing or when the servers will be down for maintenance.
+        CREATE TABLE USER_NOTIFICATIONS(
+            user_id					int,
+            notification_type		int,
+            noitfication_text		varchar(255)
+        );
+  Here we have the descriptions for the notification types. This could be joined onto the USer_Notification table but for now it's fine.
+    The notification table in a real project would be massive, so it would be faster to sort by a number, notification_type, than a 
+    string, notification_description. This is why we prefer our bigger tables like USER_ACCOUNT to have numbers rather than strings,
+    where possible.
+        CREATE TABLE NOTIFICATION_TYPES(
+            notification_type					int,
+            notification_description	varchar(255)
+        );
+  We are the only ones who will be determining what types of notifications there are, so we might as well insert the table data right
+    now. This allows us to also edit these strings or add more types very easily.
+        INSERT INTO NOTIFICATION_TYPES(notification_type, notification_description)
+        VALUES
+                     (0, 'Admin'),
+                     (1, 'Driver'),
+                     (2, 'Passenger');
 
+  This is our table of all existing rides. Once again we won't be accessing the ride_id and will use auto-increment to get a unique ID 
+    for every ride.You can notice that we use a number as our ride_status, as this table could be massive, and we want fewer strings.
+    Note here that LocalDate and LocalTime both have a .toString() method to turn LocalDates/LocalTimes into strings, and a method to 
+    parse the resulting string back into a LocalDate/LocalTime. This means that we can simply store the result of the .toString() as a
+    string, then parse it to get back our proper datatype.
+        CREATE TABLE RIDES_LIST(
+            ride_id				int     AUTO_INCREMENT,
+            passenger_id		int,
+            driver_id			int,
+            start_time			varchar(255),
+            start_date			varchar(255),
+            start_location	    varchar(255),
+            end_location		varchar(255),
+            ride_status_id	    int
+        );
+  
+  Similarly, this table only exists for us meatbags. We do not need it to program, but it is useful in case we want to join the tables
+        CREATE TABLE RIDE_STATUS(
+            ride_status_id						int,
+            ride_status_description		varchar(255)
+        );
+  Again, this table gives us the ability to quickly edit the types of rides, while also giving us a good structure to join tables.
+        INSERT INTO RIDE_STATUS(ride_status_id, ride_status_description)
+        VALUES
+                     (0,'Accepted'),
+                     (1,'Pending'),
+                     (2,'Completed'),
+                     (3,'Expired'),
+                     (4,'Cancelled by Driver'),
+                     (5,'Cancelled by Passenger');
 
-Section 2:  Our database
-    COMING SOON!
-    Feel free to look at our REBU.SQL file to see the entirety of our DB. That is all you need.
+  Cars are basically just storing static data (Cars rarely change their year they were made) so we can be a little more cavalier with 
+    how we structure this table.
+        CREATE TABLE CAR_DETAILS(
+            car_id						int,
+            car_manufacturer	varchar(255),
+            car_model					varchar(255),
+            car_year					int,
+            car_type					varchar(255),
+            license_plate			varchar(255),
+            car_color					varchar(255),
+            car_seating				int
+        );
     
 Section 3: Our Database Accessor class
     Put briefly, it lets me keep tabs on our database inputs so we don't get bad data. It is good form to only access a database in one 
-    class so peole who read your code don't hate you.
+    class so peole who read your code don't hate you. Because debugging databases can be incredibly difficult, the DatabaseAccessor 
+    class includes print methods to display all the data in the database.
     
  Section 4: FAQ
     Why do we need a database?
