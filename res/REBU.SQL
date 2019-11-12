@@ -20,8 +20,7 @@ CREATE TABLE USER_ACCOUNT (
 	phone_number			varchar(10),
 	user_email				varchar(255),
 	date_of_birth			varchar(10),
-	credit_card				varchar(255),
-	car_id						int
+	credit_card				varchar(255)
 );
 	
 CREATE TABLE USER_NOTIFICATIONS(
@@ -67,7 +66,7 @@ VALUES
 			 (5,'Cancelled by Passenger');
 
 CREATE TABLE CAR_DETAILS(
-	car_id						int,
+	user_id						int,
 	car_manufacturer	varchar(255),
 	car_model					varchar(255),
 	car_year					int,
