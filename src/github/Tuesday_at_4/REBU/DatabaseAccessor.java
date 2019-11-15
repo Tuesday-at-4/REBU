@@ -22,28 +22,24 @@ public class DatabaseAccessor {
   private static String DB_URL = "jdbc:h2:./res/RebuDB";
   private static String PASS = "";
   private static String USER = "";
+  private static Connection conn = null;
+  private static Statement stmt = null;
   //////////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////    Account Methods   ////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////
   /**
    * Searches for an account with this username and password
-   *
    * @param username - the unique username of the user
    * @param password - the unique password of the user
    * @return - the USER_ID of the requested user, or 0 if there is no account found
    */
   public static int searchForAccount(String username, String password) {
     int userID = 0;
-    //  Database credentials
-    Connection conn = null;
-    Statement stmt = null;
     try {
-      // STEP 1: Register JDBC driver
       Class.forName(JDBC_DRIVER);
       conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
-      // STEP 3: Execute a query
       stmt = conn.createStatement();
+
       String sql =
           "SELECT USER_ID FROM USER_ACCOUNT WHERE USER_NAME = '"
               + username
@@ -51,7 +47,6 @@ public class DatabaseAccessor {
               + password
               + "'";
       ResultSet rs = stmt.executeQuery(sql);
-
       if (rs.next()) {
         userID = rs.getInt(1);
         System.out.println("Found a user\nUSER_ID: " + userID);
@@ -59,7 +54,7 @@ public class DatabaseAccessor {
         userID = 0;
         System.out.println("User not found\nUSER_ID: 0");
       }
-      // STEP 4: Clean-up environment
+
       stmt.close();
       conn.close();
     } catch (ClassNotFoundException e) {
@@ -80,17 +75,10 @@ public class DatabaseAccessor {
    *     not found
    */
   public static Account getAccount(int userID) {
-    Account dummyAccount = new Account(0, "", "", "", "", "", "", "", 0, 0);
-
-    //  Database credentials
-    Connection conn = null;
-    Statement stmt = null;
+    Account dummyAccount = new Account(0,"", "", "", "", "", "", LocalDate.parse("1111-11-25"), "");
     try {
-      // STEP 1: Register JDBC driver
       Class.forName(JDBC_DRIVER);
       conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
-      // STEP 3: Execute a query
       stmt = conn.createStatement();
       String sql = "SELECT * FROM USER_ACCOUNT WHERE USER_ID='" + userID + "'";
       ResultSet rs = stmt.executeQuery(sql);
@@ -106,10 +94,8 @@ public class DatabaseAccessor {
                 rs.getString(5),
                 rs.getString(6),
                 rs.getString(7),
-                rs.getString(8),
-                rs.getInt(9),
-                rs.getInt(10));
-        // dummyAccount.printAccountDetails();
+                LocalDate.parse(rs.getString(8)),
+                rs.getString(8));
       } else {
         System.out.println("Account not found");
       }
@@ -141,9 +127,9 @@ public class DatabaseAccessor {
       // STEP 3: Execute a query
       stmt = conn.createStatement();
       String sql =
-          "INSERT INTO USER_ACCOUNT(user_id, user_name, user_password, first_name, last_name, phone_number, user_email, date_of_birth, car_id_one, car_id_two)"
+          "INSERT INTO USER_ACCOUNT(user_id, user_name, user_password, first_name, last_name, phone_number, user_email, date_of_birth)"
               + "VALUES('"
-              + dummyAccount.getUser_id()
+              + dummyAccount.getUserID()
               + "','"
               + dummyAccount.getUsername()
               + "','"
@@ -158,13 +144,9 @@ public class DatabaseAccessor {
               + dummyAccount.getEmail()
               + "','"
               + dummyAccount.getDateOfBirth()
-              + "','"
-              + dummyAccount.getCarOneID()
-              + "','"
-              + dummyAccount.getCarTwoID()
               + "');";
       stmt.executeUpdate(sql);
-      System.out.println("Account " + dummyAccount.getUser_id() + " has been added!");
+      System.out.println("Account " + dummyAccount.getUserID() + " has been added!");
       // STEP 4: Clean-up environment
       stmt.close();
       conn.close();
@@ -234,6 +216,47 @@ public class DatabaseAccessor {
               + x.getRide_status_id());
     }
     System.out.println("************End of stored Rides************");
+  }
+
+  /**
+   * Returns a ride object based on the RideID
+   * @param rideID - the target ride's ID
+   * @return - the filled Rides object
+   */
+  public static Rides getRide(int rideID){
+    Rides dummyRide = new Rides(0,0,0,LocalDate.of(0,0,0),"","",LocalTime.of(0,0),0);
+    //  Database credentials
+    Connection conn = null;
+    Statement stmt = null;
+    try {
+      // STEP 1: Register JDBC driver
+      Class.forName(JDBC_DRIVER);
+      conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+      // STEP 3: Execute a query
+      stmt = conn.createStatement();
+      String sql = "SELECT * FROM RIDES_LIST WHERE RIDE_ID = '" +rideID+"'";
+      ResultSet rs = stmt.executeQuery(sql);
+      while (rs.next()) {
+        dummyRide = new Rides(
+                rs.getInt(1),
+                rs.getInt(2),
+                rs.getInt(3),
+                LocalDate.parse(rs.getString(4)),
+                rs.getString(5),
+                rs.getString(6),
+                LocalTime.parse(rs.getString(7)),
+                rs.getInt(8));
+      }
+      // STEP 4: Clean-up environment
+      stmt.close();
+      conn.close();
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return dummyRide;
   }
 
   /**
@@ -520,11 +543,15 @@ public class DatabaseAccessor {
   /**
    * Changes the RideStatusID of a particular Ride List of Ride Status ID's: 0, Accepted 1, Pending
    * 2, Completed 3, Expired 4, Cancelled by Driver 5, Cancelled by Passenger
-   *
+   * @param userID - the user who is changing the status
    * @param dummyRideID - The rideID of the ride in question
    * @param rideStatusID - The status flag of the ride in question
    */
-  public static void editRideStatus(int dummyRideID, int rideStatusID) {
+  public static void changeRideStatus(int userID, int dummyRideID, int rideStatusID) {
+    //Before we change the ride, we add the notification about it.
+    Rides dummyRide = getRide(dummyRideID);
+    addNotification(userID, dummyRide, rideStatusID);
+
     //  Database credentials
     Connection conn = null;
     Statement stmt = null;
@@ -541,7 +568,6 @@ public class DatabaseAccessor {
               + " WHERE RIDE_ID = "
               + dummyRideID;
       stmt.executeUpdate(sql); // There is no resultSet for an update statement
-
       // STEP 4: Clean-up environment
       stmt.close();
       conn.close();
@@ -584,16 +610,50 @@ public class DatabaseAccessor {
   //////////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////    Notification Methods   //////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////
-  /*
-  public String[] getNotifications(int userID){
-    String[] rideID = {""};
-    return rideID;
+
+  /**
+   * Gets an ArrayList of Notification objects that are pertinent to  a user.
+   * @param userID - the user whose notifications you want.
+   * @return - The array of strings
+   */
+  public ArrayList<Notification> getNotifications(int userID){
+    ArrayList<Notification> dummyArray = new ArrayList<>();
+    try {
+      Class.forName(JDBC_DRIVER);
+      conn = DriverManager.getConnection(DB_URL, USER, PASS);
+      stmt = conn.createStatement();
+
+      String sql =
+          "SELECT NOTIFICATION_TYPE, NOTIFICATION_DESCRIPTIONFROM USER_NOTIFICATIONS WHERE USER_ID = '" +userID+ "'";
+      ResultSet rs = stmt.executeQuery(sql);
+      System.out.println("Getting Notifications...");
+      while(rs.next()){
+        dummyArray.add(new Notification(rs.getInt(1), rs.getString(2)));
+      }
+      stmt.close();
+      conn.close();
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return dummyArray;
   }
-  public void addNotification(int userID, int rideID){
+
+  /**
+   * This class is used by the changeRideStatus to create a notification for both passenger and driver, where applicable.
+   *    The notifications convey this change to the users
+   * @param userID - the user who caused the notification
+   * @param dummyRide - the ride whose status is changing
+   * @param rideStatusID - the status that the ride is changing to
+   */
+  private static void addNotification(int userID, Rides dummyRide, int rideStatusID){
+    System.out.println("User: "+getAccount(userID).getUsername()
+        + " changed Ride: " +dummyRide.getRideID()
+        + "'s status from: " +dummyRide.getRide_status_id()
+        + " to: " + rideStatusID);
   }
-  public void deleteNotification(int userID, int rideID){
-  }
-  */
+
   //////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////    Car Methods   //////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////
@@ -724,7 +784,6 @@ public class DatabaseAccessor {
    *
    * @param dummyAccount
    */
-
   public static void editAccount(Account dummyAccount) {
     Connection conn = null;
     Statement stmt = null;
@@ -742,11 +801,9 @@ public class DatabaseAccessor {
               + "PHONE_NUMBER = '" + dummyAccount.getPhone()+"',"
               + "USER_EMAIL = '" + dummyAccount.getEmail()+"',"
               + "DATE_OF_BIRTH = '" + dummyAccount.getDateOfBirth()+"',"
-              + "CAR_ID_ONE = '" + dummyAccount.getCarOneID()+"',"
-              + "CAR_ID_TWO = '" + dummyAccount.getCarTwoID()+"'"
-              + " WHERE USER_ID = '" + dummyAccount.getUser_id() + "'";
+              + " WHERE USER_ID = '" + dummyAccount.getUserID() + "'";
       stmt.executeUpdate(sql);
-      System.out.println("Account " + dummyAccount.getUser_id() + " has been updated!");
+      System.out.println("Account " + dummyAccount.getUserID() + " has been updated!");
       stmt.close();
       conn.close();
     } catch (ClassNotFoundException e) {

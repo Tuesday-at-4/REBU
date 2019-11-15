@@ -6,14 +6,52 @@
  ************************************************************/
 package github.Tuesday_at_4.REBU;
 
+import java.time.LocalDate;
+
 public class Account {
+  private String firstName;
+  private String lastName;
+  private String phone;
+  private String username;
+  private String password;
+  private String email;
+  private String creditCard;
+  private int userID;
+  private LocalDate dateOfBirth;
 
-  private  static String firstName, lastName, phone, username, password, email, dateOfBirth;
-  private static int userID, carOneID, carTwoID;
-  // static variable of a current user's account, for the sake of updating account details for now
+  /**
+   * A constructor without UserID
+   * @param username
+   * @param password
+   * @param firstName
+   * @param lastName
+   * @param email
+   * @param phone
+   * @param dateOfBirth
+   */
+  public Account(String username, String password, String firstName, String lastName, String email, String phone, LocalDate dateOfBirth, String creditCard) {
+    this.username = username;
+    this.password = password;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.phone = phone;
+    this.email = email;
+    this.dateOfBirth = dateOfBirth;
+    this.creditCard = creditCard;
+  }
 
-
-  public Account(int userID, String username, String password,String firstName, String lastName, String email, String phone, String dateOfBirth,int carOneID,int carTwoID) {
+  /**
+   * A constructor WITH userID
+   * @param userID
+   * @param username
+   * @param password
+   * @param firstName
+   * @param lastName
+   * @param email
+   * @param phone
+   * @param dateOfBirth
+   */
+  public Account(int userID, String username, String password, String firstName, String lastName, String email, String phone, LocalDate dateOfBirth, String creditCard){
     this.userID = userID;
     this.username = username;
     this.password = password;
@@ -22,12 +60,11 @@ public class Account {
     this.phone = phone;
     this.email = email;
     this.dateOfBirth = dateOfBirth;
-    this.carOneID = carOneID;
-    this.carTwoID = carTwoID;
+    this.creditCard = creditCard;
   }
 
 
-  /*** ACCESSOR METHODS ***/
+  /*** GETTER METHODS ***/
   public String getFirstName() {
     return firstName;
   }
@@ -44,7 +81,7 @@ public class Account {
     return phone;
   }
 
-  public String getDateOfBirth() {
+  public LocalDate getDateOfBirth() {
     return dateOfBirth;
   }
 
@@ -55,6 +92,15 @@ public class Account {
   public String getPassword() {
     return password;
   }
+
+  public int getUserID() {
+    return userID;
+  }
+
+  public String getCreditCard() {
+    return creditCard;
+  }
+
 
   /*** SETTER METHODS ***/
   public void setFirstName(String firstName) {
@@ -73,7 +119,7 @@ public class Account {
     this.phone = phone;
   }
 
-  public void setDateOfBirth(String dateOfBirth) {
+  public void setDateOfBirth(LocalDate dateOfBirth) {
     this.dateOfBirth = dateOfBirth;
   }
 
@@ -85,38 +131,11 @@ public class Account {
     this.password = password;
   }
 
-  public void setCarTwoID(int carTwoID) {
-    this.carTwoID = carTwoID;
-  }
-
-  public void setCarOneID(int carOneID) {
-    this.carOneID = carOneID;
-  }
-
   public void setUser_id(int user_id) {
     this.userID = user_id;
   }
 
   /*** HELPER METHOD ***/
-  public String getName() {
-    return getFirstName() + " " + getLastName();
-  }
-
-  public int getUser_id() {
-    return userID;
-  }
-
-  public int getCarOneID() {
-    return carOneID;
-  }
-
-  public int getCarTwoID() {
-    return carTwoID;
-  }
-
-  /**
-   * A print Account for verifying your account with print statements
-   */
   public void printAccountDetails(){
     System.out.println(""
         + "\nUserID:  "+userID
@@ -127,7 +146,6 @@ public class Account {
         + "\nPhone:  "+phone
         + "\nEmail:  "+email
         + "\nDateOfBirth:  "+dateOfBirth
-        + "\nCarOneID:  "+carOneID
-        + "\nCarTwoID:  "+carTwoID);
+        + "\nCreditCar:   "+creditCard);
   }
 }
