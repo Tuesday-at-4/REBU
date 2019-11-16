@@ -6,8 +6,13 @@
  * prompts the user to enter their driver information.
  * **********************************************************
  */
-package github.Tuesday_at_4.REBU;
+package sample;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -56,11 +61,8 @@ public class DriverPrompt {
     Car dummyCar =
         new Car(carID, manufacturer, model, year, carType, licensePlate, CarColor, NumSeats);
     DatabaseAccessor.addCar(dummyCar);
-    Main.createNewScene(event, "AccountSummary.fxml");
+    Main.createNewScene(event, "Driver.fxml");
   }
     }
-
-
-
 
 
