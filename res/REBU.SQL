@@ -66,6 +66,7 @@ VALUES
 			 (5,'Cancelled by Passenger');
 
 CREATE TABLE CAR_DETAILS(
+  car_id            int   auto_increment,
 	user_id						int,
 	car_manufacturer	varchar(255),
 	car_model					varchar(255),

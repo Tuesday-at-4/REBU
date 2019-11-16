@@ -663,7 +663,7 @@ public class DatabaseAccessor {
    * @param - the target car, base on the carID
    * @return - a car object, filled with the relevant data
    */
-  public Car getCarFromID(int userID) {
+  public Car getCarFromID(int carID) {
     Car dummyCar = new Car(0, "", "", 000, "", "", "", 0);
     //  Database credentials
     Connection conn = null;
@@ -675,7 +675,7 @@ public class DatabaseAccessor {
 
       // STEP 3: Execute a query
       stmt = conn.createStatement();
-      String sql = "SELECT * FROM CAR_DETAILS WHERE USER_ID='" + userID + "'";
+      String sql = "SELECT * FROM CAR_DETAILS WHERE CAR_ID='" + carID + "'";
       ResultSet rs = stmt.executeQuery(sql);
 
       if (rs.next()) {
@@ -705,6 +705,41 @@ public class DatabaseAccessor {
   }
 
   /**
+   * Returns an arraylist of all carID's associated with a user
+   * @param userID - the user associated with the cars
+   * @return - an arrayList of all carID's, may be empty
+   */
+  public ArrayList<Integer> getAllCarsFromUser(int userID){
+    ArrayList<Integer> carList = new ArrayList<>();
+    //  Database credentials
+    Connection conn = null;
+    Statement stmt = null;
+    try {
+      // STEP 1: Register JDBC driver
+      Class.forName(JDBC_DRIVER);
+      conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+      // STEP 3: Execute a query
+      stmt = conn.createStatement();
+      String sql = "SELECT CAR_ID FROM CAR_DETAILS WHERE USER_ID='" + userID + "'";
+      ResultSet rs = stmt.executeQuery(sql);
+
+      while(rs.next()){
+        carList.add(rs.getInt(1));
+      }
+
+      // STEP 4: Clean-up environment
+      stmt.close();
+      conn.close();
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return carList;
+  }
+
+  /**
    * Adds a car object to the database
    *
    * @param dummyCar
@@ -721,8 +756,8 @@ public class DatabaseAccessor {
       // STEP 3: Execute a query
       stmt = conn.createStatement();
       String sql =
-          "INSERT INTO CAR_DETAILS(CAR_ID, CAR_MANUFACTURER, CAR_MODEL, CAR_YEAR, CAR_TYPE, LICENSE_PLATE, CAR_COLOR, CAR_SEATING) VALUES('"
-              + dummyCar.getCarID()
+          "INSERT INTO CAR_DETAILS(USER_ID, CAR_MANUFACTURER, CAR_MODEL, CAR_YEAR, CAR_TYPE, LICENSE_PLATE, CAR_COLOR, CAR_SEATING) VALUES('"
+              + dummyCar.getUserID()
               + "','"
               + dummyCar.getManufacturer()
               + "','"
@@ -739,7 +774,7 @@ public class DatabaseAccessor {
               + dummyCar.getNumSeats()
               + "')";
       stmt.executeUpdate(sql);
-      System.out.println("Car " + dummyCar.getCarID() + " has been added!");
+      System.out.println("Car has been added!");
       // STEP 4: Clean-up environment
       stmt.close();
       conn.close();

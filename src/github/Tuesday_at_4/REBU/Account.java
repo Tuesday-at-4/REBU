@@ -20,7 +20,7 @@ public class Account {
   private LocalDate dateOfBirth;
 
   /**
-   * A constructor without UserID
+   * A constructor without UserID, general use constructor
    * @param username
    * @param password
    * @param firstName
@@ -41,7 +41,7 @@ public class Account {
   }
 
   /**
-   * A constructor WITH userID
+   * A constructor WITH userID DO BOT USE
    * @param userID
    * @param username
    * @param password

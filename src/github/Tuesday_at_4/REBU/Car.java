@@ -11,6 +11,7 @@ package github.Tuesday_at_4.REBU;
 
 public class Car {
   private int carID;
+  private int userID;
   private String manufacturer;
   private String model;
   private int year;
@@ -19,10 +20,20 @@ public class Car {
   private String CarColor;
   private int NumSeats;
 
-
-  Car(int carID, String manufacturer, String model, int year, String carType, String licensePlate,
+  /**
+   * Constructor without the carID, general use
+   * @param userID
+   * @param manufacturer
+   * @param model
+   * @param year
+   * @param carType
+   * @param licensePlate
+   * @param CarColor
+   * @param NumSeats
+   */
+  Car(int userID, String manufacturer, String model, int year, String carType, String licensePlate,
       String CarColor, int NumSeats) {
-    this.carID = carID;
+    this.userID = userID;
     this.manufacturer = manufacturer;
     this.model = model;
     this.year = year;
@@ -30,10 +41,35 @@ public class Car {
     this.licensePlate = licensePlate;
     this.CarColor = CarColor;
     this.NumSeats = NumSeats;
+  }
 
+  /**
+   * Constructor without the carID, Only used in the DB accessor class, DON'T USE
+   * @param userID
+   * @param manufacturer
+   * @param model
+   * @param year
+   * @param carType
+   * @param licensePlate
+   * @param CarColor
+   * @param NumSeats
+   */
+  Car(int carID, int userID, String manufacturer, String model, int year, String carType, String licensePlate,
+      String CarColor, int NumSeats) {
+    this.carID = carID;
+    this.userID = userID;
+    this.manufacturer = manufacturer;
+    this.model = model;
+    this.year = year;
+    this.carType = carType;
+    this.licensePlate = licensePlate;
+    this.CarColor = CarColor;
+    this.NumSeats = NumSeats;
   }
 
   //Accessor Methods:
+
+  public int getUserID() { return  userID; }
 
   public String getManufacturer() {
     return manufacturer;
