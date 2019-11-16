@@ -5,7 +5,7 @@
  * Purpose : Allows the Passenger to create Rides, see their pending Rides, and their accepted Rides.
  ************************************************************/
 
-package github.Tuesday_at_4.REBU;
+package sample;
 
 /* Line 12-25 are necessary import statements needed to connect the code with
    corresponding .fxml file(s)*/
@@ -25,6 +25,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Month;
+import javafx.scene.input.MouseEvent;
 
 public class PassengerController {
 
@@ -59,27 +60,10 @@ public class PassengerController {
 
     @FXML
     private Tab tabPendingRides;
-    /*
-    @FXML
-    private TableView<Trip> tvPendingRides;
 
     @FXML
-    private TableView<Trip> tvAcceptedRides;
+    private TableView <Rides> tvPendingRides;
 
-    @FXML
-    private TableColumn<Trip, String> pendRideId;
-
-    @FXML
-    private TableColumn<Trip, String> pendFrom;
-
-    @FXML
-    private TableColumn<Trip, String> pendTo;
-
-    @FXML
-    private TableColumn<Trip, LocalDate> pendDate;
-
-    @FXML
-    private TableColumn<Trip, LocalTime> pendTime;
 
     @FXML
     private Tab tabAccptedRides;
@@ -98,11 +82,13 @@ public class PassengerController {
 
     @FXML
     private TableColumn<?, String> accptTime;
-    */
+
     /* 103-106 will be expanded upon to record scheduled rides and have them stored in the DB when it works */
 
     @FXML
-    void createRide(ActionEvent event) {
+    public void createRide(MouseEvent event) {
+    Rides createRides = new Rides(0,0,0, LocalDate.parse(textFieldStartDate.getText()), textFieldStartLocation.getText(), textFieldEndLocation.getText(), LocalTime.parse(textFieldStartTime.getText()),0);
+            tvPendingRides.getItems().add(createRides);
 
     }
 
@@ -126,21 +112,11 @@ public class PassengerController {
      * They're used together get values to populate on the table view columns and cells */
 
     public void initialize() {
-        /*
-        ObservableList<Trip> data = populateList();
-        pendRideId.setCellValueFactory(new PropertyValueFactory<Trip, String>("pendRideId"));
-        pendFrom.setCellValueFactory(new PropertyValueFactory<Trip, String>("pendFrom"));
-        pendTo.setCellValueFactory(new PropertyValueFactory<Trip, String>("pendTo"));
-        pendDate.setCellValueFactory(new PropertyValueFactory<Trip, LocalDate>("pendDate"));
-        pendTime.setCellValueFactory(new PropertyValueFactory<Trip, LocalTime>("pendTime"));
 
-        tvPendingRides.setItems(data);*/
     }
 
     /* Line 138 - 141 placeholder values until DB works */
-    /*
-    public static ObservableList<Trip> populateList() {
-        return FXCollections.observableArrayList(new Trip("121289", "Miami", "Orlando", LocalDate.of(2019, Month.NOVEMBER, 12), LocalTime.of(2, 23)));
 
-    }*/
-}
+
+
+    }
