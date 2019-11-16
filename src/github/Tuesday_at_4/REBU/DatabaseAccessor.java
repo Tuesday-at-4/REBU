@@ -663,7 +663,7 @@ public class DatabaseAccessor {
    * @param - the target car, base on the carID
    * @return - a car object, filled with the relevant data
    */
-  public Car getCarFromID(int carID) {
+  public Car getCarFromID(int userID) {
     Car dummyCar = new Car(0, "", "", 000, "", "", "", 0);
     //  Database credentials
     Connection conn = null;
@@ -675,7 +675,7 @@ public class DatabaseAccessor {
 
       // STEP 3: Execute a query
       stmt = conn.createStatement();
-      String sql = "SELECT * FROM CAR_DETAILS WHERE CAR_ID='" + carID + "'";
+      String sql = "SELECT * FROM CAR_DETAILS WHERE USER_ID='" + userID + "'";
       ResultSet rs = stmt.executeQuery(sql);
 
       if (rs.next()) {
@@ -752,10 +752,10 @@ public class DatabaseAccessor {
 
   /**
    * Takes a carID and deletes all cars that match it in the DB
-   *
+   *  BROKEN
    * @param car_ID the car_id to be added
    */
-  public void deleteCar(int car_ID) {
+  /*public void deleteCar(int car_ID) {
     //  Database credentials
     Connection conn = null;
     Statement stmt = null;
@@ -777,7 +777,7 @@ public class DatabaseAccessor {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-  }
+  }*/
 
   /**
    * Updates the data for a particular item in the database.

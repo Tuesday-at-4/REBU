@@ -51,8 +51,7 @@ public class EditAccountController {
     int carID = 0;
     int carID2 = 0;
     // creating a new registered user, holding their information
-    Account dummyAccount = new Account (Main.currentUser.getUser_id(), username, password, firstName, lastName, phone, email, DOB.toString(), carID,
-        carID2);
+    Account dummyAccount = new Account (username, password, firstName, lastName, phone, email, DOB,"");
     DatabaseAccessor.editAccount(dummyAccount);
     // transitions to Account Details screen (AccountSummary) from Register Account screen
     Main.createNewScene(event, "AccountSummary.fxml");
@@ -66,7 +65,7 @@ public class EditAccountController {
     txtField_lastName.setText(Main.currentUser.getLastName());
     txtField_email.setText(Main.currentUser.getEmail());
     txtField_phone.setText(Main.currentUser.getPhone());
-    dateB_DOB.setValue(LocalDate.parse(Main.currentUser.getDateOfBirth()));
+    dateB_DOB.setValue(LocalDate.parse(Main.currentUser.getDateOfBirth().toString()));
     txtField_createUsername.setText(Main.currentUser.getUsername());
     txtField_createPassword.setText(Main.currentUser.getPassword());
   }

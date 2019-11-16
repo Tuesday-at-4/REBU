@@ -44,7 +44,7 @@ public class AccountSummaryController {
    */
   @FXML
   private void deleteAccount(Event event){
-    DatabaseAccessor.deleteAccount(Main.currentUser.getUser_id());
+    DatabaseAccessor.deleteAccount(Main.currentUser.getUserID());
     Main.createNewScene(event, "Login.fxml");
   }
 
@@ -59,10 +59,10 @@ public class AccountSummaryController {
    */
   @FXML
   public void initialize() {
-    lblName.setText(Main.currentUser.getName());
+    lblName.setText(Main.currentUser.getFirstName()+" "+Main.currentUser.getLastName());
     lblEmail.setText(Main.currentUser.getEmail());
     lblPhoneNum.setText(Main.currentUser.getPhone());
-    lblDOB.setText(Main.currentUser.getDateOfBirth());
+    lblDOB.setText(Main.currentUser.getDateOfBirth().toString());
     lblUsername.setText(Main.currentUser.getUsername());
   }
 }
