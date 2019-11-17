@@ -50,6 +50,7 @@ public class Account {
    * @param email
    * @param phone
    * @param dateOfBirth
+   * @param creditCard
    */
   public Account(int userID, String username, String password, String firstName, String lastName, String email, String phone, LocalDate dateOfBirth, String creditCard){
     this.userID = userID;
@@ -135,6 +136,8 @@ public class Account {
     this.userID = user_id;
   }
 
+  public void setCreditCard(String creditCard){ this.creditCard = creditCard;}
+
   /*** HELPER METHOD ***/
   public void printAccountDetails(){
     System.out.println(""
@@ -146,6 +149,6 @@ public class Account {
         + "\nPhone:  "+phone
         + "\nEmail:  "+email
         + "\nDateOfBirth:  "+dateOfBirth
-        + "\nCreditCar:   "+creditCard);
+        + "\nCreditCard:   "+creditCard);
   }
 }
