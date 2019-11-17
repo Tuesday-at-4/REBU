@@ -1,14 +1,11 @@
-
-/**
- * *********************************************************
+/*************************************************************
  * File : RegsiterController.Java
  * Author(s): Breanna Rhodes
  * Class : CEN 3031
  * Purpose : Allows the user to create a new account by prompting them to enter
  * their information into text fields. The text fields are then stored into a variable
  * and the variable stored in the database.
- * **********************************************************
- */
+ * ***********************************************************/
 package github.Tuesday_at_4.REBU;
 
 import java.time.LocalDate;
@@ -30,29 +27,42 @@ public class AccountRegistration {
 
   String firstName = "";
 
-  String  lastName = "";
+  String lastName = "";
 
   String phone = "";
 
   String email = "";
 
-  @FXML private TextField txtField_firstName;
+  @FXML
+  private AnchorPane anchorAccountRegistration;
 
-  @FXML private TextField txtField_lastName;
+  @FXML
+  private TextField txtField_firstName;
 
-  @FXML private TextField txtField_email;
+  @FXML
+  private TextField txtField_lastName;
 
-  @FXML private TextField txtField_phone;
+  @FXML
+  private TextField txtField_email;
 
-  @FXML private Button btn_createAccount;
+  @FXML
+  private TextField txtField_phone;
 
-  @FXML private TextField txtField_createUsername;
+  @FXML
+  private TextField txtField_creditCard;
+
+  @FXML
+  private Button btn_createAccount;
+
+  @FXML
+  private TextField txtField_createUsername;
 
 
-  @FXML private PasswordField txtField_createPassword;
+  @FXML
+  private PasswordField txtField_createPassword;
 
-  @FXML private DatePicker dateB_DOB;
-
+  @FXML
+  private DatePicker dateB_DOB;
 
   @FXML
   void create_account(MouseEvent event) {
@@ -103,8 +113,6 @@ public class AccountRegistration {
     else{
       password = txtField_createPassword.getText();
     }
-
-
 
     // creating a new registered user, holding their information
 
