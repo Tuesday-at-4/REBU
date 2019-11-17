@@ -144,7 +144,10 @@ public class DatabaseAccessor {
               + dummyAccount.getEmail()
               + "','"
               + dummyAccount.getDateOfBirth()
-              + "');";
+              + "'"
+              + "','"
+              + dummyAccount.getCreditCard()
+              + ");";
       stmt.executeUpdate(sql);
       System.out.println("Account " + dummyAccount.getUserID() + " has been added!");
       // STEP 4: Clean-up environment
