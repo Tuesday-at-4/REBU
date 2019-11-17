@@ -91,7 +91,7 @@ public class PendingRides implements Initializable{
             rs.getTime("start_time").toLocalTime(),rs.getInt(0)));
       }
     }catch(SQLException ex){
-      Logger.getLogger(CarRegistrationController.class.getName()).log(Level.SEVERE,null,ex);
+      Logger.getLogger(github.Tuesday_at_4.REBU.CarRegistrationController.class.getName()).log(Level.SEVERE,null,ex);
     }
 
     Passenger.setCellValueFactory(new PropertyValueFactory<>("Passenger"));

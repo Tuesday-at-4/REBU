@@ -6,7 +6,7 @@
  * prompts the user to enter their driver information.
  * **********************************************************
  */
-package sample;
+package github.Tuesday_at_4.REBU;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

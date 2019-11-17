@@ -29,7 +29,7 @@ public class Account {
    * @param phone
    * @param dateOfBirth
    */
-  public Account(String username, String password, String firstName, String lastName, String email, String phone, LocalDate dateOfBirth, String creditCard) {
+  public Account(String username, String password, String firstName, String lastName, String phone, String email, LocalDate dateOfBirth, String creditCard) {
     this.username = username;
     this.password = password;
     this.firstName = firstName;

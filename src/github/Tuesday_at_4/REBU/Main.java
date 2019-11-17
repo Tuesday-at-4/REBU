@@ -32,7 +32,7 @@ public class Main extends Application {
         sceneMain.getStylesheets().add(Main.class.getResource("Style.css").toExternalForm());
         primaryStage.show();
     }
-    static void createNewScene(Event event, String newFileFXML){
+    public static void createNewScene(Event event, String newFileFXML){
         Parent newRoot = null;
         try {
             newRoot = FXMLLoader.load(Main.class.getResource(newFileFXML));

@@ -7,8 +7,10 @@
  * Purpose : Populates the tables of regsitered vehicles of the user.
  * **********************************************************
  */
-package sample;
+package github.Tuesday_at_4.REBU;
 
+import github.Tuesday_at_4.REBU.Car;
+import github.Tuesday_at_4.REBU.Main;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

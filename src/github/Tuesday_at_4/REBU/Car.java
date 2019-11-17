@@ -31,7 +31,8 @@ public class Car {
    * @param CarColor
    * @param NumSeats
    */
-  Car(int userID, String manufacturer, String model, int year, String carType, String licensePlate,
+  public Car(int userID, String manufacturer, String model, int year, String carType,
+      String licensePlate,
       String CarColor, int NumSeats) {
     this.userID = userID;
     this.manufacturer = manufacturer;

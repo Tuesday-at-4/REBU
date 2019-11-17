@@ -5,7 +5,7 @@
  * Purpose : Allows the Passenger to create Rides, see their pending Rides, and their accepted Rides.
  ************************************************************/
 
-package sample;
+package github.Tuesday_at_4.REBU;
 
 /* Line 12-25 are necessary import statements needed to connect the code with
    corresponding .fxml file(s)*/
