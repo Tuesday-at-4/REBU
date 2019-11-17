@@ -127,7 +127,7 @@ public class DatabaseAccessor {
       // STEP 3: Execute a query
       stmt = conn.createStatement();
       String sql =
-          "INSERT INTO USER_ACCOUNT(user_id, user_name, user_password, first_name, last_name, phone_number, user_email, date_of_birth)"
+          "INSERT INTO USER_ACCOUNT(user_id, user_name, user_password, first_name, last_name, phone_number, user_email, date_of_birth, credit_card)"
               + "VALUES('"
               + dummyAccount.getUserID()
               + "','"
