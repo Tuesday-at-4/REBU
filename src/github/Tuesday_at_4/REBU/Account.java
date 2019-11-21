@@ -52,7 +52,7 @@ public class Account {
    * @param dateOfBirth
    * @param creditCard
    */
-  public Account(int userID, String username, String password, String firstName, String lastName, String email, String phone, LocalDate dateOfBirth, String creditCard){
+  public Account(int userID, String username, String password, String firstName, String lastName, String phone, String email, LocalDate dateOfBirth, String creditCard){
     this.userID = userID;
     this.username = username;
     this.password = password;
