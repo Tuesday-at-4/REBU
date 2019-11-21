@@ -33,6 +33,8 @@ public class AccountRegistration {
 
   String email = "";
 
+  String creditCard = "";
+
   @FXML
   private AnchorPane anchorAccountRegistration;
 
@@ -113,10 +115,17 @@ public class AccountRegistration {
     else{
       password = txtField_createPassword.getText();
     }
+    if(txtField_creditCard.getText().length() > 255){
+      System.out.println("Your credit card number is usually only 16 digits!");
+    }
+    else{
+      creditCard = txtField_creditCard.getText();
+    }
+
 
     // creating a new registered user, holding their information
 
-    Account dummy = new Account(username, password, firstName, lastName, phone, email, DOB, " ");
+    Account dummy = new Account(username, password, firstName, lastName, phone, email, DOB, creditCard);
     dummy.printAccountDetails();
     DatabaseAccessor.addAccount(dummy);
     Main.currentUser = dummy;
