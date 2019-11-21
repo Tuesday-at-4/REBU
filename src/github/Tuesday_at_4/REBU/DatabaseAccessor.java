@@ -838,6 +838,7 @@ public class DatabaseAccessor {
               + "PHONE_NUMBER = '" + dummyAccount.getPhone()+"',"
               + "USER_EMAIL = '" + dummyAccount.getEmail()+"',"
               + "DATE_OF_BIRTH = '" + dummyAccount.getDateOfBirth()+"',"
+              + "CREDIT_CARD = '" + dummyAccount.getCreditCard()+"',"
               + " WHERE USER_ID = '" + dummyAccount.getUserID() + "'";
       stmt.executeUpdate(sql);
       System.out.println("Account " + dummyAccount.getUserID() + " has been updated!");

@@ -48,7 +48,7 @@ public class LoginController {
     password = password_textField.getText();
 
     int userID = DatabaseAccessor.searchForAccount(username, password);
-    if(userID != -1){
+    if(userID != 0){
       Main.currentUser = DatabaseAccessor.getAccount(userID);
       Main.createNewScene(event, "Dashboard.fxml");
     }else {

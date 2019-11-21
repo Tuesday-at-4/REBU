@@ -17,6 +17,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javax.swing.JOptionPane;
 
 public class AccountRegistration {
   LocalDate DOB = LocalDate.now();
@@ -71,56 +72,33 @@ public class AccountRegistration {
 
     // storing information from text fields
     int userID = 3;
-    if(dateB_DOB.getValue().equals(0)){
-      System.out.println("You didn't give us your birthday! We need to know that stuff!");
-    }
-    else{
-      DOB = dateB_DOB.getValue();
-    }
-    if(txtField_firstName.getText().length() > 255){
-      System.out.println("Your first name can't be that long, try again!");
-    }
-    else{
-      firstName = txtField_firstName.getText();
 
+    //Handles the exception of a Null Pointer Error
+    try{
+     username = String.valueOf(txtField_createUsername.getText());
+      password =  String.valueOf(txtField_createPassword.getText());
+      firstName = String.valueOf(txtField_firstName.getText());
+      lastName = String.valueOf(txtField_lastName.getText());
+      phone = String.valueOf(txtField_phone.getText());
+      email = String.valueOf(txtField_email.getText());
+      creditCard = String.valueOf(txtField_creditCard.getText());
     }
-    if(txtField_lastName.getText().length() > 255){
-      System.out.println("Your last name can't be that long, try again!");
+    catch(NullPointerException e){
+      JOptionPane.showMessageDialog(null, "Null pointer exception thrown");
+      txtField_createUsername.clear();
+      txtField_createPassword.clear();
+      txtField_firstName.clear();
+      txtField_lastName.clear();
+      txtField_phone.clear();
+      txtField_email.clear();
+      txtField_creditCard.clear();
     }
-    else{
-      lastName = txtField_lastName.getText();
-    }
-    if(txtField_email.getText().length() > 255){
-      System.out.println("Your email can't be that long, try again!");
-    }
-    else{
-      email = txtField_email.getText();
 
-    }
-    if(txtField_phone.getText().length() > 10){
-      System.out.println("Your phone number should only be numbers like '1231231234'. Try again");
-    }
-    else{
-      phone = txtField_phone.getText();
-    }
-    if(txtField_createUsername.getText().length() > 255){
-      System.out.println("Your username name can't be that long, try again!");
-    }
-    else{
-      username = txtField_createUsername.getText();
-    }
-    if(txtField_createPassword.getText().length() > 255){
-      System.out.println("Your password name can't be that long, try again!");
-    }
-    else{
-      password = txtField_createPassword.getText();
-    }
-    if(txtField_creditCard.getText().length() > 255){
-      System.out.println("Your credit card number is usually only 16 digits!");
-    }
-    else{
-      creditCard = txtField_creditCard.getText();
-    }
+
+
+
+
+
 
 
     // creating a new registered user, holding their information
