@@ -94,13 +94,6 @@ public class AccountRegistration {
       txtField_creditCard.clear();
     }
 
-
-
-
-
-
-
-
     // creating a new registered user, holding their information
 
     Account dummy = new Account(username, password, firstName, lastName, phone, email, DOB, creditCard);

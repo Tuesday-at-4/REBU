@@ -28,6 +28,9 @@ public class AccountSummaryController {
   private Label lblEmail;
 
   @FXML
+  private Label lblCreditCard;
+
+  @FXML
   private Label lblUsername;
 
   @FXML
@@ -62,6 +65,7 @@ public class AccountSummaryController {
     lblName.setText(Main.currentUser.getFirstName()+" "+Main.currentUser.getLastName());
     lblEmail.setText(Main.currentUser.getEmail());
     lblPhoneNum.setText(Main.currentUser.getPhone());
+    lblCreditCard.setText(Main.currentUser.getCreditCard());
     lblDOB.setText(Main.currentUser.getDateOfBirth().toString());
     lblUsername.setText(Main.currentUser.getUsername());
   }

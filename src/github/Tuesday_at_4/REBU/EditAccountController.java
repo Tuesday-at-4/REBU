@@ -26,6 +26,9 @@ public class EditAccountController {
   private TextField txtField_phone;
 
   @FXML
+  private TextField txtField_creditCard;
+
+  @FXML
   private DatePicker dateB_DOB;
 
   @FXML
@@ -37,7 +40,7 @@ public class EditAccountController {
   // saving user account detail changes
   @FXML
   void saveChanges(MouseEvent event) {
-    String email, firstName, lastName, phone, username, password;
+    String email, firstName, lastName, phone, username, password, creditCard;
     LocalDate DOB;
 
     // storing information from text fields
@@ -46,13 +49,16 @@ public class EditAccountController {
     lastName = txtField_lastName.getText();
     email = txtField_email.getText();
     phone = txtField_phone.getText();
+    creditCard = txtField_creditCard.getText();
     username = txtField_createUsername.getText();
     password = txtField_createPassword.getText();
-    int carID = 0;
-    int carID2 = 0;
+
     // creating a new registered user, holding their information
-    Account dummyAccount = new Account (username, password, firstName, lastName, phone, email, DOB,"");
+    Account dummyAccount = new Account (Main.currentUser.getUserID(), username, password, firstName, lastName, phone, email, DOB, creditCard);
+    Main.currentUser.printAccountDetails();
     DatabaseAccessor.editAccount(dummyAccount);
+    Main.currentUser = DatabaseAccessor.getAccount(Main.currentUser.getUserID());
+    Main.currentUser.printAccountDetails();
     // transitions to Account Details screen (AccountSummary) from Register Account screen
     Main.createNewScene(event, "AccountSummary.fxml");
     System.out.println("You have edited your account! \nConfirm information below is correct.");
@@ -65,6 +71,7 @@ public class EditAccountController {
     txtField_lastName.setText(Main.currentUser.getLastName());
     txtField_email.setText(Main.currentUser.getEmail());
     txtField_phone.setText(Main.currentUser.getPhone());
+    txtField_creditCard.setText(Main.currentUser.getCreditCard());
     dateB_DOB.setValue(LocalDate.parse(Main.currentUser.getDateOfBirth().toString()));
     txtField_createUsername.setText(Main.currentUser.getUsername());
     txtField_createPassword.setText(Main.currentUser.getPassword());
