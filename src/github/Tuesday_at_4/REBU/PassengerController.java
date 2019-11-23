@@ -10,14 +10,17 @@ package github.Tuesday_at_4.REBU;
 /* Line 12-25 are necessary import statements needed to connect the code with
    corresponding .fxml file(s)*/
 
+import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -32,13 +35,20 @@ public class PassengerController {
     /* all of the @FXML code does with controls and containers used in the Passenger.fxml  */
 
     @FXML
+    DatePicker datePicker_scheduleRide;
+
+    @FXML
+  TextArea textArea_displayNotifications;
+
+    @FXML
     private Tab tabPassengerMain;
 
     @FXML
     private Button home_Button;
 
+
     @FXML
-    private Button Edit_Account;
+    private Button button_clearNotifications;
 
     @FXML
     private Tab tabRideScheduler;
@@ -63,7 +73,6 @@ public class PassengerController {
 
     @FXML
     private TableView <Rides> tvPendingRides;
-
 
     @FXML
     private Tab tabAccptedRides;
@@ -102,17 +111,15 @@ public class PassengerController {
     /*  The next block of code (115-118) returns you to the account summary page via the edit account button. */
 
     @FXML
-    private void edit_Account(Event event) {
-        Main.createNewScene(event, "AccountSummary.fxml");
+    void clear_notifications(MouseEvent event) {
+      //DatabaseAccessor.deleteNotification(int user_id, int notification_type);
+      System.out.println("Notifications have been cleared");
+
     }
 
-    /* cellValueFactory - set to specify how to populate all cells within a single TableColumn
-     * propertyValueFactory<1, 2>  1- takes a parameter for type of the class contained within the TableView list
-     *2- takes a another parameter type of the class contained within the TableColumn cells
-     * They're used together get values to populate on the table view columns and cells */
-
     public void initialize() {
-
+     // ArrayList<Notification> notificationList = new ArrayList<Notification>(DatabaseAccessor.getNotifications(int user_ID));
+      // textArea_displayNotifications.appendText(notificationList.toString());
     }
 
     /* Line 138 - 141 placeholder values until DB works */
