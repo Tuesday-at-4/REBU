@@ -16,6 +16,7 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class DatabaseAccessor {
   private static String JDBC_DRIVER = "org.h2.Driver";
@@ -27,6 +28,42 @@ public class DatabaseAccessor {
   //////////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////    Account Methods   ////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////
+  public static void printAllAccounts(){
+    ArrayList<Account> dummyAccount = new ArrayList<>();
+    try {
+      Class.forName(JDBC_DRIVER);
+      conn = DriverManager.getConnection(DB_URL, USER, PASS);
+      stmt = conn.createStatement();
+      String sql = "SELECT * FROM USER_ACCOUNT";
+      ResultSet rs = stmt.executeQuery(sql);
+
+      while (rs.next()) {
+        dummyAccount.add(new Account(
+                rs.getInt(1),
+                rs.getString(2),
+                rs.getString(3),
+                rs.getString(4),
+                rs.getString(5),
+                rs.getString(6),
+                rs.getString(7),
+                LocalDate.parse(rs.getString(8)),
+                rs.getString(8)));
+      }
+      System.out.println("\n************ Accounts ************");
+      for (Account x : dummyAccount){
+        x.printAccountDetails();
+      }
+      System.out.println("\n************End of stored Accounts************\n");
+      // STEP 4: Clean-up environment
+      stmt.close();
+      conn.close();
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
   /**
    * Searches for an account with this username and password
    * @param username - the unique username of the user
@@ -192,32 +229,15 @@ public class DatabaseAccessor {
   /////////////////////////////////////    Rides Methods   /////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////
   /**
-   * A Test function to print out all Ride data from an ArrayList<Rides>.
-   *
-   * @param dummyArray - the Array of Rides to be printed
+   * A Test function to print out all Ride data from the database
    */
-  public static void printAllRides(ArrayList<Rides> dummyArray) {
-    System.out.println("\n************All stored Rides************");
-    for (Rides x : dummyArray) {
-      System.out.println(
-          "\nRideID: "
-              + x.getRideID()
-              + "\nPassengerID: "
-              + x.getPassenger()
-              + "\nDriverID: "
-              + x.getDriver()
-              + "\nStartDate: "
-              + x.getDate_OfRide()
-              + "\nStartLocation: "
-              + x.getStartLocation()
-              + "\nEndLocation: "
-              + x.getEndLocation()
-              + "\nStartTime: "
-              + x.getTime_OfRide()
-              + "\nRideStatusID: "
-              + x.getRide_status_id());
+  public static void printAllRides() {
+    ArrayList<Rides> dummyRides = getAllRides();
+    System.out.println("\n************ Rides ************");
+    for (Rides x: dummyRides){
+      x.printRide();
     }
-    System.out.println("************End of stored Rides************");
+    System.out.println("************End of stored Rides************\n");
   }
 
   /**
@@ -287,201 +307,10 @@ public class DatabaseAccessor {
                 rs.getInt(1),
                 rs.getInt(2),
                 rs.getInt(3),
-                LocalDate.parse(rs.getString(4)),
-                rs.getString(5),
+                LocalDate.parse(rs.getString(5)),
                 rs.getString(6),
-                LocalTime.parse(rs.getString(7)),
-                rs.getInt(8)));
-      }
-      // STEP 4: Clean-up environment
-      stmt.close();
-      conn.close();
-    } catch (ClassNotFoundException e) {
-      e.printStackTrace();
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
-    return dummyRideArray;
-  }
-
-  /**
-   * Returns an ArrayList of all Rides in the DB that have a matching DriverID and that have the
-   * Accepted status This array is a list of rides that this driver has accepted. Built specifically
-   * for the Accepted Rides tabPane in the driver screen
-   *
-   * @param driverUserID - the userID of the Driver
-   * @return - ArrayList of all rides where userID = driverID
-   */
-  public static ArrayList<Rides> getDriverAcceptedRides(int driverUserID) {
-    ArrayList<Rides> dummyRideArray = new ArrayList<Rides>();
-    //  Database credentials
-    Connection conn = null;
-    Statement stmt = null;
-    try {
-      // STEP 1: Register JDBC driver
-      Class.forName(JDBC_DRIVER);
-      conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
-      // STEP 3: Execute a query
-      stmt = conn.createStatement();
-      String sql =
-          "SELECT * FROM RIDES_LIST WHERE DRIVER_ID = '"
-              + driverUserID
-              + "' AND RIDE_STATUS_ID = 0";
-      ResultSet rs = stmt.executeQuery(sql);
-      while (rs.next()) {
-        dummyRideArray.add(
-            new Rides(
-                rs.getInt(1),
-                rs.getInt(2),
-                rs.getInt(3),
-                LocalDate.parse(rs.getString(4)),
-                rs.getString(5),
-                rs.getString(6),
-                LocalTime.parse(rs.getString(7)),
-                rs.getInt(8)));
-      }
-      // STEP 4: Clean-up environment
-      stmt.close();
-      conn.close();
-    } catch (ClassNotFoundException e) {
-      e.printStackTrace();
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
-    return dummyRideArray;
-  }
-
-  /**
-   * Returns an array of all Rides where the Driver ID's DON'T match and the rides have the Pending
-   * status This is an array of Rides that the Driver has not accepted. Made specifically for the
-   * Pending Rides tabPane in the driver screen
-   *
-   * @param driverUserID - The driverID that is matched to Rides
-   * @return - ArrayList of all rides that are both pending and not associated with the driver
-   */
-  public static ArrayList<Rides> getDriverPendingRides(int driverUserID) {
-    ArrayList<Rides> dummyRideArray = new ArrayList<Rides>();
-    //  Database credentials
-    Connection conn = null;
-    Statement stmt = null;
-    try {
-      // STEP 1: Register JDBC driver
-      Class.forName(JDBC_DRIVER);
-      conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
-      // STEP 3: Execute a query
-      stmt = conn.createStatement();
-      String sql =
-          "SELECT * FROM RIDES_LIST WHERE DRIVER_ID != '"
-              + driverUserID
-              + "' AND RIDE_STATUS_ID = 1"; // Returns only pending rides not associated with the
-                                            // driver
-      ResultSet rs = stmt.executeQuery(sql);
-      while (rs.next()) {
-        dummyRideArray.add(
-            new Rides(
-                rs.getInt(1),
-                rs.getInt(2),
-                rs.getInt(3),
-                LocalDate.parse(rs.getString(4)),
-                rs.getString(5),
-                rs.getString(6),
-                LocalTime.parse(rs.getString(7)),
-                rs.getInt(8)));
-      }
-      // STEP 4: Clean-up environment
-      stmt.close();
-      conn.close();
-    } catch (ClassNotFoundException e) {
-      e.printStackTrace();
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
-    return dummyRideArray;
-  }
-
-  /**
-   * Returns an ArrayList of all Rides in the DB that have a matching PassengerID and the pending
-   * status MAde specifically for the Pending Rides in the Passenger Screen
-   *
-   * @param passengerID - the userID of the Passenger
-   * @return - ArrayList of all rides where userID = passengerID
-   */
-  public static ArrayList<Rides> getPassengerPendingRides(int passengerID) {
-    ArrayList<Rides> dummyRideArray = new ArrayList<Rides>();
-    //  Database credentials
-    Connection conn = null;
-    Statement stmt = null;
-    try {
-      // STEP 1: Register JDBC driver
-      Class.forName(JDBC_DRIVER);
-      conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
-      // STEP 3: Execute a query
-      stmt = conn.createStatement();
-      String sql =
-          "SELECT * FROM RIDES_LIST WHERE PASSENGER_ID = '"
-              + passengerID
-              + "' AND RIDE_STATUS_ID = 1";
-      ResultSet rs = stmt.executeQuery(sql);
-      while (rs.next()) {
-        dummyRideArray.add(
-            new Rides(
-                rs.getInt(1),
-                rs.getInt(2),
-                rs.getInt(3),
-                LocalDate.parse(rs.getString(4)),
-                rs.getString(5),
-                rs.getString(6),
-                LocalTime.parse(rs.getString(7)),
-                rs.getInt(8)));
-      }
-      // STEP 4: Clean-up environment
-      stmt.close();
-      conn.close();
-    } catch (ClassNotFoundException e) {
-      e.printStackTrace();
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
-    return dummyRideArray;
-  }
-
-  /**
-   * Returns an array of all Rides where the PassengerID's match, and the Rides have the accepted
-   * status Made specifically for the Accepted Rides tabPane in the Passenger screen.
-   *
-   * @param passengerID - The userID of the passenger
-   * @return - an arrayList of Rides that have both a matching passengerID and the accepted status
-   */
-  public static ArrayList<Rides> getPassengerAcceptedRides(int passengerID) {
-    ArrayList<Rides> dummyRideArray = new ArrayList<Rides>();
-    //  Database credentials
-    Connection conn = null;
-    Statement stmt = null;
-    try {
-      // STEP 1: Register JDBC driver
-      Class.forName(JDBC_DRIVER);
-      conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
-      // STEP 3: Execute a query
-      stmt = conn.createStatement();
-      String sql =
-          "SELECT * FROM RIDES_LIST WHERE PASSENGER_ID = '"
-              + passengerID
-              + "' AND RIDE_STATUS_ID = 0";
-      ResultSet rs = stmt.executeQuery(sql);
-      while (rs.next()) {
-        dummyRideArray.add(
-            new Rides(
-                rs.getInt(1),
-                rs.getInt(2),
-                rs.getInt(3),
-                LocalDate.parse(rs.getString(4)),
-                rs.getString(5),
-                rs.getString(6),
-                LocalTime.parse(rs.getString(7)),
+                rs.getString(7),
+                LocalTime.parse(rs.getString(4)),
                 rs.getInt(8)));
       }
       // STEP 4: Clean-up environment
@@ -613,6 +442,35 @@ public class DatabaseAccessor {
   /////////////////////////////////    Notification Methods   //////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////
 
+  public static void printAllNotifications(){
+    ArrayList<Notification> dummyArray = new ArrayList<>();
+    try {
+      Class.forName(JDBC_DRIVER);
+      conn = DriverManager.getConnection(DB_URL, USER, PASS);
+      stmt = conn.createStatement();
+
+      String sql =
+          "SELECT NOTIFICATION_TYPE, NOTIFICATION_TEXT FROM USER_NOTIFICATIONS";
+      ResultSet rs = stmt.executeQuery(sql);
+      while(rs.next()){
+        dummyArray.add(new Notification(rs.getInt(1), rs.getString(2)));
+      }
+
+      System.out.println("\n************ Notifications ************");
+      for (Notification x: dummyArray){
+        x.printNotifications();
+      }
+      System.out.println("************End of stored Notifications************\n");
+
+
+      stmt.close();
+      conn.close();
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
   /**
    * Gets an ArrayList of Notification objects that are pertinent to  a user.
    * @param userID - the user whose notifications you want.
@@ -626,7 +484,7 @@ public class DatabaseAccessor {
       stmt = conn.createStatement();
 
       String sql =
-          "SELECT NOTIFICATION_TYPE, NOTIFICATION_DESCRIPTIONFROM USER_NOTIFICATIONS WHERE USER_ID = '" +userID+ "'";
+          "SELECT NOTIFICATION_TYPE, NOTIFICATION_TEXT FROM USER_NOTIFICATIONS WHERE USER_ID = '" +userID+ "'";
       ResultSet rs = stmt.executeQuery(sql);
       System.out.println("Getting Notifications...");
       while(rs.next()){
@@ -650,15 +508,59 @@ public class DatabaseAccessor {
    * @param rideStatusID - the status that the ride is changing to
    */
   private static void addNotification(int userID, Rides dummyRide, int rideStatusID){
+    HashMap<Integer, String> rideStatus = new HashMap<>();
+    rideStatus.put(0,"Accepted");
+    rideStatus.put(1,"Pending");
+    rideStatus.put(2,"Completed");
+    rideStatus.put(3,"Expired");
+    rideStatus.put(4,"Cancelled by Driver");
+    rideStatus.put(5,"Cancelled by Passenger");
     System.out.println("User: "+getAccount(userID).getUsername()
-        + " changed Ride: " +dummyRide.getRideID()
-        + "'s status from: " +dummyRide.getRide_status_id()
-        + " to: " + rideStatusID);
+        + " changed Ride #" +dummyRide.getRideID()
+        + "'s status from: " +rideStatus.get(dummyRide.getRide_status_id())
+        + " to: " + rideStatus.get(rideStatusID));
   }
 
   //////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////    Car Methods   //////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////
+  public static void printAllCars(){
+    ArrayList<Car> dummyArray = new ArrayList<>();
+    try {
+      Class.forName(JDBC_DRIVER);
+      conn = DriverManager.getConnection(DB_URL, USER, PASS);
+      stmt = conn.createStatement();
+
+      String sql =
+          "SELECT * FROM CAR_DETAILS";
+      ResultSet rs = stmt.executeQuery(sql);
+      while (rs.next()){
+        dummyArray.add(new Car(
+            rs.getInt(2),
+            rs.getString(3),
+            rs.getString(4),
+            rs.getInt(5),
+            rs.getString(6),
+            rs.getString(7),
+            rs.getString(8),
+            rs.getInt(9)));
+      }
+
+      System.out.println("\n************ Cars ************");
+      for (Car x: dummyArray){
+        x.printCar();
+      }
+      System.out.println("************End of stored Cars************\n");
+
+
+      stmt.close();
+      conn.close();
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
   /**
    * returns the Car object of the carID
    *

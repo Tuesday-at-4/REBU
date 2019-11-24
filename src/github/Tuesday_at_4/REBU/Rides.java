@@ -65,13 +65,13 @@ public class Rides {
 
   public void printRide(){
     System.out.println(
-        "RideID: "+ride_id+
-            "|PassengerID: "+passenger_id+
-            "|DriverID: "+driver_id+
-            "|Date: "+start_date+
-            "|From: "+start_location+
-            "|To: "+end_location+
-            "|When: "+start_time+
-            "|StatusID: "+ride_status_id);
+        "\nRideID: "+ride_id+
+            "\t|PassengerID: "+passenger_id+
+            "\t|DriverID: "+driver_id+
+            "\t|Date: "+start_date+
+            "\t|From: "+start_location+
+            "\t|To: "+end_location+
+            "\t|When: "+start_time+
+            "\t|StatusID: "+ride_status_id);
   }
 }

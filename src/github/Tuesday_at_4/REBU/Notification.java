@@ -22,4 +22,9 @@ public class Notification {
   public String getNotificationText() {
     return notificationText;
   }
+
+  public void printNotifications(){
+    System.out.println("\nNotification Type: "+notificationType+"\nNotification Text: "+notificationText);
+
+  }
 }

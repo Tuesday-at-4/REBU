@@ -26,7 +26,7 @@ CREATE TABLE USER_ACCOUNT (
 CREATE TABLE USER_NOTIFICATIONS(
 	user_id							int,
 	notification_type		int,
-	noitfication_text		varchar(255)
+	notification_text		varchar(255)
 );
 
 CREATE TABLE NOTIFICATION_TYPES(

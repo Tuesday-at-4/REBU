@@ -32,8 +32,7 @@ public class Car {
    * @param NumSeats
    */
   public Car(int userID, String manufacturer, String model, int year, String carType,
-      String licensePlate,
-      String CarColor, int NumSeats) {
+      String licensePlate, String CarColor, int NumSeats) {
     this.userID = userID;
     this.manufacturer = manufacturer;
     this.model = model;
@@ -131,4 +130,15 @@ public class Car {
     return carID;
   }
 
+  public void printCar(){
+    System.out.println("User_ID: " +userID
+        +"\nManufacturer: "+manufacturer
+        +"\nModel: "+model
+        +"\nYear: "+year
+        +"\nCarType: "+carType
+        +"\nLicensePlate: "+licensePlate
+        +"\nCarColor: "+CarColor
+        +"\nNumSeats: "+NumSeats
+    );
+  }
 }
