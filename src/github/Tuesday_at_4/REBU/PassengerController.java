@@ -1,129 +1,133 @@
-/***********************************************************
- * File   : PassengerController.Java
- * Author  :  Wilkenson Germain, Benjamin Cano
- * Class   : CEN 3031
- * Purpose : Allows the Passenger to create Rides, see their pending Rides, and their accepted Rides.
- ************************************************************/
+/**
+ * *********************************************************
+ * File : PassengerController.Java
+ * Author: Breanna Rhodes
+ * Class:CEN 3031
+ * Purpose : Allows the Passenger to create
+ * Rides, see their pending Rides, and their accepted Rides.
+ * **********************************************************
+ */
 
 package github.Tuesday_at_4.REBU;
 
 /* Line 12-25 are necessary import statements needed to connect the code with
-   corresponding .fxml file(s)*/
+corresponding .fxml file(s)*/
 
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.Month;
 import javafx.scene.input.MouseEvent;
 
 public class PassengerController {
 
-    /* all of the @FXML code does with controls and containers used in the Passenger.fxml  */
-
-    @FXML
-    DatePicker datePicker_scheduleRide;
-
-    @FXML
-  TextArea textArea_displayNotifications;
-
-    @FXML
-    private Tab tabPassengerMain;
-
-    @FXML
-    private Button home_Button;
+  /* all of the @FXML code does with controls and containers used in the Passenger.fxml  */
 
 
-    @FXML
-    private Button button_clearNotifications;
+  @FXML private Button home_Button;
 
-    @FXML
-    private Tab tabRideScheduler;
+  @FXML private Button button_clearNotifications;
 
-    @FXML
-    private TextField textFieldStartLocation;
+  @FXML private Button btnCreateRide;
 
-    @FXML
-    private TextField textFieldEndLocation;
+  @FXML DatePicker datePicker_scheduleRide;
 
-    @FXML
-    private TextField textFieldStartTime;
+  @FXML TextArea textArea_displayNotifications;
 
-    @FXML
-    private TextField textFieldStartDate;
+  @FXML private TableColumn<?, ?>col_pendRideID;
 
-    @FXML
-    private Button btnCreateRide;
+  @FXML private TableColumn<?, ?> col_pendDriverID;
 
-    @FXML
-    private Tab tabPendingRides;
+  @FXML private TableColumn<?, ?> col_pendPassengerID;
 
-    @FXML
-    private TableView <Rides> tvPendingRides;
+  @FXML private TableColumn<?, ?> col_pendFrom;
 
-    @FXML
-    private Tab tabAccptedRides;
+  @FXML private TableColumn<?, ?> col_pendTo;
 
-    @FXML
-    private TableColumn<?, String> accptRideId;
+  @FXML private TableColumn<?, ?> col_pendDate;
 
-    @FXML
-    private TableColumn<?, String> accptFrom;
+  @FXML private TableColumn<?, ?> col_pendTime;
 
-    @FXML
-    private TableColumn<?, String> accptTo;
+  @FXML private TableColumn<?, ?>col_pendRideStatusID;
 
-    @FXML
-    private TableColumn<?, String> accptDate;
+  @FXML private TableView<Rides> tableView_pendingRides;
 
-    @FXML
-    private TableColumn<?, String> accptTime;
+  @FXML private TextField textField_startLocation;
 
-    /* 103-106 will be expanded upon to record scheduled rides and have them stored in the DB when it works */
+  @FXML private TextField textField_endLocation;
 
-    @FXML
-    public void createRide(MouseEvent event) {
-    Rides createRides = new Rides(0,0,0, LocalDate.parse(textFieldStartDate.getText()), textFieldStartLocation.getText(), textFieldEndLocation.getText(), LocalTime.parse(textFieldStartTime.getText()),0);
-            tvPendingRides.getItems().add(createRides);
-
-    }
-
-    /* The next block of code (108-111) returns you to the dashboard via the home button. */
-
-    @FXML
-    void returnHome(ActionEvent event) {
-        Main.createNewScene(event, "Dashboard.fxml");
-    }
-
-    /*  The next block of code (115-118) returns you to the account summary page via the edit account button. */
-
-    @FXML
-    void clear_notifications(MouseEvent event) {
-      //DatabaseAccessor.deleteNotification(int user_id, int notification_type);
-      System.out.println("Notifications have been cleared");
-
-    }
-
-    public void initialize() {
-     // ArrayList<Notification> notificationList = new ArrayList<Notification>(DatabaseAccessor.getNotifications(int user_ID));
-      // textArea_displayNotifications.appendText(notificationList.toString());
-    }
-
-    /* Line 138 - 141 placeholder values until DB works */
+  @FXML private TextField textField_startTime;
 
 
+  int rideStatusID;
 
-    }
+  /* 103-106 will be expanded upon to record scheduled rides and have them stored in the DB when it works */
+
+  @FXML
+  public void createRide(MouseEvent event) {
+    Rides createRides =
+        new Rides(
+            datePicker_scheduleRide.getValue(),
+            textField_startLocation.getText(),
+            textField_endLocation.getText(),
+            LocalTime.parse(textField_startTime.getText()),
+            rideStatusID);
+    DatabaseAccessor.addRide(createRides);
+    populateTableView();
+
+
+    //tableView_pendingRides.getItems().add(createRides);
+
+  }
+  public void populateTableView(){
+    col_pendRideID.setCellValueFactory(new PropertyValueFactory("Ride ID"));
+    col_pendDriverID.setCellValueFactory(new PropertyValueFactory("Drive ID"));
+    col_pendPassengerID.setCellValueFactory(new PropertyValueFactory("Passenger ID"));
+    col_pendFrom.setCellValueFactory(new PropertyValueFactory("From"));
+    col_pendTo.setCellValueFactory(new PropertyValueFactory("To"));
+    col_pendDate.setCellValueFactory(new PropertyValueFactory("Date"));
+    col_pendTime.setCellValueFactory(new PropertyValueFactory("Time"));
+    col_pendRideStatusID.setCellValueFactory(new PropertyValueFactory("Ride Status ID"));
+   // ObservableList<Rides> ridesOlist = FXCollections.observableArrayList();
+    ArrayList<Rides> ridesArrayList = new ArrayList<Rides>();
+   // ridesArrayList.clear();
+    //ridesOlist.clear();
+    ridesArrayList = DatabaseAccessor.getAllRides();
+    System.out.println(ridesArrayList.toString());
+   // ridesOlist.addAll(ridesArrayList);
+  //  tableView_pendingRides.setItems(ridesOlist);
+  }
+
+  /* The next block of code (108-111) returns you to the dashboard via the home button. */
+
+  @FXML
+  void returnHome(ActionEvent event) {
+    Main.createNewScene(event, "Dashboard.fxml");
+  }
+
+  /*  The next block of code (115-118) returns you to the account summary page via the edit account button. */
+
+  @FXML
+  void clearNotifications(MouseEvent event) {
+    // DatabaseAccessor.deleteNotification(int user_id, int notification_type);
+    System.out.println("Notifications have been cleared");
+  }
+
+  public void initialize() {
+    // ArrayList<Notification> notificationList = new
+    // ArrayList<Notification>(DatabaseAccessor.getNotifications(int user_ID));
+    // textArea_displayNotifications.appendText(notificationList.toString());
+    populateTableView();
+
+  }
+}

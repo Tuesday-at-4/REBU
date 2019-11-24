@@ -31,6 +31,18 @@ public class Rides {
     this.ride_status_id = ride_status_id;
   }
 
+  public Rides(LocalDate start_date, String start_location, String end_location, LocalTime start_time, int ride_status_id) {
+    this.start_date = start_date;
+    this.start_location = start_location;
+    this.end_location = end_location;
+    this.start_time = start_time;
+    this.ride_status_id = ride_status_id;
+    System.out.println("Start Date: " + start_date + "\nStart Location: " + start_location
+        + "\nEnd Location: " + end_location + "\nStart Time: " + start_time + "\nRide Status: "+ ride_status_id);
+  }
+
+
+
   public int getPassengerName() {
     return passenger_id;
   }

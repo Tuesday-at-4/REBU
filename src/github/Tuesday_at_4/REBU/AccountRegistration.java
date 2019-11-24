@@ -71,7 +71,10 @@ public class AccountRegistration {
   void create_account(MouseEvent event) {
 
     // storing information from text fields
-    int userID = 3;
+    int userID = 0;
+
+    DOB = dateB_DOB.getValue();
+
 
     //Handles the exception of a Null Pointer Error
     try{

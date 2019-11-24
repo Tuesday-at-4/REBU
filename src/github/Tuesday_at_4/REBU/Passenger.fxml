@@ -31,7 +31,7 @@
                                         <Font size="18.0" />
                                     </font>
                                 </Button>
-                                <Button fx:id="button_clearNotifications" layoutX="498.0" layoutY="178.0" mnemonicParsing="false" onMouseClicked="#clear_notifications" prefHeight="72.0" prefWidth="148.0" text="CLEAR NOTIFICATIONS" textAlignment="CENTER" textFill="#d54141">
+                                <Button fx:id="button_clearNotifications" layoutX="498.0" layoutY="178.0" mnemonicParsing="false" onMouseClicked="#clearNotifications" prefHeight="72.0" prefWidth="148.0" text="CLEAR NOTIFICATIONS" textAlignment="CENTER" textFill="#d54141">
                                     <font>
                                         <Font size="10.0" />
                                     </font>
@@ -50,9 +50,9 @@
                                         <Font size="36.0" />
                                     </font>
                                 </Label>
-                                <TextField fx:id="textFieldStartLocation" layoutX="232.0" layoutY="81.0" prefHeight="44.0" prefWidth="227.0" promptText="Start Location" />
-                                <TextField fx:id="textFieldEndLocation" layoutX="232.0" layoutY="145.0" prefHeight="43.0" prefWidth="228.0" promptText="End Location" />
-                                <TextField fx:id="textFieldStartTime" layoutX="286.0" layoutY="233.0" prefHeight="33.0" prefWidth="118.0" promptText="Start Time" />
+                                <TextField fx:id="textField_startLocation" layoutX="232.0" layoutY="81.0" prefHeight="44.0" prefWidth="227.0" promptText="Start Location" />
+                                <TextField fx:id="textField_endLocation" layoutX="232.0" layoutY="145.0" prefHeight="43.0" prefWidth="228.0" promptText="End Location" />
+                                <TextField fx:id="textField_startTime" layoutX="286.0" layoutY="233.0" prefHeight="33.0" prefWidth="118.0" promptText="Start Time" />
                                 <Button fx:id="btnCreateRide" layoutX="305.0" layoutY="369.0" mnemonicParsing="false" onMouseClicked="#createRide" prefHeight="36.0" prefWidth="95.0" text="Create Ride" />
                                 <Label layoutX="274.0" layoutY="199.0" prefHeight="34.0" prefWidth="154.0" text="Time (Ex: 22:24)" textFill="#f5f4f4">
                                     <font>
@@ -73,16 +73,16 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
-                                <TableView fx:id="tvPendingRides" layoutY="-3.0" prefHeight="504.0" prefWidth="747.0">
+                                <TableView fx:id="tableview_pendingRides" layoutY="-3.0" prefHeight="504.0" prefWidth="747.0">
                                     <columns>
-                                        <TableColumn fx:id="pendRideId" prefWidth="86.0" text="Ride ID" />
-                              <TableColumn fx:id="pendDriverID" prefWidth="86.0" text="Driver ID" />
-                              <TableColumn fx:id="pendPassID" prefWidth="72.79998779296875" text="Passenger ID" />
-                                        <TableColumn fx:id="pendFrom" prefWidth="51.20001220703125" text="From" />
-                                        <TableColumn fx:id="pendTo" prefWidth="72.79998779296875" text="To" />
-                                        <TableColumn fx:id="pendDate" minWidth="0.0" prefWidth="60.0" text="Date" />
-                              <TableColumn fx:id="pendTime" prefWidth="72.79998779296875" text="Time" />
-                              <TableColumn fx:id="RideStatusID" prefWidth="77.59988403320312" text="RideStatusID" />
+                                        <TableColumn fx:id="col_pendRideID" prefWidth="86.0" text="Ride ID" />
+                              <TableColumn fx:id="col_pendDriverID" prefWidth="86.0" text="Driver ID" />
+                              <TableColumn fx:id="col_pendPassengerID" prefWidth="72.79998779296875" text="Passenger ID" />
+                                        <TableColumn fx:id="col_pendFrom" prefWidth="51.20001220703125" text="From" />
+                                        <TableColumn fx:id="col_pendTo" prefWidth="72.79998779296875" text="To" />
+                                        <TableColumn fx:id="col_pendDate" minWidth="0.0" prefWidth="60.0" text="Date" />
+                              <TableColumn fx:id="col_pendTime" prefWidth="72.79998779296875" text="Time" />
+                              <TableColumn fx:id="col_pendRideStatusID" prefWidth="77.59988403320312" text="RideStatusID" />
                                     </columns>
                                 </TableView>
                             </children>
