@@ -3,5 +3,6 @@
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/res/REBU.SQL" dialect="H2" />
     <file url="file://$PROJECT_DIR$/res/TEST_DATA.SQL" dialect="H2" />
+    <file url="file://$PROJECT_DIR$/src/github/Tuesday_at_4/REBU/DatabaseAccessor.java" dialect="GenericSQL" />
   </component>
 </project>
