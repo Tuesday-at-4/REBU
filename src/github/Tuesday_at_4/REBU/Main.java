@@ -7,8 +7,6 @@
 package github.Tuesday_at_4.REBU;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.event.Event;
@@ -28,10 +26,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        DatabaseAccessor.printAllRides();
-        DatabaseAccessor.printAllAccounts();
-        DatabaseAccessor.printAllNotifications();
-        DatabaseAccessor.printAllCars();
+
         Parent rootMain = FXMLLoader.load(getClass().getResource("Login.fxml"));
         Scene sceneMain = new Scene(rootMain);
         primaryStage.setScene(sceneMain);

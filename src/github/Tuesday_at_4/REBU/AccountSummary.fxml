@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="github.Tuesday_at_4.REBU.AccountSummaryController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="github.Tuesday_at_4.REBU.AccountSummaryController">
   <children>
       <VBox layoutX="74.0" layoutY="75.0" prefHeight="200.0" prefWidth="218.0">
          <children>
@@ -38,6 +38,11 @@
               <Font size="18.0" />
             </font>
           </Label>
+            <Label text="Credit Card #">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
           <Label text="Date of Birth">
             <font>
               <Font size="18.0" />
@@ -50,7 +55,7 @@
         <Font size="24.0" />
       </font>
     </Label>
-      <VBox layoutX="230.0" layoutY="162.0" prefHeight="158.0" prefWidth="189.0">
+      <VBox layoutX="231.0" layoutY="143.0" prefHeight="158.0" prefWidth="189.0">
          <children>
           <Label fx:id="lblEmail" text="placeholder">
             <font>
@@ -62,6 +67,11 @@
               <Font size="18.0" />
             </font>
           </Label>
+            <Label fx:id="lblCreditCard" text="placeholder">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
           <Label fx:id="lblDOB" text="placeholder">
             <font>
               <Font size="18.0" />
@@ -74,8 +84,8 @@
         <Image url="@../images/politecat.png" />
       </image>
     </ImageView>
-    <Button fx:id="btnDelete" layoutX="435.0" layoutY="328.0" mnemonicParsing="false" onAction="#deleteAccount" text="Delete Account" />
-    <Button fx:id="btnDashboard" layoutX="74.0" layoutY="328.0" mnemonicParsing="false" onAction="#returnToDashboard" text="Return to Dashboard" />
-      <Button fx:id="btnEditAccount" layoutX="74.0" layoutY="289.0" mnemonicParsing="false" onAction="#editAccount" text="Edit Details" />
+    <Button fx:id="btnDelete" layoutX="438.0" layoutY="341.0" mnemonicParsing="false" onAction="#deleteAccount" text="Delete Account" />
+    <Button fx:id="btnDashboard" layoutX="74.0" layoutY="341.0" mnemonicParsing="false" onAction="#returnToDashboard" text="Return to Dashboard" />
+      <Button fx:id="btnEditAccount" layoutX="74.0" layoutY="307.0" mnemonicParsing="false" onAction="#editAccount" text="Edit Details" />
   </children>
 </AnchorPane>

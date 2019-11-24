@@ -132,7 +132,7 @@ public class DatabaseAccessor {
                 rs.getString(6),
                 rs.getString(7),
                 LocalDate.parse(rs.getString(8)),
-                rs.getString(8));
+                rs.getString(9));
       } else {
         System.out.println("Account not found");
       }
@@ -187,6 +187,41 @@ public class DatabaseAccessor {
       stmt.executeUpdate(sql);
       System.out.println("Account " + dummyAccount.getUserID() + " has been added!");
       // STEP 4: Clean-up environment
+      stmt.close();
+      conn.close();
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
+  /**
+   * Updates the data for a particular item in the database.
+   *
+   * @param dummyAccount
+   */
+  public static void editAccount(Account dummyAccount) {
+    Connection conn = null;
+    Statement stmt = null;
+    try {
+      Class.forName(JDBC_DRIVER);
+      conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+      stmt = conn.createStatement();
+      String sql =
+          "UPDATE USER_ACCOUNT "
+              + " SET USER_NAME = '" + dummyAccount.getUsername() + "', "
+              + "USER_PASSWORD = '" + dummyAccount.getPassword() + "', "
+              + "FIRST_NAME = '" + dummyAccount.getFirstName() + "', "
+              + "LAST_NAME = '" + dummyAccount.getLastName() + "', "
+              + "PHONE_NUMBER = '" + dummyAccount.getPhone() + "', "
+              + "USER_EMAIL = '" + dummyAccount.getEmail() + "', "
+              + "DATE_OF_BIRTH = '" + dummyAccount.getDateOfBirth().toString() + "', "
+              + "CREDIT_CARD = '" + dummyAccount.getCreditCard() + "'"
+              + " WHERE USER_ID = " + dummyAccount.getUserID();
+      stmt.executeUpdate(sql);
+      System.out.println("Account " + dummyAccount.getUserID() + " has been updated!");
       stmt.close();
       conn.close();
     } catch (ClassNotFoundException e) {
@@ -718,39 +753,5 @@ public class DatabaseAccessor {
     }
   }*/
 
-  /**
-   * Updates the data for a particular item in the database.
-   *
-   * @param dummyAccount
-   */
-  public static void editAccount(Account dummyAccount) {
-    Connection conn = null;
-    Statement stmt = null;
-    try {
-      Class.forName(JDBC_DRIVER);
-      conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
-      stmt = conn.createStatement();
-      String sql =
-          "UPDATE USER_ACCOUNT "
-              + "SET USER_NAME = '" + dummyAccount.getUsername()+"',"
-              + "USER_PASSWORD = '" + dummyAccount.getPassword()+"',"
-              + "FIRST_NAME = '" + dummyAccount.getFirstName()+"',"
-              + "LAST_NAME = '" + dummyAccount.getLastName()+"',"
-              + "PHONE_NUMBER = '" + dummyAccount.getPhone()+"',"
-              + "USER_EMAIL = '" + dummyAccount.getEmail()+"',"
-              + "DATE_OF_BIRTH = '" + dummyAccount.getDateOfBirth()+"',"
-              + "CREDIT_CARD = '" + dummyAccount.getCreditCard()+"',"
-              + " WHERE USER_ID = '" + dummyAccount.getUserID() + "'";
-      stmt.executeUpdate(sql);
-      System.out.println("Account " + dummyAccount.getUserID() + " has been updated!");
-      stmt.close();
-      conn.close();
-    } catch (ClassNotFoundException e) {
-      e.printStackTrace();
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
-  }
 
 }

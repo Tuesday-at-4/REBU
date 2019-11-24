@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.221" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.CarRegistrationController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="github.Tuesday_at_4.REBU.CarRegistrationController">
    <children>
       <SplitPane dividerPositions="0.5402010050251256" layoutX="-2.0" layoutY="90.0" orientation="VERTICAL" prefHeight="554.0" prefWidth="658.0" AnchorPane.bottomAnchor="-154.0" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="-56.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -25,8 +25,9 @@
                         <TableColumn fx:id="year" prefWidth="51.19999694824219" text="Year" />
                         <TableColumn fx:id="carType" prefWidth="81.5999755859375" text="Car Type" />
                         <TableColumn fx:id="licensePlate" prefWidth="120.5" text="License Plate" />
-                        <TableColumn fx:id="CarColor" prefWidth="88.0" text="Color" />
-                        <TableColumn fx:id="NumSeats" prefWidth="115.0" text="Seats" />
+                        <TableColumn fx:id="CarColor" minWidth="0.0" prefWidth="63.199951171875" text="Color" />
+                        <TableColumn fx:id="NumSeats" minWidth="0.0" prefWidth="86.39990234375" text="Seats" />
+                        <TableColumn fx:id="car_ID" maxWidth="47.999951171874955" minWidth="-1.0" prefWidth="47.999951171874955" text="Car ID" />
                      </columns>
                   </TableView>
                </children>
@@ -52,19 +53,19 @@
                               <Label text="Manufacturer" />
                               <Label text="Model" GridPane.rowIndex="1" />
                               <Label text="Year" GridPane.rowIndex="2" />
-                              <TextField fx:id="getManufacturer" GridPane.columnIndex="1" />
-                              <TextField fx:id="getModel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <TextField fx:id="getYear" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <TextField fx:id="txtField_Manufacturer" GridPane.columnIndex="1" />
+                              <TextField fx:id="txtField_Model" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="txtField_Year" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                               <Label text="Car Type" GridPane.rowIndex="3" />
                               <Label text="License Plate" GridPane.rowIndex="4" />
-                              <TextField fx:id="txt_carType" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <TextField fx:id="txt_licensePlate" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <TextField fx:id="txtField_carType" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <TextField fx:id="txtField_licensePlate" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                            </children>
                         </GridPane>
                         <ButtonBar layoutX="317.0" layoutY="126.0" prefHeight="40.0" prefWidth="267.0">
                            <buttons>
-                              <Button fx:id="Add_Button" onAction="#Add_Button" mnemonicParsing="false" text="Add" />
-                              <Button fx:id="Delete_Button" onAction="#Delete_Button" mnemonicParsing="false" prefHeight="22.0" prefWidth="79.0" text="Delete" />
+                              <Button fx:id="Add_Button" mnemonicParsing="false" onAction="#Add_Button" text="Add" />
+                              <Button fx:id="Delete_Button" mnemonicParsing="false" onAction="#Delete_Button" prefHeight="22.0" prefWidth="79.0" text="Delete" />
                            </buttons>
                         </ButtonBar>
                         <GridPane layoutX="260.0" layoutY="42.0" prefHeight="90.0" prefWidth="250.0">
@@ -80,8 +81,8 @@
                            <children>
                               <Label text="Car Color" />
                               <Label text="Number of Seats" GridPane.rowIndex="1" />
-                              <TextField fx:id="getColor" GridPane.columnIndex="1" />
-                              <TextField fx:id="getSeats" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="txtField_Color" GridPane.columnIndex="1" />
+                              <TextField fx:id="txtField_Seats" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                            </children>
                         </GridPane>
                         <Button fx:id="DriverPage" layoutX="416.0" layoutY="174.0" mnemonicParsing="false" onAction="#goDriverPage" prefHeight="26.0" prefWidth="169.0" text="Return to Driver Panel" />
