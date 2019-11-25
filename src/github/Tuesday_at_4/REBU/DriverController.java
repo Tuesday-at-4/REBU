@@ -1,5 +1,6 @@
 package github.Tuesday_at_4.REBU;
 
+import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -36,6 +37,8 @@ public class DriverController {
   @FXML private TableColumn<?, ?> passenger_ID;
 
   @FXML private TableColumn<?, ?> RideStatus;
+
+  @FXML private TableColumn<?, ?> Driver_ID;
 
   @FXML private Button Accept_Ride;
 
@@ -79,13 +82,25 @@ public class DriverController {
     endLocation.setCellValueFactory(new PropertyValueFactory<>("endLocation"));
     passenger_ID.setCellValueFactory(new PropertyValueFactory<>("passenger"));
     RideStatus.setCellValueFactory(new PropertyValueFactory<>("ride_status_id"));
+    Driver_ID.setCellValueFactory(new PropertyValueFactory<>("driver"));
 
+    AcceptedTime.setCellValueFactory(new PropertyValueFactory<>("Time_OfRide"));
+    AcceptedDate.setCellValueFactory(new PropertyValueFactory<>("Date_OfRide"));
+    AcceptedStartLocation.setCellValueFactory(new PropertyValueFactory<>("startLocation"));
+    AcceptedEndLocation.setCellValueFactory(new PropertyValueFactory<>("endLocation"));
+    AcceptedRideID.setCellValueFactory(new PropertyValueFactory<>("rideID"));
+    AcceptedPassengerID.setCellValueFactory(new PropertyValueFactory<>("passenger"));
+    AcceptedRideStatus.setCellValueFactory(new PropertyValueFactory<>("ride_status_id"));
 
-    
+    ObservableList<Rides> oblist = FXCollections.observableArrayList();
+    ArrayList<Rides> ridesArrayList = new ArrayList<Rides>();
+
+    ridesArrayList = DatabaseAccessor.getAllRides();
+    System.out.println(ridesArrayList.toString());
+
+    oblist.addAll(ridesArrayList);
     DriverPendingRides.setItems(oblist);
   }
-
-  private ObservableList<Rides> oblist = FXCollections.observableArrayList();
 
   public void Cancel_Ride(ActionEvent actionEvent) {
     ObservableList<Rides> allRides, SingleRides;
