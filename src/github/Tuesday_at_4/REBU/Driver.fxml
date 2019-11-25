@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="796.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="github.Tuesday_at_4.REBU.DriverController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="796.0" xmlns="http://javafx.com/javafx/8.0.221" xmlns:fx="http://javafx.com/fxml/1" fx:controller="github.Tuesday_at_4.REBU.DriverController">
   <children>
     <TabPane layoutX="254.0" layoutY="147.0" prefHeight="600.0" prefWidth="796.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <tabs>
@@ -58,8 +58,9 @@
                                 <TableColumn fx:id="startLocation" prefWidth="109.5999755859375" text="Start Location" />
                                 <TableColumn fx:id="endLocation" minWidth="0.0" prefWidth="119.20004272460938" text="End Location" />
                                                 <TableColumn fx:id="ride_ID" prefWidth="114.40005493164062" text="Ride ID" />
-                                                <TableColumn fx:id="passenger_ID" prefWidth="96.0" text="Passenger ID" />
-                                                <TableColumn fx:id="RideStatus" prefWidth="151.20001220703125" text="Ride Status" />
+                                                <TableColumn fx:id="passenger_ID" prefWidth="85.5999755859375" text="Passenger ID" />
+                                                <TableColumn fx:id="RideStatus" maxWidth="81.60003662109375" minWidth="-1.0" prefWidth="81.60003662109375" text="Ride Status" />
+                                                <TableColumn fx:id="Driver_ID" maxWidth="91.2000732421875" minWidth="-1.0" prefWidth="78.39993896484373" text="Driver ID" />
                               </columns>
                             </TableView>
                           </children>
