@@ -1,5 +1,8 @@
 package github.Tuesday_at_4.REBU;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,9 +23,9 @@ public class DriverController {
 
   @FXML private Button Edit_Registration;
 
-  @FXML private Tab Active_Rides;
+  @FXML private Tab Available_Rides;
 
-  @FXML private TableView<Rides> DriverPendingRides;
+  @FXML private TableView<Rides> DriverAvailableRides;
 
   @FXML private TableColumn<?, ?> start_time;
 
@@ -38,15 +41,13 @@ public class DriverController {
 
   @FXML private TableColumn<?, ?> RideStatus;
 
-  @FXML private TableColumn<?, ?> Driver_ID;
-
   @FXML private Button Accept_Ride;
 
   @FXML private Button DeclineRide;
 
   @FXML private Tab accepted_Rides;
 
-  @FXML private TableView<?> Rides_Accepted;
+  @FXML private TableView<Rides> Rides_Accepted;
 
   @FXML private TableColumn<?, ?> AcceptedTime;
 
@@ -82,8 +83,6 @@ public class DriverController {
     endLocation.setCellValueFactory(new PropertyValueFactory<>("endLocation"));
     passenger_ID.setCellValueFactory(new PropertyValueFactory<>("passenger"));
     RideStatus.setCellValueFactory(new PropertyValueFactory<>("ride_status_id"));
-    Driver_ID.setCellValueFactory(new PropertyValueFactory<>("driver"));
-
     AcceptedTime.setCellValueFactory(new PropertyValueFactory<>("Time_OfRide"));
     AcceptedDate.setCellValueFactory(new PropertyValueFactory<>("Date_OfRide"));
     AcceptedStartLocation.setCellValueFactory(new PropertyValueFactory<>("startLocation"));
@@ -92,27 +91,43 @@ public class DriverController {
     AcceptedPassengerID.setCellValueFactory(new PropertyValueFactory<>("passenger"));
     AcceptedRideStatus.setCellValueFactory(new PropertyValueFactory<>("ride_status_id"));
 
-    ObservableList<Rides> oblist = FXCollections.observableArrayList();
-    ArrayList<Rides> ridesArrayList = new ArrayList<Rides>();
-
-    ridesArrayList = DatabaseAccessor.getAllRides();
-    System.out.println(ridesArrayList.toString());
-
-    oblist.addAll(ridesArrayList);
-    DriverPendingRides.setItems(oblist);
+    ArrayList<Rides> ridesArrayList = new ArrayList(DatabaseAccessor.getAllRides());
+    DriverAvailableRides.getItems().addAll(ridesArrayList);
+    Rides_Accepted.setItems(oblist2);
   }
+  private ObservableList<Rides> oblist2 = FXCollections.observableArrayList();
+
 
   public void Cancel_Ride(ActionEvent actionEvent) {
     ObservableList<Rides> allRides, SingleRides;
-    allRides = DriverPendingRides.getItems();
-    SingleRides = DriverPendingRides.getSelectionModel().getSelectedItems();
+    allRides = Rides_Accepted.getItems();
+    SingleRides = Rides_Accepted.getSelectionModel().getSelectedItems();
     SingleRides.forEach(allRides::remove);
   }
 
   public void Decline_Ride(ActionEvent actionEvent) {
     ObservableList<Rides> allRides, SingleRides;
-    allRides = DriverPendingRides.getItems();
-    SingleRides = DriverPendingRides.getSelectionModel().getSelectedItems();
+    allRides = DriverAvailableRides.getItems();
+    SingleRides = DriverAvailableRides.getSelectionModel().getSelectedItems();
     SingleRides.forEach(allRides::remove);
+  }
+
+  public void Accept_Ride() {
+    Rides selection = DriverAvailableRides.getSelectionModel().getSelectedItem();
+
+    if (selection != null) {
+
+      Rides_Accepted.getItems()
+          .add(
+              new Rides(
+                  selection.getRideID(),
+                  selection.getPassenger(),
+                  selection.getDriver(),
+                  selection.getDate_OfRide(),
+                  selection.getStartLocation(),
+                  selection.getEndLocation(),
+                  selection.getTime_OfRide(),
+                  selection.getRide_status_id()));
+    }
   }
 }
