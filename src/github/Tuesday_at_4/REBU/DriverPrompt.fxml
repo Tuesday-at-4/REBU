@@ -14,7 +14,7 @@
    <children>
       <AnchorPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label layoutX="203.0" layoutY="161.0" text="Register Your Vehicle">
+            <Label layoutX="192.0" layoutY="154.0" text="Register Your First Vehicle">
                <font>
                   <Font size="18.0" />
                </font></Label>
@@ -66,7 +66,7 @@
                   <TextField fx:id="txt_seats" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
-            <Label layoutX="32.0" layoutY="91.0" text="FOR DRIVERS: Please complete all fields below.">
+            <Label layoutX="32.0" layoutY="83.0" text="FOR DRIVERS: Please complete all fields below.">
                <font>
                   <Font size="24.0" />
                </font>
