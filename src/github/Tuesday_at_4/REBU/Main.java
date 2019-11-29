@@ -35,6 +35,8 @@ public class Main extends Application {
     }
     public static void createNewScene(Event event, String newFileFXML){
         Parent newRoot = null;
+
+
         try {
             newRoot = FXMLLoader.load(Main.class.getResource(newFileFXML));
         } catch (IOException e) {
@@ -46,4 +48,5 @@ public class Main extends Application {
         window.setScene(newScene);
         window.show();
     }
+
 }
