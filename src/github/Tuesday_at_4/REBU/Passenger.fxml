@@ -76,13 +76,13 @@
                                 <TableView fx:id="tableview_pendingRides" layoutY="-3.0" prefHeight="504.0" prefWidth="747.0">
                                     <columns>
                                         <TableColumn fx:id="col_pendRideID" prefWidth="86.0" text="Ride ID" />
-                              <TableColumn fx:id="col_pendDriverID" prefWidth="86.0" text="Driver ID" />
-                              <TableColumn fx:id="col_pendPassengerID" prefWidth="72.79998779296875" text="Passenger ID" />
-                                        <TableColumn fx:id="col_pendFrom" prefWidth="51.20001220703125" text="From" />
-                                        <TableColumn fx:id="col_pendTo" prefWidth="72.79998779296875" text="To" />
-                                        <TableColumn fx:id="col_pendDate" minWidth="0.0" prefWidth="60.0" text="Date" />
-                              <TableColumn fx:id="col_pendTime" prefWidth="72.79998779296875" text="Time" />
-                              <TableColumn fx:id="col_pendRideStatusID" prefWidth="77.59988403320312" text="RideStatusID" />
+                              <TableColumn fx:id="col_pendDriverID" prefWidth="75.0" text="Driver ID" />
+                              <TableColumn fx:id="col_pendPassengerID" prefWidth="112.0" text="Passenger ID" />
+                                        <TableColumn fx:id="col_pendFrom" prefWidth="97.5" text="From" />
+                                        <TableColumn fx:id="col_pendTo" prefWidth="100.0" text="To" />
+                                        <TableColumn fx:id="col_pendDate" minWidth="0.0" prefWidth="79.0" text="Date" />
+                              <TableColumn fx:id="col_pendTime" prefWidth="87.0" text="Time" />
+                              <TableColumn fx:id="col_pendRideStatusID" prefWidth="109.5" text="RideStatusID" />
                                     </columns>
                                 </TableView>
                             </children>

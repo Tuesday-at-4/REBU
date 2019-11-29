@@ -21,8 +21,6 @@ import javafx.scene.input.MouseEvent;
 
 public class DriverPrompt {
 
-
-
   @FXML private TextField txt_manufacturer;
 
   @FXML private TextField txt_model;
@@ -63,6 +61,6 @@ public class DriverPrompt {
     DatabaseAccessor.addCar(dummyCar);
     Main.createNewScene(event, "Driver.fxml");
   }
-    }
+}
 
 

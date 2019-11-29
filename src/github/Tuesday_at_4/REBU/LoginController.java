@@ -54,7 +54,7 @@ public class LoginController {
     }else {
       txtField_username.clear();
       password_textField.clear();
-      Anchor_Login.getChildren().add(new Label("Oops! no account with that username/password, please try again!"));
+      Anchor_Login.getChildren().add(new Label("Oops! No account with that username/password, please try again!"));
     }
   }
 

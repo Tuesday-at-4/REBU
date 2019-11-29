@@ -29,12 +29,12 @@
             <TextArea prefHeight="84.0" prefWidth="314.0" />
          </content>
       </ScrollPane>
-      <Label layoutX="284.0" layoutY="36.0" text="Welcome to REBU!" textFill="WHITE">
+      <Label layoutX="284.0" layoutY="36.0" text="Welcome to REBU!">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="224.0" layoutY="96.0" text="News Feed" textFill="WHITE">
+      <Label layoutX="224.0" layoutY="96.0" text="News Feed">
          <font>
             <Font size="18.0" />
          </font>
