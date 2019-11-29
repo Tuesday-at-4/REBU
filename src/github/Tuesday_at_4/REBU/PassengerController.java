@@ -13,6 +13,7 @@ package github.Tuesday_at_4.REBU;
 /* Line 12-25 are necessary import statements needed to connect the code with
 corresponding .fxml file(s)*/
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -33,7 +34,7 @@ public class PassengerController {
 
   /* all of the @FXML code does with controls and containers used in the Passenger.fxml  */
 
-
+  ObservableList<Rides> ridesOlist;
   @FXML private Button home_Button;
 
   @FXML private Button button_clearNotifications;
@@ -44,23 +45,23 @@ public class PassengerController {
 
   @FXML TextArea textArea_displayNotifications;
 
-  @FXML private TableColumn<?, ?>col_pendRideID;
+  @FXML private TableColumn<Rides, Integer>col_pendRideID;
 
-  @FXML private TableColumn<?, ?> col_pendDriverID;
+  @FXML private TableColumn<Rides, Integer> col_pendDriverID;
 
-  @FXML private TableColumn<?, ?> col_pendPassengerID;
+  @FXML private TableColumn<Rides, Integer> col_pendPassengerID;
 
-  @FXML private TableColumn<?, ?> col_pendFrom;
+  @FXML private TableColumn<Rides, String> col_pendFrom;
 
-  @FXML private TableColumn<?, ?> col_pendTo;
+  @FXML private TableColumn<Rides, String> col_pendTo;
 
-  @FXML private TableColumn<?, ?> col_pendDate;
+  @FXML private TableColumn<Rides, String> col_pendDate;
 
-  @FXML private TableColumn<?, ?> col_pendTime;
+  @FXML private TableColumn<Rides, String> col_pendTime;
 
-  @FXML private TableColumn<?, ?>col_pendRideStatusID;
+  @FXML private TableColumn<Rides, Integer>col_pendRideStatusID;
 
-  @FXML private TableView<Rides> tableView_pendingRides;
+  @FXML private TableView<Rides> tableview_pendingRides;
 
   @FXML private TextField textField_startLocation;
 
@@ -84,27 +85,28 @@ public class PassengerController {
             rideStatusID);
     DatabaseAccessor.addRide(createRides);
     populateTableView();
+    Main.createNewScene(event, "Passenger.fxml");
+
 
 
     //tableView_pendingRides.getItems().add(createRides);
 
   }
   public void populateTableView(){
-    col_pendRideID.setCellValueFactory(new PropertyValueFactory("Ride ID"));
-    col_pendDriverID.setCellValueFactory(new PropertyValueFactory("Drive ID"));
-    col_pendPassengerID.setCellValueFactory(new PropertyValueFactory("Passenger ID"));
-    col_pendFrom.setCellValueFactory(new PropertyValueFactory("From"));
-    col_pendTo.setCellValueFactory(new PropertyValueFactory("To"));
-    col_pendDate.setCellValueFactory(new PropertyValueFactory("Date"));
-    col_pendTime.setCellValueFactory(new PropertyValueFactory("Time"));
-    col_pendRideStatusID.setCellValueFactory(new PropertyValueFactory("Ride Status ID"));
-   // ObservableList<Rides> ridesOlist = FXCollections.observableArrayList();
-    ArrayList<Rides> ridesArrayList = new ArrayList<Rides>();
-   // ridesArrayList.clear();
-    //ridesOlist.clear();
-    ridesArrayList = DatabaseAccessor.getAllRides();
-    System.out.println(ridesArrayList.toString());
-   // ridesOlist.addAll(ridesArrayList);
+    col_pendRideID.setCellValueFactory(new PropertyValueFactory("ride_id"));
+    col_pendPassengerID.setCellValueFactory(new PropertyValueFactory("passenger_id"));
+    col_pendDriverID.setCellValueFactory(new PropertyValueFactory("driver_id"));
+    col_pendTime.setCellValueFactory(new PropertyValueFactory("start_time"));
+    col_pendDate.setCellValueFactory(new PropertyValueFactory("start_date"));
+    col_pendFrom.setCellValueFactory(new PropertyValueFactory("start_location"));
+    col_pendTo.setCellValueFactory(new PropertyValueFactory("end_location"));
+    col_pendRideStatusID.setCellValueFactory(new PropertyValueFactory("ride_status_id"));
+
+    
+    ArrayList<Rides> ridesArrayList = new ArrayList(DatabaseAccessor.getAllRides());
+    tableview_pendingRides.getItems().addAll(ridesArrayList);
+
+
   //  tableView_pendingRides.setItems(ridesOlist);
   }
 
@@ -120,12 +122,13 @@ public class PassengerController {
   @FXML
   void clearNotifications(MouseEvent event) {
     // DatabaseAccessor.deleteNotification(int user_id, int notification_type);
-    System.out.println("Notifications have been cleared");
+   System.out.println("Notifications have been cleared");
+
   }
 
   public void initialize() {
-    // ArrayList<Notification> notificationList = new
-    // ArrayList<Notification>(DatabaseAccessor.getNotifications(int user_ID));
+    //ArrayList<Notification> notificationList = new
+   // ArrayList<Notification> = (DatabaseAccessor.getNotifications(int user_ID));
     // textArea_displayNotifications.appendText(notificationList.toString());
     populateTableView();
 

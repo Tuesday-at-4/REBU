@@ -17,6 +17,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Observable;
 
 public class DatabaseAccessor {
   private static String JDBC_DRIVER = "org.h2.Driver";
@@ -270,6 +271,7 @@ public class DatabaseAccessor {
     for (Rides x: dummyRides){
       x.printRide();
     }
+
     System.out.println("************End of stored Rides************\n");
   }
 
@@ -297,11 +299,12 @@ public class DatabaseAccessor {
                 rs.getInt(1),
                 rs.getInt(2),
                 rs.getInt(3),
-                LocalDate.parse(rs.getString(4)),
+                LocalDate.parse(rs.getString(5)),
                 rs.getString(5),
                 rs.getString(6),
-                LocalTime.parse(rs.getString(7)),
+                LocalTime.parse(rs.getString(4)),
                 rs.getInt(8));
+        dummyRide.printRide();
       }
       // STEP 4: Clean-up environment
       stmt.close();
