@@ -34,7 +34,6 @@ public class PassengerController {
 
   /* all of the @FXML code does with controls and containers used in the Passenger.fxml  */
 
-  ObservableList<Rides> ridesOlist;
   @FXML private Button home_Button;
 
   @FXML private Button button_clearNotifications;
@@ -92,7 +91,8 @@ public class PassengerController {
     //tableView_pendingRides.getItems().add(createRides);
 
   }
-  public void populateTableView(){
+
+  public void populateTableView() {
     col_pendRideID.setCellValueFactory(new PropertyValueFactory("ride_id"));
     col_pendPassengerID.setCellValueFactory(new PropertyValueFactory("passenger_id"));
     col_pendDriverID.setCellValueFactory(new PropertyValueFactory("driver_id"));
@@ -102,13 +102,18 @@ public class PassengerController {
     col_pendTo.setCellValueFactory(new PropertyValueFactory("end_location"));
     col_pendRideStatusID.setCellValueFactory(new PropertyValueFactory("ride_status_id"));
 
-    
     ArrayList<Rides> ridesArrayList = new ArrayList(DatabaseAccessor.getAllRides());
     tableview_pendingRides.getItems().addAll(ridesArrayList);
+    }
 
+  public void populateNotificationsArea() {
+    ArrayList<Notification> notificationArrayList =
+        new ArrayList(DatabaseAccessor.getNotifications(Main.currentUser.getUserID()));
+    for (Notification item : notificationArrayList) {
+      textArea_displayNotifications.appendText(item.getNotificationText());
+    }
+}
 
-  //  tableView_pendingRides.setItems(ridesOlist);
-  }
 
   /* The next block of code (108-111) returns you to the dashboard via the home button. */
 
@@ -126,11 +131,10 @@ public class PassengerController {
 
   }
 
-  public void initialize() {
-    //ArrayList<Notification> notificationList = new
-   // ArrayList<Notification> = (DatabaseAccessor.getNotifications(int user_ID));
-    // textArea_displayNotifications.appendText(notificationList.toString());
+  public void initialize(){
+    populateNotificationsArea();
     populateTableView();
 
   }
+
 }

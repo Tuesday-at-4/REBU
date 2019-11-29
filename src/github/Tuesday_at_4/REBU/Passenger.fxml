@@ -21,22 +21,25 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: black;">
                             <children>
-                                <Text fill="#f8f8f8" layoutX="52.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passenger">
+                                <Text fill="#f8f8f8" layoutX="93.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passenger">
                                     <font>
                                         <Font size="72.0" />
                                     </font>
                                 </Text>
-                                <Button fx:id="home_Button" layoutX="498.0" layoutY="67.0" mnemonicParsing="false" onAction="#returnHome" prefHeight="76.0" prefWidth="147.0" text="HOME">
+                                <Button fx:id="home_Button" layoutX="497.0" layoutY="138.0" mnemonicParsing="false" onAction="#returnHome" prefHeight="76.0" prefWidth="218.0" text="HOME">
                                     <font>
                                         <Font size="18.0" />
                                     </font>
                                 </Button>
-                                <Button fx:id="button_clearNotifications" layoutX="498.0" layoutY="178.0" mnemonicParsing="false" onMouseClicked="#clearNotifications" prefHeight="72.0" prefWidth="148.0" text="CLEAR NOTIFICATIONS" textAlignment="CENTER" textFill="#d54141">
+                                <Button fx:id="button_clearNotifications" layoutX="498.0" layoutY="244.0" mnemonicParsing="false" onMouseClicked="#clearNotifications" prefHeight="72.0" prefWidth="217.0" text="CLEAR NOTIFICATIONS" textAlignment="CENTER" textFill="#d54141">
                                     <font>
                                         <Font size="10.0" />
                                     </font>
                                 </Button>
-                                <TextArea fx:id="textArea_displayNotifications" layoutX="41.0" layoutY="279.0" prefHeight="194.0" prefWidth="674.0" />
+                                <TextArea fx:id="textArea_displayNotifications" layoutX="41.0" layoutY="214.0" prefHeight="131.0" prefWidth="426.0">
+                           <font>
+                              <Font size="34.0" />
+                           </font></TextArea>
                             </children>
                         </AnchorPane>
                     </content>
@@ -77,12 +80,12 @@
                                     <columns>
                                         <TableColumn fx:id="col_pendRideID" prefWidth="86.0" text="Ride ID" />
                               <TableColumn fx:id="col_pendDriverID" prefWidth="86.0" text="Driver ID" />
-                              <TableColumn fx:id="col_pendPassengerID" prefWidth="72.79998779296875" text="Passenger ID" />
-                                        <TableColumn fx:id="col_pendFrom" prefWidth="51.20001220703125" text="From" />
-                                        <TableColumn fx:id="col_pendTo" prefWidth="72.79998779296875" text="To" />
-                                        <TableColumn fx:id="col_pendDate" minWidth="0.0" prefWidth="60.0" text="Date" />
-                              <TableColumn fx:id="col_pendTime" prefWidth="72.79998779296875" text="Time" />
-                              <TableColumn fx:id="col_pendRideStatusID" prefWidth="77.59988403320312" text="RideStatusID" />
+                              <TableColumn fx:id="col_pendPassengerID" prefWidth="116.0" text="Passenger ID" />
+                                        <TableColumn fx:id="col_pendFrom" prefWidth="112.0" text="From" />
+                                        <TableColumn fx:id="col_pendTo" prefWidth="89.5999755859375" text="To" />
+                                        <TableColumn fx:id="col_pendDate" minWidth="0.0" prefWidth="88.79995727539062" text="Date" />
+                              <TableColumn fx:id="col_pendTime" text="Time" />
+                              <TableColumn fx:id="col_pendRideStatusID" prefWidth="92.8001708984375" text="RideStatusID" />
                                     </columns>
                                 </TableView>
                             </children>
