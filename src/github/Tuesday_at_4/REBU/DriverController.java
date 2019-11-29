@@ -91,8 +91,8 @@ public class DriverController {
     AcceptedPassengerID.setCellValueFactory(new PropertyValueFactory<>("passenger"));
     AcceptedRideStatus.setCellValueFactory(new PropertyValueFactory<>("ride_status_id"));
 
-    ArrayList<Rides> ridesArrayList = new ArrayList(DatabaseAccessor.getAllRides());
-    DriverAvailableRides.getItems().addAll(ridesArrayList);
+   ArrayList<Rides> AvailableRides = new ArrayList(DatabaseAccessor.getAllRides());
+    DriverAvailableRides.getItems().addAll(AvailableRides);
     Rides_Accepted.setItems(oblist2);
   }
   private ObservableList<Rides> oblist2 = FXCollections.observableArrayList();
