@@ -6,7 +6,8 @@ VALUES
 INSERT INTO USER_NOTIFICATIONS(user_id, notification_type, notification_text)
 VALUES
        (1, 2, 'Your Ride was accepted!'),
-       (2, 1, 'You accepted a ride!');
+       (2, 1, 'You accepted a ride!'),
+       (3, 4, 'User: 2 changed Ride #7 status from active " to: " + completed');
 
 INSERT INTO RIDES_LIST(passenger_id, driver_id, start_time, start_date, start_location, end_location, ride_status_id)
 VALUES

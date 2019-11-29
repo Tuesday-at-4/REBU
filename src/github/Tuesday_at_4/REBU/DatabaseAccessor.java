@@ -412,12 +412,12 @@ public class DatabaseAccessor {
    * 2, Completed 3, Expired 4, Cancelled by Driver 5, Cancelled by Passenger
    * @param userID - the user who is changing the status
    * @param dummyRideID - The rideID of the ride in question
-   * @param rideStatusID - The status flag of the ride in question
+   * @param newRideStatusID - The status flag of the ride in question
    */
-  public static void changeRideStatus(int userID, int dummyRideID, int rideStatusID) {
+  public static void changeRideStatus(int userID, int dummyRideID, int newRideStatusID) {
     //Before we change the ride, we add the notification about it.
     Rides dummyRide = getRide(dummyRideID);
-    addNotification(userID, dummyRide, rideStatusID);
+    addNotification(userID, dummyRide, newRideStatusID);
 
     //  Database credentials
     Connection conn = null;
@@ -431,7 +431,7 @@ public class DatabaseAccessor {
       stmt = conn.createStatement();
       String sql =
           "UPDATE RIDES_LIST SET RIDE_STATUS_ID = "
-              + rideStatusID
+              + newRideStatusID
               + " WHERE RIDE_ID = "
               + dummyRideID;
       stmt.executeUpdate(sql); // There is no resultSet for an update statement
@@ -512,6 +512,7 @@ public class DatabaseAccessor {
    * @param userID - the user whose notifications you want.
    * @return - The array of strings
    */
+
   public static ArrayList<Notification> getNotifications(int userID){
     ArrayList<Notification> dummyArray = new ArrayList<>();
     try {
@@ -520,7 +521,7 @@ public class DatabaseAccessor {
       stmt = conn.createStatement();
 
       String sql =
-          "SELECT NOTIFICATION_TYPE, NOTIFICATION_TEXT FROM USER_NOTIFICATIONS WHERE USER_ID = '" +userID+ "'";
+          "SELECT notification_type, notification_text FROM USER_NOTIFICATIONS WHERE USER_ID = " +userID;
       ResultSet rs = stmt.executeQuery(sql);
       System.out.println("Getting Notifications...");
       while(rs.next()){
