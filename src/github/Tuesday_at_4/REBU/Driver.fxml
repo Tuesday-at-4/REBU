@@ -51,16 +51,15 @@
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                           <children>
                             <AnchorPane layoutX="162.0" layoutY="55.0" prefHeight="281.6" prefWidth="794.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                            <TableView fx:id="DriverPendingRides" layoutX="31.0" layoutY="18.0" prefHeight="498.4" prefWidth="794.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <TableView fx:id="DriverAvailableRides" layoutX="31.0" layoutY="18.0" prefHeight="498.4" prefWidth="794.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                               <columns>
                                 <TableColumn fx:id="start_time" prefWidth="103.20003509521484" text="Time" />
                                 <TableColumn fx:id="start_date" prefWidth="98.40003967285156" text="Date" />
                                 <TableColumn fx:id="startLocation" prefWidth="109.5999755859375" text="Start Location" />
                                 <TableColumn fx:id="endLocation" minWidth="0.0" prefWidth="119.20004272460938" text="End Location" />
                                                 <TableColumn fx:id="ride_ID" prefWidth="114.40005493164062" text="Ride ID" />
-                                                <TableColumn fx:id="passenger_ID" prefWidth="85.5999755859375" text="Passenger ID" />
-                                                <TableColumn fx:id="RideStatus" maxWidth="81.60003662109375" minWidth="-1.0" prefWidth="81.60003662109375" text="Ride Status" />
-                                                <TableColumn fx:id="Driver_ID" maxWidth="91.2000732421875" minWidth="-1.0" prefWidth="78.39993896484373" text="Driver ID" />
+                                                <TableColumn fx:id="passenger_ID" prefWidth="96.0" text="Passenger ID" />
+                                                <TableColumn fx:id="RideStatus" prefWidth="151.20001220703125" text="Ride Status" />
                               </columns>
                             </TableView>
                           </children>
@@ -69,7 +68,7 @@
                           <children>
                             <ButtonBar layoutX="580.0" layoutY="12.0" prefHeight="40.0" prefWidth="200.0">
                               <buttons>
-                                <Button fx:id="Accept_Ride" mnemonicParsing="false" text="Accept" />
+                                <Button fx:id="Accept_Ride" onAction="#Accept_Ride" mnemonicParsing="false" text="Accept" />
                                                 <Button fx:id="DeclineRide" mnemonicParsing="false" onAction="#Decline_Ride" text="Decline" />
                               </buttons>
                             </ButtonBar>
