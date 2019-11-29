@@ -47,7 +47,7 @@ public class DatabaseAccessor {
                 rs.getString(6),
                 rs.getString(7),
                 LocalDate.parse(rs.getString(8)),
-                rs.getString(8)));
+                rs.getString(9)));
       }
       System.out.println("\n************ Accounts ************");
       for (Account x : dummyAccount){
@@ -164,10 +164,8 @@ public class DatabaseAccessor {
       // STEP 3: Execute a query
       stmt = conn.createStatement();
       String sql =
-          "INSERT INTO USER_ACCOUNT(user_id, user_name, user_password, first_name, last_name, phone_number, user_email, date_of_birth, credit_card)"
+          "INSERT INTO USER_ACCOUNT(user_name, user_password, first_name, last_name, phone_number, user_email, date_of_birth, credit_card)"
               + "VALUES('"
-              + dummyAccount.getUserID()
-              + "','"
               + dummyAccount.getUsername()
               + "','"
               + dummyAccount.getPassword()
@@ -182,8 +180,8 @@ public class DatabaseAccessor {
               + "','"
               + dummyAccount.getDateOfBirth()
               + "','"
-              + dummyAccount.getCreditCard() +"'"
-              + ");";
+              + dummyAccount.getCreditCard()
+              + "');";
       stmt.executeUpdate(sql);
       System.out.println("Account " + dummyAccount.getUserID() + " has been added!");
       // STEP 4: Clean-up environment
@@ -511,7 +509,7 @@ public class DatabaseAccessor {
    * @param userID - the user whose notifications you want.
    * @return - The array of strings
    */
-  public ArrayList<Notification> getNotifications(int userID){
+  public static ArrayList<Notification> getNotifications(int userID){
     ArrayList<Notification> dummyArray = new ArrayList<>();
     try {
       Class.forName(JDBC_DRIVER);
@@ -723,35 +721,4 @@ public class DatabaseAccessor {
       e.printStackTrace();
     }
   }
-
-  /**
-   * Takes a carID and deletes all cars that match it in the DB
-   *  BROKEN
-   * @param car_ID the car_id to be added
-   */
-  /*public void deleteCar(int car_ID) {
-    //  Database credentials
-    Connection conn = null;
-    Statement stmt = null;
-    try {
-      // STEP 1: Register JDBC driver
-      Class.forName(JDBC_DRIVER);
-      conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
-      // STEP 3: Execute a query
-      stmt = conn.createStatement();
-      String sql = "DELETE FROM CAR_DETAILS WHERE CAR_ID='" + car_ID + "'";
-      stmt.executeUpdate(sql);
-      System.out.println("Car " + car_ID + " has been deleted!");
-      // STEP 4: Clean-up environment
-      stmt.close();
-      conn.close();
-    } catch (ClassNotFoundException e) {
-      e.printStackTrace();
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
-  }*/
-
-
 }
