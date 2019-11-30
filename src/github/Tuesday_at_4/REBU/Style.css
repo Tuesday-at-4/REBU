@@ -38,6 +38,9 @@ HBox .label {
 .date-picker:editable .label {
   -fx-text-fill: #121212;
 }
+.choice-box .label{
+  -fx-text-fill: #000000;
+}
 
 .split-pane-divider {
   -fx-background-color: #4d4d4d;

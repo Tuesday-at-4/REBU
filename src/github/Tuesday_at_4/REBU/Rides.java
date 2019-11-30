@@ -8,7 +8,7 @@ package github.Tuesday_at_4.REBU;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Random;
+
 
 public class Rides {
   private int ride_id;
@@ -19,7 +19,11 @@ public class Rides {
   private String end_location;
   private LocalTime start_time;
   private int ride_status_id;
+  private String firstName;
+  private String nameHidden;
 
+
+//SETTERS
   public void setRide_id(int ride_id) {
     this.ride_id = ride_id;
   }
@@ -52,6 +56,7 @@ public class Rides {
     this.ride_status_id = ride_status_id;
   }
 
+  //GETTERS
   public int getRide_id() {
     return ride_id;
   }
@@ -80,6 +85,12 @@ public class Rides {
     return start_time;
   }
 
+  public String getNameHidden(){
+    nameHidden = "Not Assigned Yet";
+    return nameHidden;
+  }
+
+  //CONSTRUCTORS
   public Rides(int ride_id, int passenger_id, int driver_id, LocalDate start_date, String start_location, String end_location, LocalTime start_time, int ride_status_id) {
     this.ride_id = ride_id;
     this.passenger_id = passenger_id;
@@ -114,8 +125,14 @@ public class Rides {
 
 
 
+  //HELPERS
   public int getPassengerName() {
     return passenger_id;
+  }
+
+  public String getFirstName(){
+    firstName = Main.currentUser.getFirstName();
+    return firstName;
   }
 
   public LocalDate getDate_OfRide() {

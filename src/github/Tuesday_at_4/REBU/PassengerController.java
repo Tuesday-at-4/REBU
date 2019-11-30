@@ -13,6 +13,7 @@ package github.Tuesday_at_4.REBU;
 /* Line 12-25 are necessary import statements needed to connect the code with
 corresponding .fxml file(s)*/
 
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
@@ -20,7 +21,9 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -40,7 +43,14 @@ public class PassengerController {
 
   @FXML private Button btnCreateRide;
 
+  @FXML private ChoiceBox<LocalTime> choiceBox_time;
+
   @FXML DatePicker datePicker_scheduleRide;
+
+  @FXML
+  RadioButton radio_am;
+
+  @FXML RadioButton radio_pm;
 
   @FXML TextArea textArea_displayNotifications;
 
@@ -56,9 +66,9 @@ public class PassengerController {
 
   @FXML private TableColumn<Rides, Integer>col_pendRideID;
 
-  @FXML private TableColumn<Rides, Integer> col_pendDriverID;
+  @FXML private TableColumn<Rides, ?> col_pendDriverID;
 
-  @FXML private TableColumn<Rides, Integer> col_pendPassengerID;
+  @FXML private TableColumn<Rides, ?> col_pendPassengerID;
 
   @FXML private TableColumn<Rides, String> col_pendFrom;
 
@@ -78,7 +88,6 @@ public class PassengerController {
 
   @FXML private TextField textField_endLocation;
 
-  @FXML private TextField textField_startTime;
 
 
 
@@ -90,12 +99,21 @@ public class PassengerController {
 
   @FXML
   public void createRide(MouseEvent event) {
+    boolean am = radio_am.isSelected();
+    boolean pm = radio_am.isSelected();
+    LocalTime timeStart = choiceBox_time.getValue();
+    if(am){
+      timeStart = choiceBox_time.getValue();
+    }
+    else{
+      timeStart = choiceBox_time.getValue().plusHours(12);
+    }
     Rides createRides =
         new Rides(
             datePicker_scheduleRide.getValue(),
             textField_startLocation.getText(),
             textField_endLocation.getText(),
-            LocalTime.parse(textField_startTime.getText()),
+            timeStart,
             rideStatusID);
     DatabaseAccessor.addRide(createRides);
     populateTableView();
@@ -103,29 +121,34 @@ public class PassengerController {
 
 
 
-    //tableView_pendingRides.getItems().add(createRides);
-
   }
 
   public void populateTableView() {
+
+    //These columns are going to display items from the Rides class
     col_pendRideID.setCellValueFactory(new PropertyValueFactory("ride_id"));
-    col_pendPassengerID.setCellValueFactory(new PropertyValueFactory("passenger_id"));
-    col_pendDriverID.setCellValueFactory(new PropertyValueFactory("driver_id"));
     col_pendTime.setCellValueFactory(new PropertyValueFactory("start_time"));
     col_pendDate.setCellValueFactory(new PropertyValueFactory("start_date"));
     col_pendFrom.setCellValueFactory(new PropertyValueFactory("start_location"));
     col_pendTo.setCellValueFactory(new PropertyValueFactory("end_location"));
     col_pendRideStatusID.setCellValueFactory(new PropertyValueFactory("ride_status_id"));
+    col_pendDriverID.setCellValueFactory(new PropertyValueFactory("nameHidden"));
+    col_pendPassengerID.setCellValueFactory(new PropertyValueFactory("firstName"));
+
 
     ArrayList<Rides> ridesArrayList = new ArrayList(DatabaseAccessor.getAllRides());
     tableview_pendingRides.getItems().addAll(ridesArrayList);
 
+
+
+    //Accepted Rides
     col_acceptRideID.setCellValueFactory(new PropertyValueFactory("ride_id"));
     col_acceptFrom.setCellValueFactory(new PropertyValueFactory("start_location"));
     col_acceptTo.setCellValueFactory(new PropertyValueFactory("end_location"));
     col_acceptDate.setCellValueFactory(new PropertyValueFactory("start_date"));
     col_acceptTime.setCellValueFactory(new PropertyValueFactory("start_time"));
 
+    //Loop to populate the accepted rides list with correct information.
     ArrayList<Rides> acceptedRidesList = new ArrayList(DatabaseAccessor.getAllRides());
     for (Rides item : acceptedRidesList) {
       int x = item.getDriver_id();
@@ -133,8 +156,6 @@ public class PassengerController {
       int z = Main.currentUser.getUserID();
       if ((z == x || z == y) && x!= 0 ) {
           tableview_acceptedRides.getItems().add(item);
-      } else {
-        System.out.println("No rides");
       }
     }
     }
@@ -146,6 +167,22 @@ public class PassengerController {
       textArea_displayNotifications.appendText(item.getNotificationText());
     }
 }
+
+public void populateChoiceBoxTime(){
+    if (choiceBox_time.getItems().isEmpty()){
+      ArrayList<LocalTime> startTimes = new ArrayList<>();
+
+      for(int i=1; i<13; i++)
+        for(int k=0;k<60;k=k+15)
+      startTimes.add(LocalTime.of(i, k));
+      choiceBox_time.getItems().addAll(startTimes);
+    }else{
+      choiceBox_time.show();
+    }
+
+
+}
+
 
 
   /* The next block of code (108-111) returns you to the dashboard via the home button. */
@@ -167,6 +204,7 @@ public class PassengerController {
   public void initialize(){
     populateNotificationsArea();
     populateTableView();
+    populateChoiceBoxTime();
 
   }
 
