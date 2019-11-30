@@ -13,6 +13,7 @@ package github.Tuesday_at_4.REBU;
 /* Line 12-25 are necessary import statements needed to connect the code with
 corresponding .fxml file(s)*/
 
+
 import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -60,6 +61,8 @@ public class PassengerController {
 
   @FXML private TableColumn<Rides, String> col_acceptTo;
 
+  @FXML private TableColumn<Rides, String> col_acceptDriver;
+
   @FXML private TableColumn<Rides, String> col_acceptDate;
 
   @FXML private TableColumn<Rides, String> col_acceptTime;
@@ -67,8 +70,6 @@ public class PassengerController {
   @FXML private TableColumn<Rides, Integer>col_pendRideID;
 
   @FXML private TableColumn<Rides, ?> col_pendDriverID;
-
-  @FXML private TableColumn<Rides, ?> col_pendPassengerID;
 
   @FXML private TableColumn<Rides, String> col_pendFrom;
 
@@ -78,7 +79,7 @@ public class PassengerController {
 
   @FXML private TableColumn<Rides, String> col_pendTime;
 
-  @FXML private TableColumn<Rides, Integer>col_pendRideStatusID;
+  @FXML private TableColumn<Rides, String>col_pendRideStatusID;
 
   @FXML private TableView<Rides> tableview_acceptedRides;
 
@@ -99,12 +100,18 @@ public class PassengerController {
 
   @FXML
   public void createRide(MouseEvent event) {
+
+    //If the am radio button is selected, the value will be true. Same for the pm radio button.
     boolean am = radio_am.isSelected();
     boolean pm = radio_am.isSelected();
+    //Initialize the time selected by the user with its value chosen from the choice box.
     LocalTime timeStart = choiceBox_time.getValue();
+
+    //If the am radio button is selected, then the time selected stays the same.
     if(am){
       timeStart = choiceBox_time.getValue();
     }
+    //If the pm button is selected, then the time will have 12 hours added to it, for military time.
     else{
       timeStart = choiceBox_time.getValue().plusHours(12);
     }
@@ -131,59 +138,65 @@ public class PassengerController {
     col_pendDate.setCellValueFactory(new PropertyValueFactory("start_date"));
     col_pendFrom.setCellValueFactory(new PropertyValueFactory("start_location"));
     col_pendTo.setCellValueFactory(new PropertyValueFactory("end_location"));
-    col_pendRideStatusID.setCellValueFactory(new PropertyValueFactory("ride_status_id"));
-    col_pendDriverID.setCellValueFactory(new PropertyValueFactory("nameHidden"));
-    col_pendPassengerID.setCellValueFactory(new PropertyValueFactory("firstName"));
+    col_pendRideStatusID.setCellValueFactory(new PropertyValueFactory("rideStatusComment"));
+    col_pendDriverID.setCellValueFactory(new PropertyValueFactory("driverName"));
 
-
+    //Array list to hold the Rides being put into the tableview.
     ArrayList<Rides> ridesArrayList = new ArrayList(DatabaseAccessor.getAllRides());
+
+    //Populate Table view for pending rides.
     tableview_pendingRides.getItems().addAll(ridesArrayList);
 
-
-
-    //Accepted Rides
+    //Columns for Accepted rides tableview.
     col_acceptRideID.setCellValueFactory(new PropertyValueFactory("ride_id"));
     col_acceptFrom.setCellValueFactory(new PropertyValueFactory("start_location"));
     col_acceptTo.setCellValueFactory(new PropertyValueFactory("end_location"));
     col_acceptDate.setCellValueFactory(new PropertyValueFactory("start_date"));
     col_acceptTime.setCellValueFactory(new PropertyValueFactory("start_time"));
+    col_acceptDriver.setCellValueFactory(new PropertyValueFactory("driverName"));
 
-    //Loop to populate the accepted rides list with correct information.
+    //Array list to hold the rides that have been flagged as accepted.
     ArrayList<Rides> acceptedRidesList = new ArrayList(DatabaseAccessor.getAllRides());
     for (Rides item : acceptedRidesList) {
-      int x = item.getDriver_id();
-      int y = item.getPassenger();
-      int z = Main.currentUser.getUserID();
-      if ((z == x || z == y) && x!= 0 ) {
+      int x = item.getRide_status_id();
+      if(x==0)
           tableview_acceptedRides.getItems().add(item);
       }
-    }
+
     }
 
   public void populateNotificationsArea() {
+
+    //Arraylist made of the notifications for this particular user.
     ArrayList<Notification> notificationArrayList =
         new ArrayList(DatabaseAccessor.getNotifications(Main.currentUser.getUserID()));
+    //While going through the list, the text area will populate with the notifications.
     for (Notification item : notificationArrayList) {
       textArea_displayNotifications.appendText(item.getNotificationText());
     }
 }
 
 public void populateChoiceBoxTime(){
+
+    //If the choice box is empty, then it will proceed to get filled.
     if (choiceBox_time.getItems().isEmpty()){
+      //An array is made to hold the times of the day, for the user to select.
       ArrayList<LocalTime> startTimes = new ArrayList<>();
 
+      //First loop is going to be for the hours.
       for(int i=1; i<13; i++)
+        //Second loop is going to be for the minutes.
         for(int k=0;k<60;k=k+15)
+      //The choice box will run through the loop.
       startTimes.add(LocalTime.of(i, k));
       choiceBox_time.getItems().addAll(startTimes);
     }else{
+      //If the choicebox already has items in it, it will display the items to the user.
       choiceBox_time.show();
     }
 
 
 }
-
-
 
   /* The next block of code (108-111) returns you to the dashboard via the home button. */
 
@@ -197,6 +210,9 @@ public void populateChoiceBoxTime(){
   @FXML
   void clearNotifications(MouseEvent event) {
     // DatabaseAccessor.deleteNotification(int user_id, int notification_type);
+
+    //The text area is cleared.
+    textArea_displayNotifications.clear();
    System.out.println("Notifications have been cleared");
 
   }

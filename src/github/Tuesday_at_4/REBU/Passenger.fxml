@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="528.0" prefWidth="747.0" xmlns="http://javafx.com/javafx/8.0.221" xmlns:fx="http://javafx.com/fxml/1" fx:controller="github.Tuesday_at_4.REBU.PassengerController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="528.0" prefWidth="747.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="github.Tuesday_at_4.REBU.PassengerController">
     <children>
         <TabPane prefHeight="528.0" prefWidth="747.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>
@@ -83,13 +83,12 @@
                                 <TableView fx:id="tableview_pendingRides" layoutY="-3.0" prefHeight="504.0" prefWidth="747.0">
                                     <columns>
                                         <TableColumn fx:id="col_pendRideID" prefWidth="53.599974036216736" text="Ride" />
-                              <TableColumn fx:id="col_pendDriverID" prefWidth="79.99994659423828" text="Driver" />
-                              <TableColumn fx:id="col_pendPassengerID" prefWidth="108.0" text="Passenger" />
-                                        <TableColumn fx:id="col_pendFrom" prefWidth="153.5999755859375" text="Start Location" />
-                                        <TableColumn fx:id="col_pendTo" prefWidth="100.00006103515625" text="End Location" />
-                                        <TableColumn fx:id="col_pendDate" minWidth="0.0" prefWidth="80.79995727539062" text="Date" />
-                              <TableColumn fx:id="col_pendTime" prefWidth="82.39996337890625" text="Time" />
-                              <TableColumn fx:id="col_pendRideStatusID" prefWidth="99.2000732421875" text="Ride Status" />
+                              <TableColumn fx:id="col_pendDriverID" prefWidth="131.20001983642578" text="Driver" />
+                                        <TableColumn fx:id="col_pendFrom" prefWidth="138.40008544921875" text="Start Location" />
+                                        <TableColumn fx:id="col_pendTo" prefWidth="124.0" text="End Location" />
+                                        <TableColumn fx:id="col_pendDate" minWidth="0.0" prefWidth="91.99996948242188" text="Date" />
+                              <TableColumn fx:id="col_pendTime" prefWidth="100.7999267578125" text="Time" />
+                              <TableColumn fx:id="col_pendRideStatusID" prefWidth="108.0" text="Ride Status" />
                                     </columns>
                                 </TableView>
                             </children>
@@ -102,11 +101,12 @@
                             <children>
                                 <TableView fx:id="tableview_acceptedRides" prefHeight="502.0" prefWidth="747.0">
                                     <columns>
-                                        <TableColumn fx:id="col_acceptRideID" prefWidth="98.0" text="Ride" />
-                                        <TableColumn fx:id="col_acceptFrom" prefWidth="229.0" text="Start Location" />
-                                        <TableColumn fx:id="col_acceptTo" prefWidth="220.0" text="End Location" />
-                                        <TableColumn fx:id="col_acceptDate" prefWidth="108.0" text="Date" />
-                                        <TableColumn fx:id="col_acceptTime" prefWidth="91.0" text="Time" />
+                                        <TableColumn fx:id="col_acceptRideID" prefWidth="64.79998624324799" text="Ride" />
+                              <TableColumn fx:id="col_acceptDriver" prefWidth="116.79999542236328" text="Driver" />
+                                        <TableColumn fx:id="col_acceptFrom" prefWidth="175.20001220703125" text="Start Location" />
+                                        <TableColumn fx:id="col_acceptTo" prefWidth="163.19998168945312" text="End Location" />
+                                        <TableColumn fx:id="col_acceptDate" prefWidth="109.5999755859375" text="Date" />
+                                        <TableColumn fx:id="col_acceptTime" prefWidth="113.60003662109375" text="Time" />
                                     </columns>
                                 </TableView>
                             </children>

@@ -1,6 +1,6 @@
 /***********************************************************
  * File   : Rides.Java
- * Author(s)  : Michael Carracino, Benjamin Cano
+ * Author(s)  : Michael Carracino, Benjamin Cano, Breanna Rhodes
  * Class   : CEN 3031
  * Purpose : Stores the information from the database for a given Ride
  ************************************************************/
@@ -21,11 +21,18 @@ public class Rides {
   private int ride_status_id;
   private String firstName;
   private String nameHidden;
+  private String driverName;
+  private String passengerName;
+  private String rideStatusComment;
 
 
 //SETTERS
   public void setRide_id(int ride_id) {
     this.ride_id = ride_id;
+  }
+
+  public void setRideStatusComment(String rideStatusComment){
+    this.rideStatusComment = rideStatusComment;
   }
 
   public void setPassenger_id(int passenger_id) {
@@ -127,12 +134,21 @@ public class Rides {
 
   //HELPERS
   public int getPassengerName() {
+    passengerName = DatabaseAccessor.getAccount(passenger_id).getFirstName();
     return passenger_id;
   }
 
   public String getFirstName(){
     firstName = Main.currentUser.getFirstName();
     return firstName;
+  }
+  public String getDriverName(){
+    if(driver_id ==0){
+      driverName = "Not yet assigned";
+    } else {
+      driverName = DatabaseAccessor.getAccount(driver_id).getFirstName();
+    }
+    return driverName;
   }
 
   public LocalDate getDate_OfRide() {
@@ -161,7 +177,31 @@ public class Rides {
     return driver_id;
   }
 
-  public int getRide_status_id(){ return ride_status_id; }
+  public int getRide_status_id(){
+    return ride_status_id;
+  }
+
+  public String getRideStatusComment(){
+    switch(ride_status_id){
+      case 0:
+        rideStatusComment = "Accepted";
+        break;
+      case 1:
+        rideStatusComment = "Pending";
+        break;
+      case 2:
+        rideStatusComment = "Completed";
+        break;
+      case 3:
+        rideStatusComment = "Expired";
+        break;
+      case 4:
+        rideStatusComment = "Cancelled by Driver";
+        break;
+      default:
+        rideStatusComment = "Cancelled by Passenger";
+    }
+    return rideStatusComment; }
 
   public void printRide(){
     System.out.println(
