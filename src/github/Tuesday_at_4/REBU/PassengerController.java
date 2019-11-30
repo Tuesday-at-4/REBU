@@ -44,6 +44,16 @@ public class PassengerController {
 
   @FXML TextArea textArea_displayNotifications;
 
+  @FXML private TableColumn<Rides, Integer> col_acceptRideID;
+
+  @FXML private TableColumn<Rides, String> col_acceptFrom;
+
+  @FXML private TableColumn<Rides, String> col_acceptTo;
+
+  @FXML private TableColumn<Rides, String> col_acceptDate;
+
+  @FXML private TableColumn<Rides, String> col_acceptTime;
+
   @FXML private TableColumn<Rides, Integer>col_pendRideID;
 
   @FXML private TableColumn<Rides, Integer> col_pendDriverID;
@@ -60,6 +70,8 @@ public class PassengerController {
 
   @FXML private TableColumn<Rides, Integer>col_pendRideStatusID;
 
+  @FXML private TableView<Rides> tableview_acceptedRides;
+
   @FXML private TableView<Rides> tableview_pendingRides;
 
   @FXML private TextField textField_startLocation;
@@ -67,6 +79,9 @@ public class PassengerController {
   @FXML private TextField textField_endLocation;
 
   @FXML private TextField textField_startTime;
+
+
+
 
 
   int rideStatusID;
@@ -104,6 +119,24 @@ public class PassengerController {
 
     ArrayList<Rides> ridesArrayList = new ArrayList(DatabaseAccessor.getAllRides());
     tableview_pendingRides.getItems().addAll(ridesArrayList);
+
+    col_acceptRideID.setCellValueFactory(new PropertyValueFactory("ride_id"));
+    col_acceptFrom.setCellValueFactory(new PropertyValueFactory("start_location"));
+    col_acceptTo.setCellValueFactory(new PropertyValueFactory("end_location"));
+    col_acceptDate.setCellValueFactory(new PropertyValueFactory("start_date"));
+    col_acceptTime.setCellValueFactory(new PropertyValueFactory("start_time"));
+
+    ArrayList<Rides> acceptedRidesList = new ArrayList(DatabaseAccessor.getAllRides());
+    for (Rides item : acceptedRidesList) {
+      int x = item.getDriver_id();
+      int y = item.getPassenger();
+      int z = Main.currentUser.getUserID();
+      if ((z == x || z == y) && x!= 0 ) {
+          tableview_acceptedRides.getItems().add(item);
+      } else {
+        System.out.println("No rides");
+      }
+    }
     }
 
   public void populateNotificationsArea() {
