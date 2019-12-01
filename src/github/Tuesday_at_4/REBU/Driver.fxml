@@ -68,7 +68,6 @@
                             <ButtonBar layoutX="580.0" layoutY="12.0" prefHeight="40.0" prefWidth="200.0">
                               <buttons>
                                 <Button fx:id="Accept_Ride" mnemonicParsing="false" onAction="#Accept_Ride" text="Accept" />
-                                                <Button fx:id="DeclineRide" mnemonicParsing="false" onAction="#Decline_Ride" text="Decline" />
                               </buttons>
                             </ButtonBar>
                           </children>
