@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="796.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="github.Tuesday_at_4.REBU.DriverController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="796.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/8.0.221" xmlns:fx="http://javafx.com/fxml/1" fx:controller="github.Tuesday_at_4.REBU.DriverController">
   <children>
     <TabPane layoutX="254.0" layoutY="147.0" prefHeight="600.0" prefWidth="796.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <tabs>
@@ -34,6 +34,11 @@
                         <Font size="96.0" />
                       </font>
                     </Label>
+                              <Button fx:id="ClearDriverNotifications" layoutX="307.0" layoutY="392.0" mnemonicParsing="false" onAction="#ClearNotificationsButton" prefHeight="72.0" prefWidth="182.0" text="Clear Notifications">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Button>
                   </children>
                 </AnchorPane>
               </children>
