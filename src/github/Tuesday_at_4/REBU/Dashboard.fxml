@@ -24,11 +24,6 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <ScrollPane layoutX="224.0" layoutY="123.0" prefHeight="175.0" prefWidth="333.0">
-         <content>
-            <TextArea prefHeight="84.0" prefWidth="314.0" />
-         </content>
-      </ScrollPane>
       <Label fx:id="lblWelcome" layoutX="227.0" layoutY="37.0" text="Welcome to REBU!" textFill="WHITE">
          <font>
             <Font size="24.0" />
@@ -39,5 +34,7 @@
             <Font size="18.0" />
          </font>
       </Label>
+      <Button fx:id="btnLogout" layoutX="530.0" layoutY="311.0" mnemonicParsing="false" text="Logout" />
+      <TextArea fx:id="textAreaDashboard" editable="true" layoutX="224.0" layoutY="123.0" prefHeight="161.0" prefWidth="313.0" promptText="No notifications for now." />
    </children>
 </AnchorPane>
