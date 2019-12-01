@@ -105,24 +105,26 @@ public class DriverController {
           && Main.currentUser.getUserID() == x.getPassenger()) {
         pendingRidesArrayList.add(x);
       }
-      DriverAvailableRides.getItems().addAll(pendingRidesArrayList);
+    }
+    DriverAvailableRides.getItems().addAll(pendingRidesArrayList);
 
-      AcceptedTime.setCellValueFactory(new PropertyValueFactory<>("Time_OfRide"));
-      AcceptedDate.setCellValueFactory(new PropertyValueFactory<>("Date_OfRide"));
-      AcceptedStartLocation.setCellValueFactory(new PropertyValueFactory<>("startLocation"));
-      AcceptedEndLocation.setCellValueFactory(new PropertyValueFactory<>("endLocation"));
-      AcceptedRideID.setCellValueFactory(new PropertyValueFactory<>("rideID"));
-      AcceptedPassengerID.setCellValueFactory(new PropertyValueFactory<>("passenger"));
-      AcceptedRideStatus.setCellValueFactory(new PropertyValueFactory<>("ride_status_id"));
+    AcceptedTime.setCellValueFactory(new PropertyValueFactory<>("Time_OfRide"));
+    AcceptedDate.setCellValueFactory(new PropertyValueFactory<>("Date_OfRide"));
+    AcceptedStartLocation.setCellValueFactory(new PropertyValueFactory<>("startLocation"));
+    AcceptedEndLocation.setCellValueFactory(new PropertyValueFactory<>("endLocation"));
+    AcceptedRideID.setCellValueFactory(new PropertyValueFactory<>("rideID"));
+    AcceptedPassengerID.setCellValueFactory(new PropertyValueFactory<>("passenger"));
+    AcceptedRideStatus.setCellValueFactory(new PropertyValueFactory<>("ride_status_id"));
 
-      ArrayList<Rides> acceptedRidesArrayList = new ArrayList(DatabaseAccessor.getAllRides());
-      for (Rides item : acceptedRidesArrayList) {
-        if (item.getRide_status_id() == 0
-            && item.getDriver_id() != 0
-            && Main.currentUser.getUserID() == item.getPassenger())
-          Rides_Accepted.getItems().add(item);
+    ArrayList<Rides> acceptedRidesArrayList = new ArrayList<>();
+    for (Rides item : DatabaseAccessor.getAllRides()) {
+      if (item.getRide_status_id() == 0
+          && item.getDriver_id() != 0
+          && Main.currentUser.getUserID() == item.getPassenger()) {
+        acceptedRidesArrayList.add(item);
       }
     }
+    Rides_Accepted.getItems().addAll(acceptedRidesArrayList);
   }
 
   public void Cancel_Ride(ActionEvent actionEvent) {
