@@ -12,28 +12,48 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="796.0" xmlns="http://javafx.com/javafx/8.0.221" xmlns:fx="http://javafx.com/fxml/1" fx:controller="github.Tuesday_at_4.REBU.DriverController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+  prefHeight="600.0" prefWidth="796.0" xmlns="http://javafx.com/javafx/11.0.1"
+  xmlns:fx="http://javafx.com/fxml/1" fx:controller="github.Tuesday_at_4.REBU.DriverController">
   <children>
-    <TabPane layoutX="254.0" layoutY="147.0" prefHeight="600.0" prefWidth="796.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <TabPane layoutX="254.0" layoutY="147.0" prefHeight="600.0" prefWidth="796.0"
+      tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+      AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <tabs>
         <Tab fx:id="DriverTab" text="Driver">
           <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
               <children>
-                <AnchorPane prefHeight="569.6" prefWidth="796.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <AnchorPane prefHeight="569.6" prefWidth="796.0"
+                  style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0"
+                  AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                  AnchorPane.topAnchor="0.0">
                   <children>
-                    <Button fx:id="home_Button" layoutX="491.0" layoutY="64.0" mnemonicParsing="false" onAction="#goHome" prefHeight="72.0" prefWidth="182.0" text="HOME">
+                    <Button fx:id="home_Button" layoutX="491.0" layoutY="64.0"
+                      mnemonicParsing="false" onAction="#goHome" prefHeight="72.0" prefWidth="182.0"
+                      text="HOME">
                       <font>
-                        <Font size="16.0" />
+                        <Font size="16.0"/>
                       </font>
                     </Button>
-                    <Button fx:id="Edit_Registration" layoutX="491.0" layoutY="171.0" mnemonicParsing="false" onAction="#goEdit_Registration" prefHeight="65.0" prefWidth="182.0" text="Edit Car Registration" />
-                    <TextArea fx:id="textAreaDriver" editable="true" layoutX="224.0" layoutY="123.0" prefHeight="161.0" prefWidth="313.0" promptText="No notifications for now." />
+                    <Button fx:id="Edit_Registration" layoutX="491.0" layoutY="171.0"
+                      mnemonicParsing="false" onAction="#goEdit_Registration" prefHeight="65.0"
+                      prefWidth="182.0" text="Edit Car Registration"/>
+                    <TextArea fx:id="textAreaDriver" editable="true" layoutX="103.0" layoutY="286.0"
+                      prefHeight="184.0" prefWidth="371.0" promptText="No notifications for now."/>
                     <Label layoutX="81.0" layoutY="100.0" text="Driver" textFill="#f8f3f3">
                       <font>
-                        <Font size="96.0" />
+                        <Font size="96.0"/>
                       </font>
                     </Label>
+                    <Button fx:id="ClearNotificationsButton" layoutX="491.0" layoutY="260.0"
+                      mnemonicParsing="false" onAction="#ClearNotificationsButton" prefHeight="72.0"
+                      prefWidth="184.0" text="CLEAR NOTIFICATIONS" textAlignment="CENTER"
+                      textFill="#d54141">
+                      <font>
+                        <Font size="10.0"/>
+                      </font>
+                    </Button>
                   </children>
                 </AnchorPane>
               </children>
@@ -44,32 +64,53 @@
           <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
               <children>
-                <AnchorPane layoutX="225.0" layoutY="116.0" prefHeight="569.6" prefWidth="796.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <AnchorPane layoutX="225.0" layoutY="116.0" prefHeight="569.6" prefWidth="796.0"
+                  AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                  AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                   <children>
-                    <SplitPane dividerPositions="0.8826638477801269" orientation="VERTICAL" prefHeight="569.6" prefWidth="796.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <SplitPane dividerPositions="0.8826638477801269" orientation="VERTICAL"
+                      prefHeight="569.6" prefWidth="796.0" AnchorPane.bottomAnchor="0.0"
+                      AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                      AnchorPane.topAnchor="0.0">
                       <items>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0"
+                          prefWidth="160.0">
                           <children>
-                            <AnchorPane layoutX="162.0" layoutY="55.0" prefHeight="281.6" prefWidth="794.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                            <TableView fx:id="DriverAvailableRides" layoutX="31.0" layoutY="18.0" prefHeight="498.4" prefWidth="794.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <AnchorPane layoutX="162.0" layoutY="55.0" prefHeight="281.6"
+                              prefWidth="794.4" AnchorPane.bottomAnchor="0.0"
+                              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                              AnchorPane.topAnchor="0.0"/>
+                            <TableView fx:id="DriverAvailableRides" layoutX="31.0" layoutY="18.0"
+                              prefHeight="498.4" prefWidth="794.4" AnchorPane.bottomAnchor="0.0"
+                              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                              AnchorPane.topAnchor="0.0">
                               <columns>
-                                <TableColumn fx:id="start_time" prefWidth="103.20003509521484" text="Time" />
-                                <TableColumn fx:id="start_date" prefWidth="98.40003967285156" text="Date" />
-                                <TableColumn fx:id="startLocation" prefWidth="109.5999755859375" text="Start Location" />
-                                <TableColumn fx:id="endLocation" minWidth="0.0" prefWidth="119.20004272460938" text="End Location" />
-                                                <TableColumn fx:id="ride_ID" prefWidth="114.40005493164062" text="Ride ID" />
-                                                <TableColumn fx:id="passenger_ID" prefWidth="96.0" text="Passenger ID" />
-                                                <TableColumn fx:id="RideStatus" prefWidth="151.20001220703125" text="Ride Status" />
+                                <TableColumn fx:id="start_time" prefWidth="103.20003509521484"
+                                  text="Time"/>
+                                <TableColumn fx:id="start_date" prefWidth="98.40003967285156"
+                                  text="Date"/>
+                                <TableColumn fx:id="startLocation" prefWidth="109.5999755859375"
+                                  text="Start Location"/>
+                                <TableColumn fx:id="endLocation" minWidth="0.0"
+                                  prefWidth="119.20004272460938" text="End Location"/>
+                                <TableColumn fx:id="ride_ID" prefWidth="114.40005493164062"
+                                  text="Ride ID"/>
+                                <TableColumn fx:id="passenger_ID" prefWidth="96.0"
+                                  text="Passenger ID"/>
+                                <TableColumn fx:id="RideStatus" prefWidth="151.20001220703125"
+                                  text="Ride Status"/>
                               </columns>
                             </TableView>
                           </children>
                         </AnchorPane>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="264.0" prefWidth="794.0">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="264.0"
+                          prefWidth="794.0">
                           <children>
-                            <ButtonBar layoutX="580.0" layoutY="12.0" prefHeight="40.0" prefWidth="200.0">
+                            <ButtonBar layoutX="580.0" layoutY="12.0" prefHeight="40.0"
+                              prefWidth="200.0">
                               <buttons>
-                                <Button fx:id="Accept_Ride" onAction="#Accept_Ride" mnemonicParsing="false" text="Accept" />
-                                                <Button fx:id="DeclineRide" mnemonicParsing="false" onAction="#Decline_Ride" text="Decline" />
+                                <Button fx:id="Accept_Ride" mnemonicParsing="false"
+                                  onAction="#Accept_Ride" text="Accept"/>
                               </buttons>
                             </ButtonBar>
                           </children>
@@ -86,28 +127,43 @@
           <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
               <children>
-                <SplitPane dividerPositions="0.813953488372093" layoutX="298.0" layoutY="76.0" orientation="VERTICAL" prefHeight="569.6" prefWidth="796.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <SplitPane dividerPositions="0.813953488372093" layoutX="298.0" layoutY="76.0"
+                  orientation="VERTICAL" prefHeight="569.6" prefWidth="796.0"
+                  AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                  AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                   <items>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                       <children>
-                        <TableView fx:id="Rides_Accepted" layoutX="-1.0" prefHeight="470.0" prefWidth="794.0" AnchorPane.bottomAnchor="-11.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="Rides_Accepted" layoutX="-1.0" prefHeight="470.0"
+                          prefWidth="794.0" AnchorPane.bottomAnchor="-11.0"
+                          AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                          AnchorPane.topAnchor="0.0">
                           <columns>
-                            <TableColumn fx:id="AcceptedTime" prefWidth="108.80001682043076" text="Time" />
-                            <TableColumn fx:id="AcceptedDate" prefWidth="99.20000457763672" text="Date" />
-                            <TableColumn fx:id="AcceptedStartLocation" prefWidth="120.00001525878906" text="Start Location" />
-                            <TableColumn fx:id="AcceptedEndLocation" prefWidth="126.4000244140625" text="End Location" />
-                            <TableColumn fx:id="AcceptedRideID" prefWidth="96.79998779296875" text="Ride ID" />
-                                          <TableColumn fx:id="AcceptedPassengerID" maxWidth="136.00003051757812" minWidth="-1.0" prefWidth="92.00003051757812" text="Passenger ID" />
-                                          <TableColumn fx:id="AcceptedRideStatus" maxWidth="159.19998779296873" minWidth="-1.0" prefWidth="148.00006103515625" text="Ride Status " />
+                            <TableColumn fx:id="AcceptedTime" prefWidth="108.80001682043076"
+                              text="Time"/>
+                            <TableColumn fx:id="AcceptedDate" prefWidth="99.20000457763672"
+                              text="Date"/>
+                            <TableColumn fx:id="AcceptedStartLocation"
+                              prefWidth="120.00001525878906" text="Start Location"/>
+                            <TableColumn fx:id="AcceptedEndLocation" prefWidth="126.4000244140625"
+                              text="End Location"/>
+                            <TableColumn fx:id="AcceptedRideID" prefWidth="96.79998779296875"
+                              text="Ride ID"/>
+                            <TableColumn fx:id="AcceptedPassengerID" maxWidth="136.00003051757812"
+                              minWidth="-1.0" prefWidth="92.00003051757812" text="Passenger ID"/>
+                            <TableColumn fx:id="AcceptedRideStatus" maxWidth="159.19998779296873"
+                              minWidth="-1.0" prefWidth="148.00006103515625" text="Ride Status "/>
                           </columns>
                         </TableView>
                       </children>
                     </AnchorPane>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                       <children>
-                        <ButtonBar layoutX="580.0" layoutY="32.0" prefHeight="40.0" prefWidth="200.0">
+                        <ButtonBar layoutX="580.0" layoutY="32.0" prefHeight="40.0"
+                          prefWidth="200.0">
                           <buttons>
-                            <Button fx:id="CancelRide" mnemonicParsing="false" onAction="#Cancel_Ride" text="Cancel Ride" />
+                            <Button fx:id="CancelRide" mnemonicParsing="false"
+                              onAction="#Cancel_Ride" text="Cancel Ride"/>
                           </buttons>
                         </ButtonBar>
                       </children>
