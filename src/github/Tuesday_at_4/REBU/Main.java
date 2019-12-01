@@ -26,9 +26,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        currentUser = DatabaseAccessor.getAccount(1);
         Parent rootMain = FXMLLoader.load(getClass().getResource("Login.fxml"));
-        //Parent rootMain = FXMLLoader.load(getClass().getResource("Login.fxml"));
         Scene sceneMain = new Scene(rootMain);
         primaryStage.setScene(sceneMain);
         sceneMain.getStylesheets().add(Main.class.getResource("Style.css").toExternalForm());

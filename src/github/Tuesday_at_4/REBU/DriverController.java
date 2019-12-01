@@ -159,8 +159,7 @@ public class DriverController {
 
   private void populateNotificationsArea() {
     // Arraylist made of the notifications for this particular user.
-    ArrayList<Notification> notificationArrayList =
-        DatabaseAccessor.getNotifications(Main.currentUser.getUserID());
+    ArrayList<Notification> notificationArrayList = DatabaseAccessor.getNotifications(Main.currentUser.getUserID());
     // While going through the list, the text area will populate with the notifications.
     for (Notification item : notificationArrayList) {
       if (item.getNotificationType() == 1) { // If the note is for the passenger(2)
