@@ -81,5 +81,6 @@
             <PasswordField fx:id="txtField_createPassword" prefHeight="25.0" prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
          </children>
       </GridPane>
+      <Button fx:id="btnCancelAccountChanges" layoutX="527.0" layoutY="419.0" mnemonicParsing="false" onAction="#returnWithoutChanges" text="Cancel" />
    </children>
 </AnchorPane>

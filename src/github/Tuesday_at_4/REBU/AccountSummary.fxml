@@ -84,8 +84,8 @@
         <Image url="@../images/politecat.png" />
       </image>
     </ImageView>
-    <Button fx:id="btnDelete" layoutX="390.0" layoutY="391.0" mnemonicParsing="false" onAction="#deleteAccount" text="Delete Account" />
-    <Button fx:id="btnDashboard" layoutX="73.0" layoutY="391.0" mnemonicParsing="false" onAction="#returnToDashboard" prefHeight="33.0" prefWidth="210.0" text="Return to Dashboard" />
+    <Button fx:id="btnDelete" layoutX="73.0" layoutY="391.0" mnemonicParsing="false" onAction="#deleteAccount" text="Delete Account" />
+    <Button fx:id="btnDashboard" layoutX="380.0" layoutY="391.0" mnemonicParsing="false" onAction="#returnToDashboard" prefHeight="33.0" prefWidth="210.0" text="Return to Dashboard" />
       <Button fx:id="btnEditAccount" layoutX="74.0" layoutY="340.0" mnemonicParsing="false" onAction="#editAccount" text="Edit Details" />
   </children>
 </AnchorPane>

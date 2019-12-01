@@ -27,19 +27,8 @@ GridPane .label {
   -fx-font-weight: bold;
 }
 
-#lblDriver {
-  -fx-font-size: 72;
-  -fx-font-family: Arial;
-  -fx-text-fill: #ec407a;
-}
-#lblPassenger {
-  -fx-font-size: 72;
-  -fx-font-family: Arial;
-  -fx-text-fill: #ec407a;
-}
-
 /* Small buttons */
-#button_clearNotifications, #home_Button, #btn_signUp, #btn_login {
+#button_clearNotifications, #home_Button, #btn_signUp, #btn_login, #btnCancelAccountChanges {
   -fx-font-size: 18px;
   -fx-font-weight: bold;
   -fx-background-color: #03DAC5;
@@ -68,14 +57,28 @@ GridPane .label {
   -fx-pref-width: 220px;
 }
 
+/* Small labels */
 #lblRequestTime, #lblRequestDate, #lblLoginUsername, #lblLoginPassword, #lblNewUser {
   -fx-font-size: 18px;
 }
 
+/* Header labels */
 #lblSchedule, #lblCreateAccount, #lblLogin, #lblWelcome, #lblAccountDetails, #lblEditAccountDetails {
   -fx-text-fill: #ec407a;
   -fx-font-size: 36px;
   -fx-font-weight: bold;
+}
+
+/* Large title labels */
+#lblDriver {
+  -fx-font-size: 72;
+  -fx-font-family: Arial;
+  -fx-text-fill: #ec407a;
+}
+#lblPassenger {
+  -fx-font-size: 72;
+  -fx-font-family: Arial;
+  -fx-text-fill: #ec407a;
 }
 
 .button {
@@ -86,10 +89,11 @@ GridPane .label {
   -fx-font-weight: bold;
 }
 
-#btn_signUp, #btnEditAccount {
+/* Stand-out buttons */
+#btn_signUp, #btnDelete {
   -fx-background-color: #ff77a9;
 }
-#btn_signUp:hover, #btnEditAccount:hover {
+#btn_signUp:hover, #btnDelete:hover {
   -fx-text-fill: white;
   -fx-background-color: #b5004e!important;
 }
