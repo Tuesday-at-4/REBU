@@ -71,6 +71,9 @@ public class DriverController {
   @FXML private TextArea textAreaDriver;
 
   @FXML
+  private Button ClearDriverNotifications;
+
+  @FXML
   private void goEdit_Registration(Event event) {
     Main.createNewScene(event, "CarRegistration.fxml");
   }
