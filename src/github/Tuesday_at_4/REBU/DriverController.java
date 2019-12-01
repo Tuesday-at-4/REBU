@@ -15,6 +15,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 public class DriverController {
 
@@ -44,8 +45,6 @@ public class DriverController {
 
   @FXML private Button Accept_Ride;
 
-  @FXML private Button DeclineRide;
-
   @FXML private Tab accepted_Rides;
 
   @FXML private TableView<Rides> Rides_Accepted;
@@ -56,23 +55,17 @@ public class DriverController {
 
   @FXML private TableColumn<?, ?> AcceptedStartLocation;
 
-  @FXML
-  private TableColumn<?, ?> AcceptedEndLocation;
+  @FXML private TableColumn<?, ?> AcceptedEndLocation;
 
-  @FXML
-  private TableColumn<?, ?> AcceptedRideID;
+  @FXML private TableColumn<?, ?> AcceptedRideID;
 
-  @FXML
-  private TableColumn<?, ?> AcceptedPassengerID;
+  @FXML private TableColumn<?, ?> AcceptedPassengerID;
 
-  @FXML
-  private TableColumn<?, ?> AcceptedRideStatus;
+  @FXML private TableColumn<?, ?> AcceptedRideStatus;
 
-  @FXML
-  private Button CancelRide;
+  @FXML private Button CancelRide;
 
-  @FXML
-  private TextArea textAreaDriver;
+  @FXML private TextArea textAreaDriver;
 
   @FXML
   private void goEdit_Registration(Event event) {
@@ -86,6 +79,11 @@ public class DriverController {
 
   public void initialize() {
     populateNotificationsArea();
+    FillInTableView();
+  }
+
+  public void FillInTableView() {
+
     ride_ID.setCellValueFactory(new PropertyValueFactory<>("rideID"));
     start_date.setCellValueFactory(new PropertyValueFactory<>("Date_OfRide"));
     start_time.setCellValueFactory(new PropertyValueFactory<>("Time_OfRide"));
@@ -93,20 +91,33 @@ public class DriverController {
     endLocation.setCellValueFactory(new PropertyValueFactory<>("endLocation"));
     passenger_ID.setCellValueFactory(new PropertyValueFactory<>("passenger"));
     RideStatus.setCellValueFactory(new PropertyValueFactory<>("ride_status_id"));
-    AcceptedTime.setCellValueFactory(new PropertyValueFactory<>("Time_OfRide"));
-    AcceptedDate.setCellValueFactory(new PropertyValueFactory<>("Date_OfRide"));
-    AcceptedStartLocation.setCellValueFactory(new PropertyValueFactory<>("startLocation"));
-    AcceptedEndLocation.setCellValueFactory(new PropertyValueFactory<>("endLocation"));
-    AcceptedRideID.setCellValueFactory(new PropertyValueFactory<>("rideID"));
-    AcceptedPassengerID.setCellValueFactory(new PropertyValueFactory<>("passenger"));
-    AcceptedRideStatus.setCellValueFactory(new PropertyValueFactory<>("ride_status_id"));
 
-   ArrayList<Rides> AvailableRides = new ArrayList(DatabaseAccessor.getAllRides());
-    DriverAvailableRides.getItems().addAll(AvailableRides);
-    Rides_Accepted.setItems(oblist2);
+    ArrayList<Rides> pendingRidesArrayList = new ArrayList<>();
+    for (Rides x : DatabaseAccessor.getAllRides()) {
+      if (x.getRide_status_id() == 1
+          && x.getDriver_id() == 0
+          && Main.currentUser.getUserID() == x.getPassenger()) {
+        pendingRidesArrayList.add(x);
+      }
+      DriverAvailableRides.getItems().addAll(pendingRidesArrayList);
+
+      AcceptedTime.setCellValueFactory(new PropertyValueFactory<>("Time_OfRide"));
+      AcceptedDate.setCellValueFactory(new PropertyValueFactory<>("Date_OfRide"));
+      AcceptedStartLocation.setCellValueFactory(new PropertyValueFactory<>("startLocation"));
+      AcceptedEndLocation.setCellValueFactory(new PropertyValueFactory<>("endLocation"));
+      AcceptedRideID.setCellValueFactory(new PropertyValueFactory<>("rideID"));
+      AcceptedPassengerID.setCellValueFactory(new PropertyValueFactory<>("passenger"));
+      AcceptedRideStatus.setCellValueFactory(new PropertyValueFactory<>("ride_status_id"));
+
+      ArrayList<Rides> acceptedRidesArrayList = new ArrayList(DatabaseAccessor.getAllRides());
+      for (Rides item : acceptedRidesArrayList) {
+        if (item.getRide_status_id() == 0
+            && item.getDriver_id() != 0
+            && Main.currentUser.getUserID() == item.getPassenger())
+          Rides_Accepted.getItems().add(item);
+      }
+    }
   }
-  private ObservableList<Rides> oblist2 = FXCollections.observableArrayList();
-
 
   public void Cancel_Ride(ActionEvent actionEvent) {
     ObservableList<Rides> allRides, SingleRides;
@@ -115,18 +126,9 @@ public class DriverController {
     SingleRides.forEach(allRides::remove);
   }
 
-  public void Decline_Ride(ActionEvent actionEvent) {
-    ObservableList<Rides> allRides, SingleRides;
-    allRides = DriverAvailableRides.getItems();
-    SingleRides = DriverAvailableRides.getSelectionModel().getSelectedItems();
-    SingleRides.forEach(allRides::remove);
-  }
-
   public void Accept_Ride() {
     Rides selection = DriverAvailableRides.getSelectionModel().getSelectedItem();
-
     if (selection != null) {
-
       Rides_Accepted.getItems()
           .add(
               new Rides(
@@ -137,15 +139,25 @@ public class DriverController {
                   selection.getStartLocation(),
                   selection.getEndLocation(),
                   selection.getRide_status_id()));
+      ObservableList<Rides> allRides, SingleRides;
+      allRides = DriverAvailableRides.getItems();
+      SingleRides = DriverAvailableRides.getSelectionModel().getSelectedItems();
+      SingleRides.forEach(allRides::remove);
     }
   }
 
+  public void ClearNotificationsButton(ActionEvent event) {
+    textAreaDriver.clear();
+    System.out.println("Notifications have been cleared");
+  }
+
   private void populateNotificationsArea() {
-    //Arraylist made of the notifications for this particular user.
-    ArrayList<Notification> notificationArrayList = DatabaseAccessor.getNotifications(Main.currentUser.getUserID());
-    //While going through the list, the text area will populate with the notifications.
+    // Arraylist made of the notifications for this particular user.
+    ArrayList<Notification> notificationArrayList =
+        DatabaseAccessor.getNotifications(Main.currentUser.getUserID());
+    // While going through the list, the text area will populate with the notifications.
     for (Notification item : notificationArrayList) {
-      if (item.getNotificationType() == 1){ //If the note is for the passenger(2)
+      if (item.getNotificationType() == 1) { // If the note is for the passenger(2)
         textAreaDriver.appendText(item.getNotificationText());
       }
     }
