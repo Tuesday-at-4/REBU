@@ -46,18 +46,23 @@ public class PassengerController {
 
   @FXML private ChoiceBox<LocalTime> choiceBox_time;
 
-  @FXML DatePicker datePicker_scheduleRide;
+  @FXML
+  private DatePicker datePicker_scheduleRide;
 
   @FXML
-  RadioButton radio_am;
+  private RadioButton radio_am;
 
-  @FXML RadioButton radio_pm;
+  @FXML
+  private RadioButton radio_pm;
 
-  @FXML TextArea textArea_displayNotifications;
+  @FXML
+  private TextArea textArea_displayNotifications;
 
-  @FXML private TableColumn<Rides, Integer> col_acceptRideID;
+  @FXML
+  private TableColumn<Rides, Integer> col_acceptRideID;
 
-  @FXML private TableColumn<Rides, String> col_acceptFrom;
+  @FXML
+  private TableColumn<Rides, String> col_acceptFrom;
 
   @FXML private TableColumn<Rides, String> col_acceptTo;
 
@@ -89,13 +94,6 @@ public class PassengerController {
 
   @FXML private TextField textField_endLocation;
 
-
-
-
-
-
-  int rideStatusID;
-
   /* 103-106 will be expanded upon to record scheduled rides and have them stored in the DB when it works */
 
   @FXML
@@ -117,11 +115,14 @@ public class PassengerController {
     }
     Rides createRides =
         new Rides(
+            Main.currentUser.getUserID(),
+            0,
+            timeStart,
             datePicker_scheduleRide.getValue(),
             textField_startLocation.getText(),
             textField_endLocation.getText(),
-            timeStart,
-            rideStatusID);
+            1); //This sets the ride as pending
+    createRides.printRide();
     DatabaseAccessor.addRide(createRides);
     populateTableView();
     Main.createNewScene(event, "Passenger.fxml");
@@ -142,10 +143,16 @@ public class PassengerController {
     col_pendDriverID.setCellValueFactory(new PropertyValueFactory("driverName"));
 
     //Array list to hold the Rides being put into the tableview.
-    ArrayList<Rides> ridesArrayList = new ArrayList(DatabaseAccessor.getAllRides());
+    ArrayList<Rides> pendingRidesArrayList = new ArrayList<>();
+    for (Rides x: DatabaseAccessor.getAllRides()){
+      //Test if the ride is pending, there is no driver, and the passenger equals the user
+      if (x.getRide_status_id() == 1 && x.getDriver_id() == 0 && Main.currentUser.getUserID() == x.getPassenger()){
+        pendingRidesArrayList.add(x);
+      }
+    }
 
     //Populate Table view for pending rides.
-    tableview_pendingRides.getItems().addAll(ridesArrayList);
+    tableview_pendingRides.getItems().addAll(pendingRidesArrayList);
 
     //Columns for Accepted rides tableview.
     col_acceptRideID.setCellValueFactory(new PropertyValueFactory("ride_id"));
@@ -156,37 +163,35 @@ public class PassengerController {
     col_acceptDriver.setCellValueFactory(new PropertyValueFactory("driverName"));
 
     //Array list to hold the rides that have been flagged as accepted.
-    ArrayList<Rides> acceptedRidesList = new ArrayList(DatabaseAccessor.getAllRides());
-    for (Rides item : acceptedRidesList) {
-      int x = item.getRide_status_id();
-      if(x==0)
+    ArrayList<Rides> acceptedRidesArrayList = new ArrayList(DatabaseAccessor.getAllRides());
+    for (Rides item : acceptedRidesArrayList) {
+      if(item.getRide_status_id() == 0 && item.getDriver_id() != 0 && Main.currentUser.getUserID() == item.getPassenger())
           tableview_acceptedRides.getItems().add(item);
       }
-
     }
 
   public void populateNotificationsArea() {
-
     //Arraylist made of the notifications for this particular user.
     ArrayList<Notification> notificationArrayList =
         new ArrayList(DatabaseAccessor.getNotifications(Main.currentUser.getUserID()));
     //While going through the list, the text area will populate with the notifications.
     for (Notification item : notificationArrayList) {
-      textArea_displayNotifications.appendText(item.getNotificationText());
+      if (item.getNotificationType() == 2){ //If the note is for the passenger(2)
+        textArea_displayNotifications.appendText(item.getNotificationText());
+      }
     }
 }
 
-public void populateChoiceBoxTime(){
-
+  public void populateChoiceBoxTime(){
     //If the choice box is empty, then it will proceed to get filled.
     if (choiceBox_time.getItems().isEmpty()){
       //An array is made to hold the times of the day, for the user to select.
       ArrayList<LocalTime> startTimes = new ArrayList<>();
 
       //First loop is going to be for the hours.
-      for(int i=1; i<13; i++)
+      for(int i = 1; i < 13; i++)
         //Second loop is going to be for the minutes.
-        for(int k=0;k<60;k=k+15)
+        for(int k = 0; k < 60; k = k + 15)
       //The choice box will run through the loop.
       startTimes.add(LocalTime.of(i, k));
       choiceBox_time.getItems().addAll(startTimes);
@@ -221,7 +226,5 @@ public void populateChoiceBoxTime(){
     populateNotificationsArea();
     populateTableView();
     populateChoiceBoxTime();
-
   }
-
 }

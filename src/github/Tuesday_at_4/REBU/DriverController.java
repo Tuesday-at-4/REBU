@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class DriverController {
@@ -55,15 +56,23 @@ public class DriverController {
 
   @FXML private TableColumn<?, ?> AcceptedStartLocation;
 
-  @FXML private TableColumn<?, ?> AcceptedEndLocation;
+  @FXML
+  private TableColumn<?, ?> AcceptedEndLocation;
 
-  @FXML private TableColumn<?, ?> AcceptedRideID;
+  @FXML
+  private TableColumn<?, ?> AcceptedRideID;
 
-  @FXML private TableColumn<?, ?> AcceptedPassengerID;
+  @FXML
+  private TableColumn<?, ?> AcceptedPassengerID;
 
-  @FXML private TableColumn<?, ?> AcceptedRideStatus;
+  @FXML
+  private TableColumn<?, ?> AcceptedRideStatus;
 
-  @FXML private Button CancelRide;
+  @FXML
+  private Button CancelRide;
+
+  @FXML
+  private TextArea textAreaDriver;
 
   @FXML
   private void goEdit_Registration(Event event) {
@@ -76,6 +85,7 @@ public class DriverController {
   }
 
   public void initialize() {
+    populateNotificationsArea();
     ride_ID.setCellValueFactory(new PropertyValueFactory<>("rideID"));
     start_date.setCellValueFactory(new PropertyValueFactory<>("Date_OfRide"));
     start_time.setCellValueFactory(new PropertyValueFactory<>("Time_OfRide"));
@@ -120,14 +130,24 @@ public class DriverController {
       Rides_Accepted.getItems()
           .add(
               new Rides(
-                  selection.getRideID(),
                   selection.getPassenger(),
                   selection.getDriver(),
+                  selection.getTime_OfRide(),
                   selection.getDate_OfRide(),
                   selection.getStartLocation(),
                   selection.getEndLocation(),
-                  selection.getTime_OfRide(),
                   selection.getRide_status_id()));
+    }
+  }
+
+  private void populateNotificationsArea() {
+    //Arraylist made of the notifications for this particular user.
+    ArrayList<Notification> notificationArrayList = DatabaseAccessor.getNotifications(Main.currentUser.getUserID());
+    //While going through the list, the text area will populate with the notifications.
+    for (Notification item : notificationArrayList) {
+      if (item.getNotificationType() == 1){ //If the note is for the passenger(2)
+        textAreaDriver.appendText(item.getNotificationText());
+      }
     }
   }
 }

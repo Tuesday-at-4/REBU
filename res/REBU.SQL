@@ -36,7 +36,7 @@ CREATE TABLE NOTIFICATION_TYPES(
 
 INSERT INTO NOTIFICATION_TYPES(notification_type, notification_description)
 VALUES
-			 (0, 'Admin'),
+			 (0, 'Dashboard'),
 			 (1, 'Driver'),
 			 (2, 'Passenger');
 

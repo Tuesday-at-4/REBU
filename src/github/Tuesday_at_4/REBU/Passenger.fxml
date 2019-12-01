@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="528.0" prefWidth="747.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="github.Tuesday_at_4.REBU.PassengerController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="528.0" prefWidth="747.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="github.Tuesday_at_4.REBU.PassengerController">
     <children>
         <TabPane prefHeight="528.0" prefWidth="747.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>
@@ -38,9 +38,9 @@
                                         <Font size="10.0" />
                                     </font>
                                 </Button>
-                                <TextArea fx:id="textArea_displayNotifications" layoutX="41.0" layoutY="214.0" prefHeight="131.0" prefWidth="426.0">
+                                <TextArea fx:id="textArea_displayNotifications" editable="false" layoutX="41.0" layoutY="214.0" prefHeight="131.0" prefWidth="426.0" promptText="No notifications for now.">
                            <font>
-                              <Font size="34.0" />
+                              <Font size="14.0" />
                            </font></TextArea>
                             </children>
                         </AnchorPane>

@@ -26,8 +26,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
-        Parent rootMain = FXMLLoader.load(getClass().getResource("Login.fxml"));
+        currentUser = DatabaseAccessor.getAccount(1);
+        Parent rootMain = FXMLLoader.load(getClass().getResource("Dashboard.fxml"));
+        //Parent rootMain = FXMLLoader.load(getClass().getResource("Login.fxml"));
         Scene sceneMain = new Scene(rootMain);
         primaryStage.setScene(sceneMain);
         sceneMain.getStylesheets().add(Main.class.getResource("Style.css").toExternalForm());
@@ -35,8 +36,6 @@ public class Main extends Application {
     }
     public static void createNewScene(Event event, String newFileFXML){
         Parent newRoot = null;
-
-
         try {
             newRoot = FXMLLoader.load(Main.class.getResource(newFileFXML));
         } catch (IOException e) {

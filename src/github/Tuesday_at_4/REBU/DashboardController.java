@@ -6,18 +6,35 @@
  ************************************************************/
 package github.Tuesday_at_4.REBU;
 
-import java.awt.TextField;
+import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 
 public class DashboardController {
 
     @FXML
-    TextField textFieldNews;
+    private Button btnLogout;
+
+    @FXML
+    private TextArea textAreaDashboard;
 
     public void initialize(){
-        System.out.println("");
+      populateNotificationsArea();
     }
+
+  public void populateNotificationsArea() {
+    //Arraylist made of the notifications for this particular user.
+    ArrayList<Notification> notificationArrayList = DatabaseAccessor.getNotifications(Main.currentUser.getUserID());
+    //While going through the list, the text area will populate with the notifications.
+    for (Notification item : notificationArrayList) {
+      if (item.getNotificationType() == 0){ //If the note is for the passenger(2)
+        textAreaDashboard.appendText(item.getNotificationText());
+      }
+    }
+  }
 
     public void handlePassengerButton(ActionEvent event){
         Main.createNewScene(event,"Passenger.FXML");
@@ -30,6 +47,6 @@ public class DashboardController {
 
     @FXML
     private void handleDriverButton(ActionEvent event){
-        Main.createNewScene(event,"DriverPrompt.FXML");
+        Main.createNewScene(event,"Driver.FXML");
     }
 }

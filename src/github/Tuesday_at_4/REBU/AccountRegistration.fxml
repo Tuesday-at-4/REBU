@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorAccountRegistration" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="462.0" prefWidth="578.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="github.Tuesday_at_4.REBU.AccountRegistration">
+<AnchorPane fx:id="anchorAccountRegistration" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="462.0" prefWidth="578.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="github.Tuesday_at_4.REBU.AccountRegistration">
   <children>
       <VBox layoutX="255.0" layoutY="104.0" prefHeight="296.0" prefWidth="174.0">
          <children>

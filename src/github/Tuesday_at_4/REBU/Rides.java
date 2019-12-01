@@ -98,7 +98,22 @@ public class Rides {
   }
 
   //CONSTRUCTORS
-  public Rides(int ride_id, int passenger_id, int driver_id, LocalDate start_date, String start_location, String end_location, LocalTime start_time, int ride_status_id) {
+  /**
+   * This is a general use constructor
+   */
+  public Rides(int passenger_id, int driver_id, LocalTime start_time, LocalDate start_date, String start_location, String end_location, int ride_status_id) {
+    this.passenger_id = passenger_id;
+    this.driver_id = driver_id;
+    this.start_date = start_date;
+    this.start_location = start_location;
+    this.end_location = end_location;
+    this.start_time = start_time;
+    this.ride_status_id = ride_status_id;
+  }
+  /**
+   * Database only Constructor
+   */
+  public Rides(int ride_id, int passenger_id, int driver_id, LocalTime start_time, LocalDate start_date, String start_location, String end_location, int ride_status_id) {
     this.ride_id = ride_id;
     this.passenger_id = passenger_id;
     this.driver_id = driver_id;
@@ -108,29 +123,6 @@ public class Rides {
     this.start_time = start_time;
     this.ride_status_id = ride_status_id;
   }
-
-  public Rides(int ride_id, int driver_id, int passenger_id, String start_location, String end_location, LocalDate start_date, LocalTime start_time, int ride_status_id) {
-    this.ride_id = ride_id;
-    this.passenger_id = passenger_id;
-    this.driver_id = driver_id;
-    this.start_date = start_date;
-    this.start_location = start_location;
-    this.end_location = end_location;
-    this.start_time = start_time;
-    this.ride_status_id = ride_status_id;
-  }
-
-  public Rides(LocalDate start_date, String start_location, String end_location, LocalTime start_time, int ride_status_id) {
-    this.start_date = start_date;
-    this.start_location = start_location;
-    this.end_location = end_location;
-    this.start_time = start_time;
-    this.ride_status_id = ride_status_id;
-    System.out.println("Start Date: " + start_date + "\nStart Location: " + start_location
-        + "\nEnd Location: " + end_location + "\nStart Time: " + start_time + "\nRide Status: "+ ride_status_id);
-  }
-
-
 
   //HELPERS
   public int getPassengerName() {

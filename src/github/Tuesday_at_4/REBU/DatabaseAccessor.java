@@ -281,7 +281,7 @@ public class DatabaseAccessor {
    * @return - the filled Rides object
    */
   public static Rides getRide(int rideID){
-    Rides dummyRide = new Rides(0,0,0,LocalDate.of(0,0,0),"","",LocalTime.of(0,0),0);
+    Rides dummyRide = new Rides(0,0,0,LocalTime.of(0,0),LocalDate.of(0,0,0),"","",0);
     //  Database credentials
     Connection conn = null;
     Statement stmt = null;
@@ -299,10 +299,10 @@ public class DatabaseAccessor {
                 rs.getInt(1),
                 rs.getInt(2),
                 rs.getInt(3),
+                LocalTime.parse(rs.getString(4)),
                 LocalDate.parse(rs.getString(5)),
                 rs.getString(5),
                 rs.getString(6),
-                LocalTime.parse(rs.getString(4)),
                 rs.getInt(8));
         dummyRide.printRide();
       }
@@ -343,10 +343,10 @@ public class DatabaseAccessor {
                 rs.getInt(1),
                 rs.getInt(2),
                 rs.getInt(3),
+                LocalTime.parse(rs.getString(4)),
                 LocalDate.parse(rs.getString(5)),
                 rs.getString(6),
                 rs.getString(7),
-                LocalTime.parse(rs.getString(4)),
                 rs.getInt(8)));
       }
       // STEP 4: Clean-up environment
@@ -377,10 +377,8 @@ public class DatabaseAccessor {
       // STEP 3: Execute a query
       stmt = conn.createStatement();
       String sql =
-          "INSERT INTO RIDES_LIST(RIDE_ID, PASSENGER_ID, DRIVER_ID, START_DATE, START_LOCATION, END_LOCATION, START_TIME, RIDE_STATUS_ID)"
+          "INSERT INTO RIDES_LIST(PASSENGER_ID, DRIVER_ID, START_DATE, START_LOCATION, END_LOCATION, START_TIME, RIDE_STATUS_ID)"
               + "VALUES('"
-              + dummyRide.getRideID()
-              + "','"
               + dummyRide.getPassengerName()
               + "','"
               + dummyRide.getDriver()
