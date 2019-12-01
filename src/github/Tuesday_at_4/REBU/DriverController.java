@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -20,6 +21,8 @@ import javafx.scene.input.MouseEvent;
 public class DriverController {
 
   @FXML private Tab DriverTab;
+
+  @FXML private Label lblDriver;
 
   @FXML private Button home_Button;
 
