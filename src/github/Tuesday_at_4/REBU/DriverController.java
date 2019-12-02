@@ -28,6 +28,8 @@ public class DriverController {
 
   @FXML private Button Edit_Registration;
 
+  @FXML private Button button_completeRide;
+
   @FXML private Tab Available_Rides;
 
   @FXML private TableView<Rides> DriverAvailableRides;
@@ -106,6 +108,7 @@ public class DriverController {
         pendingRidesArrayList.add(x);
       }
     }
+
     DriverAvailableRides.getItems().addAll(pendingRidesArrayList);
 
     AcceptedTime.setCellValueFactory(new PropertyValueFactory<>("Time_OfRide"));
@@ -132,6 +135,15 @@ public class DriverController {
     allRides = Rides_Accepted.getItems();
     SingleRides = Rides_Accepted.getSelectionModel().getSelectedItems();
     SingleRides.forEach(allRides::remove);
+  }
+
+  @FXML
+  void completeRide(MouseEvent event) {
+    System.out.println("You have completed a ride!");
+
+    Rides completedRide = Rides_Accepted.getSelectionModel().getSelectedItem();
+    DatabaseAccessor.changeRideStatus(Main.currentUser.getUserID(), completedRide.getRideID(), 2);
+
   }
 
   public void Accept_Ride() {
