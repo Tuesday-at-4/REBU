@@ -74,6 +74,7 @@
           <PasswordField fx:id="txtField_createPassword" prefHeight="25.0" prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
          </children>
       </GridPane>
+      <Label fx:id="lblCreateAccountError" alignment="CENTER_RIGHT" layoutX="194.0" layoutY="448.0" prefHeight="15.0" prefWidth="220.0" />
   </children>
   <padding>
     <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />

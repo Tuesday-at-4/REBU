@@ -9,6 +9,8 @@
 package github.Tuesday_at_4.REBU;
 
 import java.time.LocalDate;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -58,8 +60,10 @@ public class AccountRegistration {
   private Button btn_createAccount;
 
   @FXML
-  private TextField txtField_createUsername;
+  private Label lblCreateAccountError;
 
+  @FXML
+  private TextField txtField_createUsername;
 
   @FXML
   private PasswordField txtField_createPassword;
@@ -75,16 +79,27 @@ public class AccountRegistration {
 
     DOB = dateB_DOB.getValue();
 
-
     //Handles the exception of a Null Pointer Error
-    try{
+    try {
+
      username = String.valueOf(txtField_createUsername.getText());
-      password =  String.valueOf(txtField_createPassword.getText());
-      firstName = String.valueOf(txtField_firstName.getText());
-      lastName = String.valueOf(txtField_lastName.getText());
-      phone = String.valueOf(txtField_phone.getText());
-      email = String.valueOf(txtField_email.getText());
-      creditCard = String.valueOf(txtField_creditCard.getText());
+     password =  String.valueOf(txtField_createPassword.getText());
+     firstName = String.valueOf(txtField_firstName.getText());
+     lastName = String.valueOf(txtField_lastName.getText());
+     phone = String.valueOf(txtField_phone.getText());
+     email = String.valueOf(txtField_email.getText());
+     if (Pattern.matches("(\\d{16})", String.valueOf(txtField_creditCard.getText()))) {
+       creditCard = String.valueOf(txtField_creditCard.getText());
+     }
+     else {
+       System.out.println("Invalid credit card number, try again!");
+       lblCreateAccountError.setText("Invalid credit card number, try again!");
+       return;
+     }
+
+     /*String pattern = "(\\d{16})";
+     Pattern r = Pattern.compile(pattern);
+     Matcher m = r.matcher(creditCard);*/
     }
     catch(NullPointerException e){
       JOptionPane.showMessageDialog(null, "Null pointer exception thrown");

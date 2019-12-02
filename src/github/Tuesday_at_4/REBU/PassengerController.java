@@ -13,17 +13,18 @@ package github.Tuesday_at_4.REBU;
 /* Line 12-25 are necessary import statements needed to connect the code with
 corresponding .fxml file(s)*/
 
-
 import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextArea;
@@ -33,6 +34,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.time.LocalTime;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
 public class PassengerController {
 
@@ -43,6 +45,14 @@ public class PassengerController {
   @FXML private Button button_clearNotifications;
 
   @FXML private Button btnCreateRide;
+
+  @FXML private Button confirmPayment;
+
+  @FXML private Button cancelPayment;
+
+  @FXML private Label lblConfirmedCreditCard;
+
+  @FXML private AnchorPane anchorPayment;
 
   @FXML private ChoiceBox<LocalTime> choiceBox_time;
 
@@ -96,6 +106,34 @@ public class PassengerController {
 
   /* 103-106 will be expanded upon to record scheduled rides and have them stored in the DB when it works */
 
+  /* ******************************************************************************************
+   * Payment event handlers
+   * Author: Sabrina Kienholz
+   * Purpose: Allows passenger to make and confirm a payment
+   * *******************************************************************************************/
+  /*@FXML
+  public void beginPayment(Event event) {
+    // making the payment box visible
+    anchorPayment.setOpacity(1);
+  }
+
+  @FXML public void cancelPayment(Event event) {
+    anchorPayment.setOpacity(0);
+  }
+
+  @FXML
+  private void initalizePayment() {
+
+    String userCreditCard = Main.currentUser.getCreditCard();
+
+    // blocking out all numbers except the last four
+    String protectedCreditCard = "**** **** **** " + userCreditCard.substring(12, 16);
+
+    lblConfirmedCreditCard.setText(protectedCreditCard);
+  }*/
+
+  /********************************************************************************************/
+
   @FXML
   public void createRide(MouseEvent event) {
 
@@ -113,6 +151,7 @@ public class PassengerController {
     else{
       timeStart = choiceBox_time.getValue().plusHours(12);
     }
+
     Rides createRides =
         new Rides(
             Main.currentUser.getUserID(),
@@ -126,9 +165,6 @@ public class PassengerController {
     DatabaseAccessor.addRide(createRides);
     populateTableView();
     Main.createNewScene(event, "Passenger.fxml");
-
-
-
   }
 
   public void populateTableView() {
@@ -199,8 +235,6 @@ public class PassengerController {
       //If the choicebox already has items in it, it will display the items to the user.
       choiceBox_time.show();
     }
-
-
 }
 
   /* The next block of code (108-111) returns you to the dashboard via the home button. */
@@ -219,12 +253,12 @@ public class PassengerController {
     //The text area is cleared.
     textArea_displayNotifications.clear();
    System.out.println("Notifications have been cleared");
-
   }
 
   public void initialize(){
     populateNotificationsArea();
     populateTableView();
     populateChoiceBoxTime();
+    //initalizePayment();
   }
 }
