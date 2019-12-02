@@ -281,7 +281,7 @@ public class DatabaseAccessor {
    * @return - the filled Rides object
    */
   public static Rides getRide(int rideID){
-    Rides dummyRide = new Rides(0,0,0,LocalTime.of(0,0),LocalDate.of(0,0,0),"","",0);
+    Rides dummyRide = new Rides(0,0,0,LocalTime.of(1,1),LocalDate.of(1111,1,1),"","",0);
     //  Database credentials
     Connection conn = null;
     Statement stmt = null;
@@ -292,7 +292,7 @@ public class DatabaseAccessor {
 
       // STEP 3: Execute a query
       stmt = conn.createStatement();
-      String sql = "SELECT * FROM RIDES_LIST WHERE RIDE_ID = '" +rideID+"'";
+      String sql = "SELECT * FROM RIDES_LIST WHERE RIDE_ID = 1";
       ResultSet rs = stmt.executeQuery(sql);
       while (rs.next()) {
         dummyRide = new Rides(
@@ -304,7 +304,7 @@ public class DatabaseAccessor {
                 rs.getString(5),
                 rs.getString(6),
                 rs.getInt(8));
-        dummyRide.printRide();
+        //dummyRide.printRide();
       }
       // STEP 4: Clean-up environment
       stmt.close();
@@ -547,9 +547,6 @@ public class DatabaseAccessor {
     rideStatus.put(0,"Accepted");
     rideStatus.put(1,"Pending");
     rideStatus.put(2,"Completed");
-    rideStatus.put(3,"Expired");
-    rideStatus.put(4,"Cancelled by Driver");
-    rideStatus.put(5,"Cancelled by Passenger");
     System.out.println("User: "+getAccount(userID).getUsername()
         + " changed Ride #" +dummyRide.getRideID()
         + "'s status from: " +rideStatus.get(dummyRide.getRide_status_id())

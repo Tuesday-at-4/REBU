@@ -1,7 +1,7 @@
 INSERT INTO USER_ACCOUNT(user_name,	user_password,	first_name, last_name,	phone_number,	user_email, date_of_birth,	credit_card)
 VALUES
-       ('Kali', 'Ollie', 'Snuffles', 'The Destroyer', '0000000000', 'Meow@Yahoo.com', '2002-11-08', '1234567891011'),
-       ('USERNAME', 'PASSWORD', 'Joe', 'Barnes', '3349123413', 'Dummy@Yahoo.com', '1723-10-22', '0034567891011');
+       ('Kali', 'Ollie', 'Snuffles', 'The Destroyer', '0000000000', 'Meow@Yahoo.com', '2002-11-08', '1234567891011951'),
+       ('USERNAME', 'PASSWORD', 'Joe', 'Barnes', '3349123413', 'Dummy@Yahoo.com', '1723-10-22', '0034567891011624');
 
 INSERT INTO USER_NOTIFICATIONS(user_id, notification_type, notification_text)
 VALUES
