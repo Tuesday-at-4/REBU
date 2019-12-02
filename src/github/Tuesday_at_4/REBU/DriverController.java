@@ -104,7 +104,7 @@ public class DriverController {
     for (Rides x : DatabaseAccessor.getAllRides()) {
       if (x.getRide_status_id() == 1
           && x.getDriver_id() == 0
-          && Main.currentUser.getUserID() == x.getPassenger()) {
+          && Main.currentUser.getUserID() != x.getPassenger()) {
         pendingRidesArrayList.add(x);
       }
     }
@@ -122,8 +122,8 @@ public class DriverController {
     ArrayList<Rides> acceptedRidesArrayList = new ArrayList<>();
     for (Rides item : DatabaseAccessor.getAllRides()) {
       if (item.getRide_status_id() == 0
-          && item.getDriver_id() != 0
-          && Main.currentUser.getUserID() == item.getPassenger()) {
+          && item.getDriver_id() == Main.currentUser.getUserID()
+          && Main.currentUser.getUserID() != item.getPassenger()) {
         acceptedRidesArrayList.add(item);
       }
     }
@@ -149,6 +149,8 @@ public class DriverController {
 
   public void Accept_Ride() {
     Rides selection = DriverAvailableRides.getSelectionModel().getSelectedItem();
+    DatabaseAccessor.addDriverToRide(selection.getRideID(), Main.currentUser.getUserID());
+    DatabaseAccessor.changeRideStatus(Main.currentUser.getUserID(), selection.getRideID(), 0);
     if (selection != null) {
       Rides_Accepted.getItems()
           .add(
