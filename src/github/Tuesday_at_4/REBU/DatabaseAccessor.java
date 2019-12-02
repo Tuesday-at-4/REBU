@@ -304,7 +304,6 @@ public class DatabaseAccessor {
                 rs.getString(5),
                 rs.getString(6),
                 rs.getInt(8));
-        //dummyRide.printRide();
       }
       // STEP 4: Clean-up environment
       stmt.close();
@@ -538,19 +537,54 @@ public class DatabaseAccessor {
   /**
    * This class is used by the changeRideStatus to create a notification for both passenger and driver, where applicable.
    *    The notifications convey this change to the users
+   *    There are always two notifications made, one for driver, and another for passenger
    * @param userID - the user who caused the notification
    * @param dummyRide - the ride whose status is changing
    * @param rideStatusID - the status that the ride is changing to
    */
   private static void addNotification(int userID, Rides dummyRide, int rideStatusID){
-    HashMap<Integer, String> rideStatus = new HashMap<>();
-    rideStatus.put(0,"Accepted");
-    rideStatus.put(1,"Pending");
-    rideStatus.put(2,"Completed");
-    System.out.println("User: "+getAccount(userID).getUsername()
-        + " changed Ride #" +dummyRide.getRideID()
-        + "'s status from: " +rideStatus.get(dummyRide.getRide_status_id())
-        + " to: " + rideStatus.get(rideStatusID));
+    String noteStringPassenger;
+    String noteStringDriver;
+
+    //Here i generate the Notification text
+    //If the rideStatusID is changing to 0, then the ride has been accepted by a driver
+    if (rideStatusID == 0){
+      noteStringPassenger = "Your ride, #"+dummyRide.getRideID()+" has been accepted!";
+      noteStringDriver = "You accepted a ride, #"+dummyRide.getRideID();
+    } else if (rideStatusID == 2){
+      //If the rideStatusID is changing to 3, then the ride has been marked complete by the driver
+      noteStringPassenger = "Your ride, #"+dummyRide.getRideID()+" has been marked complete!\nYour card has been charged.";
+      noteStringDriver = "You completed ride #"+dummyRide.getRideID()+".\nFunds have ben added to your card.";
+    } else{
+      noteStringPassenger = "An Error has occurred";
+      noteStringDriver = "An Error has occurred";
+    }
+
+    //  Database credentials
+    Connection conn = null;
+    Statement stmt = null;
+    try {
+      // STEP 1: Register JDBC driver
+      Class.forName(JDBC_DRIVER);
+      conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+      // STEP 3: Execute a query
+      stmt = conn.createStatement();
+      String sql =
+          "INSERT INTO USER_NOTIFICATIONS(USER_ID, NOTIFICATION_TYPE, NOTIFICATION_TEXT)"
+              + "VALUES"
+              + "('"+dummyRide.getPassenger_id()+ "', 2, "+noteStringPassenger+"),"
+              + "('"+dummyRide.getDriver_id()+"', 1, "+noteStringDriver+")";
+      stmt.executeUpdate(sql);
+      System.out.println("Ride " + dummyRide.getRideID() + " has been added!");
+      // STEP 4: Clean-up environment
+      stmt.close();
+      conn.close();
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
   }
 
   //////////////////////////////////////////////////////////////////////////////////////////////
