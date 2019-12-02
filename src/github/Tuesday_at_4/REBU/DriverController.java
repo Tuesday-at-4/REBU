@@ -1,5 +1,8 @@
 package github.Tuesday_at_4.REBU;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -7,22 +10,29 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 public class DriverController {
 
   @FXML private Tab DriverTab;
 
+  @FXML private Label lblDriver;
+
   @FXML private Button home_Button;
 
   @FXML private Button Edit_Registration;
 
-  @FXML private Tab Active_Rides;
+  @FXML private Button button_completeRide;
 
-  @FXML private TableView<Rides> DriverPendingRides;
+  @FXML private Tab Available_Rides;
+
+  @FXML private TableView<Rides> DriverAvailableRides;
 
   @FXML private TableColumn<?, ?> start_time;
 
@@ -38,15 +48,11 @@ public class DriverController {
 
   @FXML private TableColumn<?, ?> RideStatus;
 
-  @FXML private TableColumn<?, ?> Driver_ID;
-
   @FXML private Button Accept_Ride;
-
-  @FXML private Button DeclineRide;
 
   @FXML private Tab accepted_Rides;
 
-  @FXML private TableView<?> Rides_Accepted;
+  @FXML private TableView<Rides> Rides_Accepted;
 
   @FXML private TableColumn<?, ?> AcceptedTime;
 
@@ -64,6 +70,11 @@ public class DriverController {
 
   @FXML private Button CancelRide;
 
+  @FXML private TextArea textAreaDriver;
+
+  @FXML
+  private Button ClearDriverNotifications;
+
   @FXML
   private void goEdit_Registration(Event event) {
     Main.createNewScene(event, "CarRegistration.fxml");
@@ -75,6 +86,12 @@ public class DriverController {
   }
 
   public void initialize() {
+    populateNotificationsArea();
+    FillInTableView();
+  }
+
+  public void FillInTableView() {
+
     ride_ID.setCellValueFactory(new PropertyValueFactory<>("rideID"));
     start_date.setCellValueFactory(new PropertyValueFactory<>("Date_OfRide"));
     start_time.setCellValueFactory(new PropertyValueFactory<>("Time_OfRide"));
@@ -82,7 +99,17 @@ public class DriverController {
     endLocation.setCellValueFactory(new PropertyValueFactory<>("endLocation"));
     passenger_ID.setCellValueFactory(new PropertyValueFactory<>("passenger"));
     RideStatus.setCellValueFactory(new PropertyValueFactory<>("ride_status_id"));
-    Driver_ID.setCellValueFactory(new PropertyValueFactory<>("driver"));
+
+    ArrayList<Rides> pendingRidesArrayList = new ArrayList<>();
+    for (Rides x : DatabaseAccessor.getAllRides()) {
+      if (x.getRide_status_id() == 1
+          && x.getDriver_id() == 0
+          && Main.currentUser.getUserID() != x.getPassenger()) {
+        pendingRidesArrayList.add(x);
+      }
+    }
+
+    DriverAvailableRides.getItems().addAll(pendingRidesArrayList);
 
     AcceptedTime.setCellValueFactory(new PropertyValueFactory<>("Time_OfRide"));
     AcceptedDate.setCellValueFactory(new PropertyValueFactory<>("Date_OfRide"));
@@ -92,27 +119,69 @@ public class DriverController {
     AcceptedPassengerID.setCellValueFactory(new PropertyValueFactory<>("passenger"));
     AcceptedRideStatus.setCellValueFactory(new PropertyValueFactory<>("ride_status_id"));
 
-    ObservableList<Rides> oblist = FXCollections.observableArrayList();
-    ArrayList<Rides> ridesArrayList = new ArrayList<Rides>();
-
-    ridesArrayList = DatabaseAccessor.getAllRides();
-    System.out.println(ridesArrayList.toString());
-
-    oblist.addAll(ridesArrayList);
-    DriverPendingRides.setItems(oblist);
+    ArrayList<Rides> acceptedRidesArrayList = new ArrayList<>();
+    for (Rides item : DatabaseAccessor.getAllRides()) {
+      if (item.getRide_status_id() == 0
+          && item.getDriver_id() == Main.currentUser.getUserID()
+          && Main.currentUser.getUserID() != item.getPassenger()) {
+        acceptedRidesArrayList.add(item);
+      }
+    }
+    Rides_Accepted.getItems().addAll(acceptedRidesArrayList);
   }
 
   public void Cancel_Ride(ActionEvent actionEvent) {
     ObservableList<Rides> allRides, SingleRides;
-    allRides = DriverPendingRides.getItems();
-    SingleRides = DriverPendingRides.getSelectionModel().getSelectedItems();
+    allRides = Rides_Accepted.getItems();
+    SingleRides = Rides_Accepted.getSelectionModel().getSelectedItems();
     SingleRides.forEach(allRides::remove);
   }
 
-  public void Decline_Ride(ActionEvent actionEvent) {
-    ObservableList<Rides> allRides, SingleRides;
-    allRides = DriverPendingRides.getItems();
-    SingleRides = DriverPendingRides.getSelectionModel().getSelectedItems();
-    SingleRides.forEach(allRides::remove);
+  @FXML
+  void completeRide(MouseEvent event) {
+    System.out.println("You have completed a ride!");
+
+    Rides completedRide = Rides_Accepted.getSelectionModel().getSelectedItem();
+    DatabaseAccessor.changeRideStatus(Main.currentUser.getUserID(), completedRide.getRideID(), 2);
+    Rides_Accepted.getItems().remove(completedRide);
+
+  }
+
+  public void Accept_Ride() {
+    Rides selection = DriverAvailableRides.getSelectionModel().getSelectedItem();
+    DatabaseAccessor.addDriverToRide(selection.getRideID(), Main.currentUser.getUserID());
+    DatabaseAccessor.changeRideStatus(Main.currentUser.getUserID(), selection.getRideID(), 0);
+    if (selection != null) {
+      Rides_Accepted.getItems()
+          .add(
+              new Rides(
+                  selection.getPassenger(),
+                  selection.getDriver(),
+                  selection.getTime_OfRide(),
+                  selection.getDate_OfRide(),
+                  selection.getStartLocation(),
+                  selection.getEndLocation(),
+                  selection.getRide_status_id()));
+      ObservableList<Rides> allRides, SingleRides;
+      allRides = DriverAvailableRides.getItems();
+      SingleRides = DriverAvailableRides.getSelectionModel().getSelectedItems();
+      SingleRides.forEach(allRides::remove);
+    }
+  }
+
+  public void ClearNotificationsButton(ActionEvent event) {
+    textAreaDriver.clear();
+    System.out.println("Notifications have been cleared");
+  }
+
+  private void populateNotificationsArea() {
+    // Arraylist made of the notifications for this particular user.
+    ArrayList<Notification> notificationArrayList = DatabaseAccessor.getNotifications(Main.currentUser.getUserID());
+    // While going through the list, the text area will populate with the notifications.
+    for (Notification item : notificationArrayList) {
+      if (item.getNotificationType() == 1) { // If the note is for the passenger(2)
+        textAreaDriver.appendText(item.getNotificationText());
+      }
+    }
   }
 }

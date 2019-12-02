@@ -4,22 +4,47 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="Anchor_Login" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="github.Tuesday_at_4.REBU.LoginController">
+<AnchorPane prefHeight="397.0" prefWidth="535.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="github.Tuesday_at_4.REBU.LoginController">
   <children>
-    <Label layoutX="270.0" layoutY="93.0" text="LOGIN">
+      <ImageView fitHeight="400.0" fitWidth="633.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/nicetruck.gif" />
+         </image>
+      </ImageView>
+    <Label fx:id="lblLogin" layoutX="219.0" layoutY="109.0" text="Login" textFill="WHITE">
       <font>
-        <Font name="System Bold" size="24.0" />
+        <Font name="System Bold" size="17.0" />
       </font>
     </Label>
-    <Label layoutX="94.0" layoutY="141.0" text="USERNAME" />
-    <Label layoutX="93.0" layoutY="186.0" stylesheets="@Style.css" text="PASSWORD" />
-    <TextField fx:id="txtField_username" layoutX="200.0" layoutY="135.0" prefHeight="27.0" prefWidth="228.0" />
-    <PasswordField fx:id="password_textField" layoutX="200.0" layoutY="180.0" prefHeight="27.0" prefWidth="228.0" />
-    <Button fx:id="btn_login" layoutX="200.0" layoutY="225.0" mnemonicParsing="false" onMouseClicked="#login" prefHeight="25.0" prefWidth="228.0" text="LOGIN" />
-    <Label layoutX="274.0" layoutY="280.0" text="New User?" textFill="WHITE" />
-    <Button fx:id="btn_signUp" layoutX="356.0" layoutY="275.0" mnemonicParsing="false" onAction="#signUp" text="SIGN UP" />
+      <GridPane hgap="10.0" layoutX="48.0" layoutY="156.0" prefHeight="170.0" prefWidth="333.0">
+        <columnConstraints>
+          <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="144.0" minWidth="10.0" prefWidth="62.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="223.0" minWidth="10.0" prefWidth="223.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+          <TextField fx:id="txtField_username" prefHeight="27.0" prefWidth="228.0" promptText="Username" GridPane.columnIndex="1" />
+          <PasswordField fx:id="password_textField" prefHeight="27.0" prefWidth="228.0" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+          <Button fx:id="btn_login" mnemonicParsing="false" onMouseClicked="#login" prefHeight="25.0" prefWidth="228.0" text="Login" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+          <Button fx:id="btn_signUp" mnemonicParsing="false" onAction="#signUp" text="Sign Up" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+         </children>
+      </GridPane>
+      <ImageView fitHeight="83.0" fitWidth="136.0" layoutX="38.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/REBUt.png" />
+         </image>
+      </ImageView>
   </children>
 </AnchorPane>

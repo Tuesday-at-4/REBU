@@ -1,6 +1,7 @@
 package github.Tuesday_at_4.REBU;
 
 import java.time.LocalDate;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -12,6 +13,9 @@ public class EditAccountController {
 
   @FXML
   private Button btnSaveChanges;
+
+  @FXML
+  private Button btnCancelAccountChanges;
 
   @FXML
   private TextField txtField_firstName;
@@ -62,6 +66,11 @@ public class EditAccountController {
     // transitions to Account Details screen (AccountSummary) from Register Account screen
     Main.createNewScene(event, "AccountSummary.fxml");
     System.out.println("You have edited your account! \nConfirm information below is correct.");
+  }
+
+  @FXML
+  private void returnWithoutChanges(Event event) {
+    Main.createNewScene(event, "AccountSummary.fxml");
   }
 
   // initializing text fields with current account details so they may be edited by user

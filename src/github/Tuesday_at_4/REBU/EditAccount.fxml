@@ -9,65 +9,78 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="github.Tuesday_at_4.REBU.EditAccountController">
+<AnchorPane prefHeight="481.0" prefWidth="694.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="github.Tuesday_at_4.REBU.EditAccountController">
    <children>
-      <Label layoutX="60.0" layoutY="23.0" stylesheets="@Style.css" text="Edit Your Account Details">
+      <Label fx:id="lblEditAccountDetails" layoutX="60.0" layoutY="25.0" stylesheets="@Style.css" text="Edit Your Account Details">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <ImageView fitHeight="123.0" fitWidth="150.0" layoutX="429.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="123.0" fitWidth="150.0" layoutX="529.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/politecat.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnSaveChanges" layoutX="472.0" layoutY="360.0" mnemonicParsing="false" onMouseClicked="#saveChanges" text="Save Changes" />
-      <VBox layoutX="60.0" layoutY="78.0" prefHeight="305.0" prefWidth="119.0">
+      <Button fx:id="btnSaveChanges" layoutX="291.0" layoutY="419.0" mnemonicParsing="false" onMouseClicked="#saveChanges" text="Save Changes" />
+      <GridPane hgap="10.0" layoutX="60.0" layoutY="80.0" prefHeight="330.0" prefWidth="381.0">
+        <columnConstraints>
+          <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="137.0" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="258.0" minWidth="10.0" prefWidth="258.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
          <children>
-            <Label text="FIRST NAME" textFill="WHITE">
+            <Label text="First Name" textFill="WHITE">
                <padding>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </padding>
             </Label>
-            <Label text="LAST NAME" textFill="WHITE">
+            <Label text="Last Name" textFill="WHITE" GridPane.rowIndex="1">
                <padding>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </padding>
             </Label>
-            <Label text="EMAIL" textFill="WHITE">
+            <Label text="Email" textFill="WHITE" GridPane.rowIndex="2">
                <padding>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </padding>
             </Label>
-            <Label text="PHONE" textFill="WHITE">
+            <Label text="Phone" textFill="WHITE" GridPane.rowIndex="3">
                <padding>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </padding>
             </Label>
-            <Label text="CREDIT CARD #" />
-            <Label text="DOB" textFill="WHITE">
+            <Label text="Credit Card #" GridPane.rowIndex="4" />
+            <Label text="DOB" textFill="WHITE" GridPane.rowIndex="5">
                <padding>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </padding>
             </Label>
-            <Label text="USERNAME" textFill="WHITE" />
-            <Label text="PASSWORD" textFill="WHITE" />
+            <Label text="Username" textFill="WHITE" GridPane.rowIndex="6" />
+            <Label text="Password" textFill="WHITE" GridPane.rowIndex="7" />
+            <TextField fx:id="txtField_firstName" prefHeight="25.0" prefWidth="180.0" GridPane.columnIndex="1" />
+            <TextField fx:id="txtField_lastName" prefHeight="25.0" prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtField_email" prefHeight="25.0" prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="txtField_phone" prefHeight="25.0" prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="txtField_creditCard" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <DatePicker fx:id="dateB_DOB" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="txtField_createUsername" prefHeight="25.0" prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <PasswordField fx:id="txtField_createPassword" prefHeight="25.0" prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
          </children>
-      </VBox>
-      <VBox layoutX="194.0" layoutY="77.0" prefHeight="251.0" prefWidth="174.0">
-         <children>
-            <TextField fx:id="txtField_firstName" prefHeight="25.0" prefWidth="180.0" />
-            <TextField fx:id="txtField_lastName" prefHeight="25.0" prefWidth="180.0" />
-            <TextField fx:id="txtField_email" prefHeight="25.0" prefWidth="180.0" />
-            <TextField fx:id="txtField_phone" prefHeight="25.0" prefWidth="180.0" />
-            <TextField fx:id="txtField_creditCard" />
-            <DatePicker fx:id="dateB_DOB" prefHeight="26.0" prefWidth="180.0" />
-            <TextField fx:id="txtField_createUsername" prefHeight="25.0" prefWidth="180.0" />
-            <PasswordField fx:id="txtField_createPassword" prefHeight="25.0" prefWidth="180.0" />
-         </children>
-      </VBox>
+      </GridPane>
+      <Button fx:id="btnCancelAccountChanges" layoutX="527.0" layoutY="419.0" mnemonicParsing="false" onAction="#returnWithoutChanges" text="Cancel" />
    </children>
 </AnchorPane>

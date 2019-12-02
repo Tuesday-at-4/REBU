@@ -17,6 +17,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Observable;
 
 public class DatabaseAccessor {
   private static String JDBC_DRIVER = "org.h2.Driver";
@@ -47,7 +48,7 @@ public class DatabaseAccessor {
                 rs.getString(6),
                 rs.getString(7),
                 LocalDate.parse(rs.getString(8)),
-                rs.getString(8)));
+                rs.getString(9)));
       }
       System.out.println("\n************ Accounts ************");
       for (Account x : dummyAccount){
@@ -164,10 +165,8 @@ public class DatabaseAccessor {
       // STEP 3: Execute a query
       stmt = conn.createStatement();
       String sql =
-          "INSERT INTO USER_ACCOUNT(user_id, user_name, user_password, first_name, last_name, phone_number, user_email, date_of_birth, credit_card)"
+          "INSERT INTO USER_ACCOUNT(user_name, user_password, first_name, last_name, phone_number, user_email, date_of_birth, credit_card)"
               + "VALUES('"
-              + dummyAccount.getUserID()
-              + "','"
               + dummyAccount.getUsername()
               + "','"
               + dummyAccount.getPassword()
@@ -182,8 +181,8 @@ public class DatabaseAccessor {
               + "','"
               + dummyAccount.getDateOfBirth()
               + "','"
-              + dummyAccount.getCreditCard() +"'"
-              + ");";
+              + dummyAccount.getCreditCard()
+              + "');";
       stmt.executeUpdate(sql);
       System.out.println("Account " + dummyAccount.getUserID() + " has been added!");
       // STEP 4: Clean-up environment
@@ -272,6 +271,7 @@ public class DatabaseAccessor {
     for (Rides x: dummyRides){
       x.printRide();
     }
+
     System.out.println("************End of stored Rides************\n");
   }
 
@@ -281,7 +281,7 @@ public class DatabaseAccessor {
    * @return - the filled Rides object
    */
   public static Rides getRide(int rideID){
-    Rides dummyRide = new Rides(0,0,0,LocalDate.of(0,0,0),"","",LocalTime.of(0,0),0);
+    Rides dummyRide = new Rides(0,0,0,LocalTime.of(1,1),LocalDate.of(1111,1,1),"","",0);
     //  Database credentials
     Connection conn = null;
     Statement stmt = null;
@@ -292,17 +292,17 @@ public class DatabaseAccessor {
 
       // STEP 3: Execute a query
       stmt = conn.createStatement();
-      String sql = "SELECT * FROM RIDES_LIST WHERE RIDE_ID = '" +rideID+"'";
+      String sql = "SELECT * FROM RIDES_LIST WHERE RIDE_ID = 1";
       ResultSet rs = stmt.executeQuery(sql);
       while (rs.next()) {
         dummyRide = new Rides(
                 rs.getInt(1),
                 rs.getInt(2),
                 rs.getInt(3),
-                LocalDate.parse(rs.getString(4)),
+                LocalTime.parse(rs.getString(4)),
+                LocalDate.parse(rs.getString(5)),
                 rs.getString(5),
                 rs.getString(6),
-                LocalTime.parse(rs.getString(7)),
                 rs.getInt(8));
       }
       // STEP 4: Clean-up environment
@@ -342,10 +342,10 @@ public class DatabaseAccessor {
                 rs.getInt(1),
                 rs.getInt(2),
                 rs.getInt(3),
+                LocalTime.parse(rs.getString(4)),
                 LocalDate.parse(rs.getString(5)),
                 rs.getString(6),
                 rs.getString(7),
-                LocalTime.parse(rs.getString(4)),
                 rs.getInt(8)));
       }
       // STEP 4: Clean-up environment
@@ -357,6 +357,28 @@ public class DatabaseAccessor {
       e.printStackTrace();
     }
     return dummyRideArray;
+  }
+
+  public static void addDriverToRide(int rideID, int driverID){
+    Connection conn = null;
+    Statement stmt = null;
+    try {
+      Class.forName(JDBC_DRIVER);
+      conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+      stmt = conn.createStatement();
+      String sql =
+          "UPDATE RIDES_LIST "
+              + " SET DRIVER_ID = " + driverID
+              + " WHERE RIDE_ID = " + rideID;
+      stmt.executeUpdate(sql);
+      stmt.close();
+      conn.close();
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
   }
 
   /**
@@ -376,10 +398,8 @@ public class DatabaseAccessor {
       // STEP 3: Execute a query
       stmt = conn.createStatement();
       String sql =
-          "INSERT INTO RIDES_LIST(RIDE_ID, PASSENGER_ID, DRIVER_ID, START_DATE, START_LOCATION, END_LOCATION, START_TIME, RIDE_STATUS_ID)"
+          "INSERT INTO RIDES_LIST(PASSENGER_ID, DRIVER_ID, START_DATE, START_LOCATION, END_LOCATION, START_TIME, RIDE_STATUS_ID)"
               + "VALUES('"
-              + dummyRide.getRideID()
-              + "','"
               + dummyRide.getPassengerName()
               + "','"
               + dummyRide.getDriver()
@@ -411,12 +431,12 @@ public class DatabaseAccessor {
    * 2, Completed 3, Expired 4, Cancelled by Driver 5, Cancelled by Passenger
    * @param userID - the user who is changing the status
    * @param dummyRideID - The rideID of the ride in question
-   * @param rideStatusID - The status flag of the ride in question
+   * @param newRideStatusID - The status flag of the ride in question
    */
-  public static void changeRideStatus(int userID, int dummyRideID, int rideStatusID) {
+  public static void changeRideStatus(int userID, int dummyRideID, int newRideStatusID) {
     //Before we change the ride, we add the notification about it.
     Rides dummyRide = getRide(dummyRideID);
-    addNotification(userID, dummyRide, rideStatusID);
+    addNotification(userID, dummyRide, newRideStatusID);
 
     //  Database credentials
     Connection conn = null;
@@ -430,7 +450,7 @@ public class DatabaseAccessor {
       stmt = conn.createStatement();
       String sql =
           "UPDATE RIDES_LIST SET RIDE_STATUS_ID = "
-              + rideStatusID
+              + newRideStatusID
               + " WHERE RIDE_ID = "
               + dummyRideID;
       stmt.executeUpdate(sql); // There is no resultSet for an update statement
@@ -511,7 +531,8 @@ public class DatabaseAccessor {
    * @param userID - the user whose notifications you want.
    * @return - The array of strings
    */
-  public ArrayList<Notification> getNotifications(int userID){
+
+  public static ArrayList<Notification> getNotifications(int userID){
     ArrayList<Notification> dummyArray = new ArrayList<>();
     try {
       Class.forName(JDBC_DRIVER);
@@ -519,7 +540,7 @@ public class DatabaseAccessor {
       stmt = conn.createStatement();
 
       String sql =
-          "SELECT NOTIFICATION_TYPE, NOTIFICATION_TEXT FROM USER_NOTIFICATIONS WHERE USER_ID = '" +userID+ "'";
+          "SELECT notification_type, notification_text FROM USER_NOTIFICATIONS WHERE USER_ID = " +userID;
       ResultSet rs = stmt.executeQuery(sql);
       System.out.println("Getting Notifications...");
       while(rs.next()){
@@ -538,22 +559,54 @@ public class DatabaseAccessor {
   /**
    * This class is used by the changeRideStatus to create a notification for both passenger and driver, where applicable.
    *    The notifications convey this change to the users
+   *    There are always two notifications made, one for driver, and another for passenger
    * @param userID - the user who caused the notification
    * @param dummyRide - the ride whose status is changing
    * @param rideStatusID - the status that the ride is changing to
    */
   private static void addNotification(int userID, Rides dummyRide, int rideStatusID){
-    HashMap<Integer, String> rideStatus = new HashMap<>();
-    rideStatus.put(0,"Accepted");
-    rideStatus.put(1,"Pending");
-    rideStatus.put(2,"Completed");
-    rideStatus.put(3,"Expired");
-    rideStatus.put(4,"Cancelled by Driver");
-    rideStatus.put(5,"Cancelled by Passenger");
-    System.out.println("User: "+getAccount(userID).getUsername()
-        + " changed Ride #" +dummyRide.getRideID()
-        + "'s status from: " +rideStatus.get(dummyRide.getRide_status_id())
-        + " to: " + rideStatus.get(rideStatusID));
+    String noteStringPassenger;
+    String noteStringDriver;
+
+    //Here i generate the Notification text
+    //If the rideStatusID is changing to 0, then the ride has been accepted by a driver
+    if (rideStatusID == 0){
+      noteStringPassenger = "Your ride, #"+dummyRide.getRideID()+" has been accepted!";
+      noteStringDriver = "You accepted a ride, #"+dummyRide.getRideID();
+    } else if (rideStatusID == 2){
+      //If the rideStatusID is changing to 3, then the ride has been marked complete by the driver
+      noteStringPassenger = "'Your ride, #"+dummyRide.getRideID()+" has been marked complete!\nYour card has been charged.'";
+      noteStringDriver = "'You completed ride #"+dummyRide.getRideID()+".\nFunds have ben added to your card.'";
+    } else{
+      noteStringPassenger = "An Error has occurred";
+      noteStringDriver = "An Error has occurred";
+    }
+
+    //  Database credentials
+    Connection conn = null;
+    Statement stmt = null;
+    try {
+      // STEP 1: Register JDBC driver
+      Class.forName(JDBC_DRIVER);
+      conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+      // STEP 3: Execute a query
+      stmt = conn.createStatement();
+      String sql =
+          "INSERT INTO USER_NOTIFICATIONS(USER_ID, NOTIFICATION_TYPE, NOTIFICATION_TEXT)"
+              + "VALUES"
+              + "("+dummyRide.getPassenger_id()+ ", 2, '"+noteStringPassenger+"'),"
+              + "("+userID+", 1, '"+noteStringDriver+"');";
+      stmt.executeUpdate(sql);
+      System.out.println("Ride " + dummyRide.getRideID() + " has been added!");
+      // STEP 4: Clean-up environment
+      stmt.close();
+      conn.close();
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
   }
 
   //////////////////////////////////////////////////////////////////////////////////////////////
@@ -723,35 +776,4 @@ public class DatabaseAccessor {
       e.printStackTrace();
     }
   }
-
-  /**
-   * Takes a carID and deletes all cars that match it in the DB
-   *  BROKEN
-   * @param car_ID the car_id to be added
-   */
-  /*public void deleteCar(int car_ID) {
-    //  Database credentials
-    Connection conn = null;
-    Statement stmt = null;
-    try {
-      // STEP 1: Register JDBC driver
-      Class.forName(JDBC_DRIVER);
-      conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
-      // STEP 3: Execute a query
-      stmt = conn.createStatement();
-      String sql = "DELETE FROM CAR_DETAILS WHERE CAR_ID='" + car_ID + "'";
-      stmt.executeUpdate(sql);
-      System.out.println("Car " + car_ID + " has been deleted!");
-      // STEP 4: Clean-up environment
-      stmt.close();
-      conn.close();
-    } catch (ClassNotFoundException e) {
-      e.printStackTrace();
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
-  }*/
-
-
 }

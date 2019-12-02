@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="github.Tuesday_at_4.REBU.CarRegistrationController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="github.Tuesday_at_4.REBU.CarRegistrationController">
    <children>
       <SplitPane dividerPositions="0.5402010050251256" layoutX="-2.0" layoutY="90.0" orientation="VERTICAL" prefHeight="554.0" prefWidth="658.0" AnchorPane.bottomAnchor="-154.0" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="-56.0" AnchorPane.topAnchor="0.0">
         <items>

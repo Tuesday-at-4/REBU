@@ -20,7 +20,7 @@ CREATE TABLE USER_ACCOUNT (
 	phone_number			varchar(10),
 	user_email				varchar(255),
 	date_of_birth			varchar(10),
-	credit_card				varchar(255)
+	credit_card				varchar(16)
 );
 	
 CREATE TABLE USER_NOTIFICATIONS(
@@ -36,7 +36,7 @@ CREATE TABLE NOTIFICATION_TYPES(
 
 INSERT INTO NOTIFICATION_TYPES(notification_type, notification_description)
 VALUES
-			 (0, 'Admin'),
+			 (0, 'Dashboard'),
 			 (1, 'Driver'),
 			 (2, 'Passenger');
 
