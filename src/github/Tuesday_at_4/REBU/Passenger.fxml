@@ -22,21 +22,20 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
-                                <Button fx:id="home_Button" layoutX="346.0" layoutY="60.0" mnemonicParsing="false" onAction="#returnHome" prefHeight="36.0" prefWidth="106.0" stylesheets="@Style.css" text="Home" textAlignment="CENTER">
+                                <Button fx:id="home_Button" layoutX="51.0" layoutY="27.0" mnemonicParsing="false" onAction="#returnHome" prefHeight="36.0" prefWidth="106.0" stylesheets="@Style.css" text="Home" textAlignment="CENTER">
                                     <font>
                                         <Font size="18.0" />
                                     </font>
                                 </Button>
-                                <Button fx:id="button_clearNotifications" layoutX="185.0" layoutY="390.0" mnemonicParsing="false" onMouseClicked="#clearNotifications" prefHeight="26.0" prefWidth="105.0" text="Clear" textAlignment="CENTER" textFill="#d54141">
+                                <Button fx:id="button_clearNotifications" layoutX="185.0" layoutY="400.0" mnemonicParsing="false" onMouseClicked="#clearNotifications" prefHeight="26.0" prefWidth="105.0" text="Clear" textAlignment="CENTER" textFill="#d54141">
                                     <font>
                                         <Font size="10.0" />
                                     </font>
                                 </Button>
-                                <TextArea fx:id="textArea_displayNotifications" layoutX="185.0" layoutY="222.0" prefHeight="131.0" prefWidth="426.0">
-                           <font>
-                              <Font size="34.0" />
-                           </font></TextArea>
+                                <TextArea fx:id="textArea_displayNotifications" layoutX="185.0" layoutY="230.0" prefHeight="162.0" prefWidth="426.0">
+                           </TextArea>
                         <Label fx:id="lblPassenger" layoutX="216.0" layoutY="121.0" text="Passenger" />
+                        <Label fx:id="lblPassengerNotifications" layoutX="185.0" layoutY="205.0" text="Notifications" />
                             </children>
                         </AnchorPane>
                     </content>

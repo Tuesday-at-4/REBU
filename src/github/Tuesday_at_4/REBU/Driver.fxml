@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="796.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/8.0.221" xmlns:fx="http://javafx.com/fxml/1" fx:controller="github.Tuesday_at_4.REBU.DriverController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="796.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="github.Tuesday_at_4.REBU.DriverController">
   <children>
     <TabPane layoutX="254.0" layoutY="147.0" prefHeight="600.0" prefWidth="796.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <tabs>
@@ -20,25 +20,26 @@
           <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
               <children>
-                <AnchorPane prefHeight="569.6" prefWidth="796.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <AnchorPane prefHeight="569.6" prefWidth="796.0" stylesheets="@Style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                   <children>
-                    <Button fx:id="home_Button" layoutX="346.0" layoutY="60.0" mnemonicParsing="false" onAction="#goHome" prefHeight="72.0" prefWidth="182.0" text="Home">
+                    <Button fx:id="home_Button" layoutX="51.0" layoutY="27.0" mnemonicParsing="false" onAction="#goHome" prefHeight="72.0" prefWidth="182.0" text="Home">
                       <font>
                         <Font size="16.0" />
                       </font>
                     </Button>
-                    <Button fx:id="Edit_Registration" layoutX="545.0" layoutY="60.0" mnemonicParsing="false" onAction="#goEdit_Registration" prefHeight="65.0" prefWidth="182.0" text="Edit Car Registration" />
-                    <TextArea fx:id="textAreaDriver" editable="true" layoutX="185.0" layoutY="222.0" prefHeight="131.0" prefWidth="426.0" promptText="No notifications for now."/>
+                    <Button fx:id="Edit_Registration" layoutX="172.0" layoutY="27.0" mnemonicParsing="false" onAction="#goEdit_Registration" prefHeight="65.0" prefWidth="182.0" text="Edit Car Registration" />
+                    <TextArea fx:id="textAreaDriver" editable="true" layoutX="185.0" layoutY="230.0" prefHeight="162.0" prefWidth="426.0" promptText="No notifications for now." />
                     <Label fx:id="lblDriver" layoutX="294.0" layoutY="121.0" stylesheets="@Style.css" text="Driver" textFill="WHITE">
                       <font>
                         <Font size="96.0" />
                       </font>
                     </Label>
-                              <Button fx:id="ClearDriverNotifications" layoutX="307.0" layoutY="392.0" mnemonicParsing="false" onAction="#ClearNotificationsButton" prefHeight="72.0" prefWidth="182.0" text="Clear Notifications">
+                              <Button fx:id="ClearDriverNotifications" layoutX="185.0" layoutY="400.0" mnemonicParsing="false" onAction="#ClearNotificationsButton" prefHeight="72.0" prefWidth="182.0" text="Clear">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Button>
+                              <Label fx:id="lblDriverNotifications" layoutX="185.0" layoutY="205.0" text="Notifications" />
                   </children>
                 </AnchorPane>
               </children>
