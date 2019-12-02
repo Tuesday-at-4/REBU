@@ -123,9 +123,7 @@ public class DriverController {
     for (Rides item : DatabaseAccessor.getAllRides()) {
       if (item.getRide_status_id() == 0
           && item.getDriver_id() == Main.currentUser.getUserID()
-          && Main.currentUser.getUserID() != item.getPassenger()) {
-        acceptedRidesArrayList.add(item);
-      }
+          && Main.currentUser.getUserID() != item.getPassenger_id());
     }
     Rides_Accepted.getItems().addAll(acceptedRidesArrayList);
   }
