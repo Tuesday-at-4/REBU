@@ -114,6 +114,7 @@
                             <Button fx:id="CancelRide" mnemonicParsing="false" onAction="#Cancel_Ride" text="Cancel Ride" />
                           </buttons>
                         </ButtonBar>
+                                    <Button fx:id="button_completeRide" layoutX="487.0" layoutY="39.0" mnemonicParsing="false" onMouseClicked="#completeRide" text="Complete Ride" />
                       </children>
                     </AnchorPane>
                   </items>
