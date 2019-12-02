@@ -26,8 +26,8 @@
                         <TableColumn fx:id="carType" prefWidth="81.5999755859375" text="Car Type" />
                         <TableColumn fx:id="licensePlate" prefWidth="120.5" text="License Plate" />
                         <TableColumn fx:id="CarColor" minWidth="0.0" prefWidth="63.199951171875" text="Color" />
-                        <TableColumn fx:id="NumSeats" minWidth="0.0" prefWidth="86.39990234375" text="Seats" />
-                        <TableColumn fx:id="car_ID" maxWidth="47.999951171874955" minWidth="-1.0" prefWidth="47.999951171874955" text="Car ID" />
+                        <TableColumn fx:id="NumSeats" minWidth="0.0" prefWidth="76.5" text="Seats" />
+                        <TableColumn fx:id="car_ID" maxWidth="58.0" minWidth="-1.0" prefWidth="58.0" text="Car ID" />
                      </columns>
                   </TableView>
                </children>
@@ -36,8 +36,8 @@
                <children>
                   <AnchorPane prefHeight="180.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Label layoutX="68.0" layoutY="14.0" text="Register Your Vehicle" />
-                        <GridPane layoutX="10.0" layoutY="40.0" prefHeight="134.0" prefWidth="228.0">
+                        <Label layoutX="68.0" layoutY="14.0" text="Additional Vehicles" />
+                        <GridPane layoutX="10.0" layoutY="40.0" prefHeight="185.0" prefWidth="228.0">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -62,13 +62,13 @@
                               <TextField fx:id="txtField_licensePlate" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                            </children>
                         </GridPane>
-                        <ButtonBar layoutX="317.0" layoutY="126.0" prefHeight="40.0" prefWidth="267.0">
+                        <ButtonBar layoutX="252.0" layoutY="125.0" prefHeight="40.0" prefWidth="267.0">
                            <buttons>
                               <Button fx:id="Add_Button" mnemonicParsing="false" onAction="#Add_Button" text="Add" />
                               <Button fx:id="Delete_Button" mnemonicParsing="false" onAction="#Delete_Button" prefHeight="22.0" prefWidth="79.0" text="Delete" />
                            </buttons>
                         </ButtonBar>
-                        <GridPane layoutX="260.0" layoutY="42.0" prefHeight="90.0" prefWidth="250.0">
+                        <GridPane layoutX="283.0" layoutY="40.0" prefHeight="116.0" prefWidth="250.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -85,7 +85,7 @@
                               <TextField fx:id="txtField_Seats" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                            </children>
                         </GridPane>
-                        <Button fx:id="DriverPage" layoutX="416.0" layoutY="174.0" mnemonicParsing="false" onAction="#goDriverPage" prefHeight="26.0" prefWidth="169.0" text="Return to Driver Panel" />
+                        <Button fx:id="DriverPage" layoutX="350.0" layoutY="172.0" mnemonicParsing="false" onAction="#goDriverPage" prefHeight="26.0" prefWidth="169.0" text="Return to Driver Panel" />
                      </children>
                   </AnchorPane>
                </children>

@@ -571,13 +571,13 @@ public class DatabaseAccessor {
     //Here i generate the Notification text
     //If the rideStatusID is changing to 0, then the ride has been accepted by a driver
     if (rideStatusID == 0){
-      noteStringPassenger = "Your ride, #"+dummyRide.getRideID()+" has been accepted!";
-      noteStringDriver = "You accepted a ride, #"+dummyRide.getRideID();
-    } else if (rideStatusID == 2){
+      noteStringPassenger = "'\nYour ride, # "+ dummyRide.getRideID()+ " has been accepted!'";
+      noteStringDriver = "'\nYou accepted a ride, # '"+ dummyRide.getRideID();
+    } else if (rideStatusID == 2) {
       //If the rideStatusID is changing to 3, then the ride has been marked complete by the driver
-      noteStringPassenger = "'Your ride, #"+dummyRide.getRideID()+" has been marked complete!\nYour card has been charged.'";
-      noteStringDriver = "'You completed ride #"+dummyRide.getRideID()+".\nFunds have ben added to your card.'";
-    } else{
+      noteStringPassenger = "'Your ride, # " + dummyRide.getRideID() + " has been marked complete!\nYour card has been charged.'";
+      noteStringDriver = "'You completed ride # " + dummyRide.getRideID() + ".\nFunds have ben added to your card.'";
+    } else {
       noteStringPassenger = "An Error has occurred";
       noteStringDriver = "An Error has occurred";
     }
