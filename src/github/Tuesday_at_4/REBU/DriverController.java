@@ -143,6 +143,7 @@ public class DriverController {
 
     Rides completedRide = Rides_Accepted.getSelectionModel().getSelectedItem();
     DatabaseAccessor.changeRideStatus(Main.currentUser.getUserID(), completedRide.getRideID(), 2);
+    Rides_Accepted.getItems().remove(completedRide);
 
   }
 
