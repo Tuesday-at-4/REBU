@@ -23,6 +23,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -54,7 +55,7 @@ public class PassengerController {
 
   @FXML private AnchorPane anchorPayment;
 
-  @FXML private ChoiceBox<LocalTime> choiceBox_time;
+  @FXML private ComboBox<LocalTime> comboBox_time;
 
   @FXML
   private DatePicker datePicker_scheduleRide;
@@ -141,15 +142,16 @@ public class PassengerController {
     boolean am = radio_am.isSelected();
     boolean pm = radio_am.isSelected();
     //Initialize the time selected by the user with its value chosen from the choice box.
-    LocalTime timeStart = choiceBox_time.getValue();
+
+    LocalTime timeStart = comboBox_time.getValue();
 
     //If the am radio button is selected, then the time selected stays the same.
     if(am){
-      timeStart = choiceBox_time.getValue();
+      timeStart = comboBox_time.getValue();
     }
     //If the pm button is selected, then the time will have 12 hours added to it, for military time.
     else{
-      timeStart = choiceBox_time.getValue().plusHours(12);
+      timeStart = comboBox_time.getValue().plusHours(12);
     }
 
     Rides createRides =
@@ -220,7 +222,7 @@ public class PassengerController {
 
   public void populateChoiceBoxTime(){
     //If the choice box is empty, then it will proceed to get filled.
-    if (choiceBox_time.getItems().isEmpty()){
+    if (comboBox_time.getItems().isEmpty()){
       //An array is made to hold the times of the day, for the user to select.
       ArrayList<LocalTime> startTimes = new ArrayList<>();
 
@@ -230,10 +232,10 @@ public class PassengerController {
         for(int k = 0; k < 60; k = k + 15)
       //The choice box will run through the loop.
       startTimes.add(LocalTime.of(i, k));
-      choiceBox_time.getItems().addAll(startTimes);
+      comboBox_time.getItems().addAll(startTimes);
     }else{
       //If the choicebox already has items in it, it will display the items to the user.
-      choiceBox_time.show();
+      comboBox_time.show();
     }
 }
 
