@@ -292,7 +292,7 @@ public class DatabaseAccessor {
 
       // STEP 3: Execute a query
       stmt = conn.createStatement();
-      String sql = "SELECT * FROM RIDES_LIST WHERE RIDE_ID = 1";
+      String sql = "SELECT * FROM RIDES_LIST WHERE RIDE_ID = "+rideID;
       ResultSet rs = stmt.executeQuery(sql);
       while (rs.next()) {
         dummyRide = new Rides(
@@ -402,20 +402,20 @@ public class DatabaseAccessor {
               + "VALUES('"
               + dummyRide.getPassengerName()
               + "','"
-              + dummyRide.getDriver()
+              + dummyRide.getDriver_id()
               + "','"
-              + dummyRide.getDate_OfRide().toString()
+              + dummyRide.getStart_date().toString()
               + "','"
-              + dummyRide.getStartLocation()
+              + dummyRide.getStart_location()
               + "','"
-              + dummyRide.getEndLocation()
+              + dummyRide.getEnd_location()
               + "','"
-              + dummyRide.getTime_OfRide().toString()
+              + dummyRide.getStart_time().toString()
               + "','"
               + dummyRide.getRide_status_id()
               + "');";
       stmt.executeUpdate(sql);
-      System.out.println("Ride " + dummyRide.getRideID() + " has been added!");
+      System.out.println("Ride " + dummyRide.getRide_id() + " has been added!");
       // STEP 4: Clean-up environment
       stmt.close();
       conn.close();
@@ -571,12 +571,12 @@ public class DatabaseAccessor {
     //Here i generate the Notification text
     //If the rideStatusID is changing to 0, then the ride has been accepted by a driver
     if (rideStatusID == 0){
-      noteStringPassenger = "'\nYour ride, # "+ dummyRide.getRideID()+ " has been accepted!'";
-      noteStringDriver = "'\nYou accepted a ride, # '"+ dummyRide.getRideID();
+      noteStringPassenger = "'\nYour ride, # "+ dummyRide.getRide_id()+ " has been accepted!'";
+      noteStringDriver = "'\nYou accepted a ride, # '"+ dummyRide.getRide_id();
     } else if (rideStatusID == 2) {
       //If the rideStatusID is changing to 3, then the ride has been marked complete by the driver
-      noteStringPassenger = "'Your ride, # " + dummyRide.getRideID() + " has been marked complete!\nYour card has been charged.'";
-      noteStringDriver = "'You completed ride # " + dummyRide.getRideID() + ".\nFunds have ben added to your card.'";
+      noteStringPassenger = "'Your ride, # " + dummyRide.getRide_id() + " has been marked complete!\nYour card has been charged.'";
+      noteStringDriver = "'You completed ride # " + dummyRide.getRide_id() + ".\nFunds have ben added to your card.'";
     } else {
       noteStringPassenger = "An Error has occurred";
       noteStringDriver = "An Error has occurred";
@@ -598,7 +598,7 @@ public class DatabaseAccessor {
               + "("+dummyRide.getPassenger_id()+ ", 2, '"+noteStringPassenger+"'),"
               + "("+userID+", 1, '"+noteStringDriver+"');";
       stmt.executeUpdate(sql);
-      System.out.println("Ride " + dummyRide.getRideID() + " has been added!");
+      System.out.println("Ride " + dummyRide.getRide_id() + " has been added!");
       // STEP 4: Clean-up environment
       stmt.close();
       conn.close();

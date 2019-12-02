@@ -1,10 +1,6 @@
 package github.Tuesday_at_4.REBU;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -92,31 +88,31 @@ public class DriverController {
 
   public void FillInTableView() {
 
-    ride_ID.setCellValueFactory(new PropertyValueFactory<>("rideID"));
-    start_date.setCellValueFactory(new PropertyValueFactory<>("Date_OfRide"));
-    start_time.setCellValueFactory(new PropertyValueFactory<>("Time_OfRide"));
-    startLocation.setCellValueFactory(new PropertyValueFactory<>("startLocation"));
-    endLocation.setCellValueFactory(new PropertyValueFactory<>("endLocation"));
-    passenger_ID.setCellValueFactory(new PropertyValueFactory<>("passenger"));
+    ride_ID.setCellValueFactory(new PropertyValueFactory<>("ride_id"));
+    start_date.setCellValueFactory(new PropertyValueFactory<>("start_date"));
+    start_time.setCellValueFactory(new PropertyValueFactory<>("start_time"));
+    startLocation.setCellValueFactory(new PropertyValueFactory<>("start_location"));
+    endLocation.setCellValueFactory(new PropertyValueFactory<>("end_location"));
+    passenger_ID.setCellValueFactory(new PropertyValueFactory<>("passenger_id"));
     RideStatus.setCellValueFactory(new PropertyValueFactory<>("ride_status_id"));
 
     ArrayList<Rides> pendingRidesArrayList = new ArrayList<>();
     for (Rides x : DatabaseAccessor.getAllRides()) {
       if (x.getRide_status_id() == 1
           && x.getDriver_id() == 0
-          && Main.currentUser.getUserID() != x.getPassenger()) {
+          && Main.currentUser.getUserID() != x.getPassenger_id()) {
         pendingRidesArrayList.add(x);
       }
     }
 
     DriverAvailableRides.getItems().addAll(pendingRidesArrayList);
 
-    AcceptedTime.setCellValueFactory(new PropertyValueFactory<>("Time_OfRide"));
-    AcceptedDate.setCellValueFactory(new PropertyValueFactory<>("Date_OfRide"));
-    AcceptedStartLocation.setCellValueFactory(new PropertyValueFactory<>("startLocation"));
-    AcceptedEndLocation.setCellValueFactory(new PropertyValueFactory<>("endLocation"));
-    AcceptedRideID.setCellValueFactory(new PropertyValueFactory<>("rideID"));
-    AcceptedPassengerID.setCellValueFactory(new PropertyValueFactory<>("passenger"));
+    AcceptedTime.setCellValueFactory(new PropertyValueFactory<>("start_time"));
+    AcceptedDate.setCellValueFactory(new PropertyValueFactory<>("start_date"));
+    AcceptedStartLocation.setCellValueFactory(new PropertyValueFactory<>("start_location"));
+    AcceptedEndLocation.setCellValueFactory(new PropertyValueFactory<>("end_location"));
+    AcceptedRideID.setCellValueFactory(new PropertyValueFactory<>("ride_id"));
+    AcceptedPassengerID.setCellValueFactory(new PropertyValueFactory<>("passenger_id"));
     AcceptedRideStatus.setCellValueFactory(new PropertyValueFactory<>("ride_status_id"));
 
     ArrayList<Rides> acceptedRidesArrayList = new ArrayList<>();
@@ -140,25 +136,25 @@ public class DriverController {
     System.out.println("You have completed a ride!");
 
     Rides completedRide = Rides_Accepted.getSelectionModel().getSelectedItem();
-    DatabaseAccessor.changeRideStatus(Main.currentUser.getUserID(), completedRide.getRideID(), 2);
+    DatabaseAccessor.changeRideStatus(Main.currentUser.getUserID(), completedRide.getRide_id(), 2);
     Rides_Accepted.getItems().remove(completedRide);
 
   }
 
   public void Accept_Ride() {
     Rides selection = DriverAvailableRides.getSelectionModel().getSelectedItem();
-    DatabaseAccessor.addDriverToRide(selection.getRideID(), Main.currentUser.getUserID());
-    DatabaseAccessor.changeRideStatus(Main.currentUser.getUserID(), selection.getRideID(), 0);
+    DatabaseAccessor.addDriverToRide(selection.getRide_id(), Main.currentUser.getUserID());
+    DatabaseAccessor.changeRideStatus(Main.currentUser.getUserID(), selection.getRide_id(), 0);
     if (selection != null) {
       Rides_Accepted.getItems()
           .add(
               new Rides(
-                  selection.getPassenger(),
-                  selection.getDriver(),
-                  selection.getTime_OfRide(),
-                  selection.getDate_OfRide(),
-                  selection.getStartLocation(),
-                  selection.getEndLocation(),
+                  selection.getPassenger_id(),
+                  selection.getDriver_id(),
+                  selection.getStart_time(),
+                  selection.getStart_date(),
+                  selection.getStart_location(),
+                  selection.getEnd_location(),
                   selection.getRide_status_id()));
       ObservableList<Rides> allRides, SingleRides;
       allRides = DriverAvailableRides.getItems();
@@ -166,6 +162,7 @@ public class DriverController {
       SingleRides.forEach(allRides::remove);
     }
   }
+
 
   public void ClearNotificationsButton(ActionEvent event) {
     textAreaDriver.clear();

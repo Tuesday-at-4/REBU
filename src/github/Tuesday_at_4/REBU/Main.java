@@ -32,18 +32,22 @@ public class Main extends Application {
         sceneMain.getStylesheets().add(Main.class.getResource("Style.css").toExternalForm());
         primaryStage.show();
     }
-    public static void createNewScene(Event event, String newFileFXML){
-        Parent newRoot = null;
-        try {
-            newRoot = FXMLLoader.load(Main.class.getResource(newFileFXML));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Scene newScene = new Scene(newRoot);
-        newScene.getStylesheets().add(Main.class.getResource("Style.css").toExternalForm());
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(newScene);
-        window.show();
+
+  public static void createNewScene(Event event, String newFileFXML) {
+    Parent newRoot = null;
+    try {
+      newRoot = FXMLLoader.load(Main.class.getResource(newFileFXML));
+    } catch (IOException e) {
+      e.printStackTrace();
     }
+    Scene newScene = new Scene(newRoot);
+    newScene.getStylesheets().add(Main.class.getResource("Style.css").toExternalForm());
+    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    window.setScene(newScene);
+    window.show();
+
+    DatabaseAccessor.getRide(2).printRide();
+        }
+
 
 }

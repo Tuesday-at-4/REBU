@@ -184,7 +184,7 @@ public class PassengerController {
     ArrayList<Rides> pendingRidesArrayList = new ArrayList<>();
     for (Rides x: DatabaseAccessor.getAllRides()){
       //Test if the ride is pending, there is no driver, and the passenger equals the user
-      if (x.getRide_status_id() == 1 && x.getDriver_id() == 0 && Main.currentUser.getUserID() == x.getPassenger()){
+      if (x.getRide_status_id() == 1 && x.getDriver_id() == 0 && Main.currentUser.getUserID() == x.getPassenger_id()){
         pendingRidesArrayList.add(x);
       }
     }
@@ -203,7 +203,7 @@ public class PassengerController {
     //Array list to hold the rides that have been flagged as accepted.
     ArrayList<Rides> acceptedRidesArrayList = new ArrayList(DatabaseAccessor.getAllRides());
     for (Rides item : acceptedRidesArrayList) {
-      if(item.getRide_status_id() == 0 && item.getDriver_id() != 0 && Main.currentUser.getUserID() == item.getPassenger())
+      if(item.getRide_status_id() == 0 && item.getDriver_id() != 0 && Main.currentUser.getUserID() == item.getPassenger_id())
           tableview_acceptedRides.getItems().add(item);
       }
     }

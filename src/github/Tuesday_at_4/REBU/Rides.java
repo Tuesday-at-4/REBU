@@ -92,6 +92,10 @@ public class Rides {
     return start_time;
   }
 
+  public int getRide_status_id(){
+    return ride_status_id;
+  }
+
   public String getNameHidden(){
     nameHidden = "Not Assigned Yet";
     return nameHidden;
@@ -143,35 +147,10 @@ public class Rides {
     return driverName;
   }
 
-  public LocalDate getDate_OfRide() {
-    return start_date;
-  }
 
-  public LocalTime getTime_OfRide() {
-    return start_time;
-  }
 
-  public String getEndLocation() {
-    return end_location;
-  }
 
-  public String getStartLocation() {
-    return start_location;
-  }
 
-  public int getRideID() {
-    return ride_id;
-  }
-
-  public int getPassenger() { return passenger_id;}
-
-  public int getDriver() {
-    return driver_id;
-  }
-
-  public int getRide_status_id(){
-    return ride_status_id;
-  }
 
   public String getRideStatusComment(){
     switch(ride_status_id){
