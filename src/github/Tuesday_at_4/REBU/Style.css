@@ -64,8 +64,14 @@ GridPane .label {
 }
 
 /* Header labels */
-#lblSchedule, #lblCreateAccount, #lblLogin, #lblWelcome, #lblAccountDetails, #lblEditAccountDetails {
+#lblSchedule, #lblCreateAccount, #lblWelcome, #lblAccountDetails, #lblEditAccountDetails {
   -fx-text-fill: #ec407a;
+  -fx-font-size: 36px;
+  -fx-font-weight: bold;
+}
+
+#lblLogin {
+  -fx-text-fill: #eeeeee;
   -fx-font-size: 36px;
   -fx-font-weight: bold;
 }
@@ -102,6 +108,10 @@ GridPane .label {
 .button:hover {
   -fx-text-fill: white!important;
   -fx-background-color: #028679!important;
+}
+
+#txtField_username, #password_textField {
+  -fx-background-color: rgba(94,94,94,.75);
 }
 
 .date-picker:editable .label {
