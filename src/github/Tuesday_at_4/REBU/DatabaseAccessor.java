@@ -359,6 +359,28 @@ public class DatabaseAccessor {
     return dummyRideArray;
   }
 
+  public static void addDriverToRide(int rideID, int driverID){
+    Connection conn = null;
+    Statement stmt = null;
+    try {
+      Class.forName(JDBC_DRIVER);
+      conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+      stmt = conn.createStatement();
+      String sql =
+          "UPDATE RIDES_LIST "
+              + " SET DRIVER_ID = " + driverID
+              + " WHERE RIDE_ID = " + rideID;
+      stmt.executeUpdate(sql);
+      stmt.close();
+      conn.close();
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
   /**
    * Stores the data in a Ride object in the database
    *
@@ -573,8 +595,8 @@ public class DatabaseAccessor {
       String sql =
           "INSERT INTO USER_NOTIFICATIONS(USER_ID, NOTIFICATION_TYPE, NOTIFICATION_TEXT)"
               + "VALUES"
-              + "("+dummyRide.getPassenger_id()+ ", 2, "+noteStringPassenger+"),"
-              + "("+dummyRide.getDriver_id()+", 1, "+noteStringDriver+")";
+              + "("+dummyRide.getPassenger_id()+ ", 2, '"+noteStringPassenger+"'),"
+              + "("+userID+", 1, '"+noteStringDriver+"');";
       stmt.executeUpdate(sql);
       System.out.println("Ride " + dummyRide.getRideID() + " has been added!");
       // STEP 4: Clean-up environment

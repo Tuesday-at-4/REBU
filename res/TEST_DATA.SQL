@@ -6,12 +6,11 @@ VALUES
 INSERT INTO USER_NOTIFICATIONS(user_id, notification_type, notification_text)
 VALUES
        (1, 0, 'Welcome to REBU Snuffles!'),
-       (1, 1, 'Welcome to the Driver screen Snuffles!'),
+       (1, 1, 'Welcome to the Driver screen Snuffles'),
        (1, 2, 'Welcome to the Passenger Screen Snuffles!'),
        (2, 0, 'Welcome to REBU Joe!'),
        (2, 1, 'Welcome to the Driver Screen Joe!'),
-       (2, 2, 'Welcome to the Passenger Screen Joe!'),
-       (3, 4, 'User: 2 changed Ride #7 status from active " to: " + completed');
+       (2, 2, 'Welcome to the Passenger Screen Joe!');
 
 INSERT INTO RIDES_LIST(passenger_id, driver_id, start_time, start_date, start_location, end_location, ride_status_id)
 VALUES
