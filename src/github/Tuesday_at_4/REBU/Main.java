@@ -46,7 +46,7 @@ public class Main extends Application {
     window.setScene(newScene);
     window.show();
 
-    DatabaseAccessor.getRide(2).printRide();
+
         }
 
 

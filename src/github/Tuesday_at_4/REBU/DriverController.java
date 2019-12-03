@@ -129,6 +129,7 @@ public class DriverController {
     allRides = Rides_Accepted.getItems();
     SingleRides = Rides_Accepted.getSelectionModel().getSelectedItems();
     SingleRides.forEach(allRides::remove);
+
   }
 
   @FXML
@@ -138,12 +139,17 @@ public class DriverController {
     Rides completedRide = Rides_Accepted.getSelectionModel().getSelectedItem();
     DatabaseAccessor.changeRideStatus(Main.currentUser.getUserID(), completedRide.getRide_id(), 2);
     Rides_Accepted.getItems().remove(completedRide);
+    textAreaDriver.clear();
+    populateNotificationsArea();
 
   }
 
   public void Accept_Ride() {
     Rides selection = DriverAvailableRides.getSelectionModel().getSelectedItem();
     DatabaseAccessor.addDriverToRide(selection.getRide_id(), Main.currentUser.getUserID());
+    System.out.println("Selection");
+    selection.printRide();
+    System.out.println("Done");
     DatabaseAccessor.changeRideStatus(Main.currentUser.getUserID(), selection.getRide_id(), 0);
     if (selection != null) {
       Rides_Accepted.getItems()
@@ -161,6 +167,8 @@ public class DriverController {
       SingleRides = DriverAvailableRides.getSelectionModel().getSelectedItems();
       SingleRides.forEach(allRides::remove);
     }
+    textAreaDriver.clear();
+    populateNotificationsArea();
   }
 
 

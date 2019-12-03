@@ -75,7 +75,7 @@ public class AccountRegistration {
   void create_account(MouseEvent event) {
 
     // storing information from text fields
-    int userID = 0;
+    int userID;
 
     DOB = dateB_DOB.getValue();
 
@@ -117,7 +117,9 @@ public class AccountRegistration {
     Account dummy = new Account(username, password, firstName, lastName, phone, email, DOB, creditCard);
     dummy.printAccountDetails();
     DatabaseAccessor.addAccount(dummy);
+    dummy.setUser_id(DatabaseAccessor.searchForAccount(username,password));
     Main.currentUser = dummy;
+    dummy.printAccountDetails();
     Main.createNewScene(event, "AccountSummary.fxml");
   }
 }

@@ -72,7 +72,7 @@ public class DatabaseAccessor {
    * @return - the USER_ID of the requested user, or 0 if there is no account found
    */
   public static int searchForAccount(String username, String password) {
-    int userID = 0;
+    int userID=-1;
     try {
       Class.forName(JDBC_DRIVER);
       conn = DriverManager.getConnection(DB_URL, USER, PASS);
@@ -301,8 +301,8 @@ public class DatabaseAccessor {
                 rs.getInt(3),
                 LocalTime.parse(rs.getString(4)),
                 LocalDate.parse(rs.getString(5)),
-                rs.getString(5),
                 rs.getString(6),
+                rs.getString(7),
                 rs.getInt(8));
       }
       // STEP 4: Clean-up environment
@@ -436,6 +436,7 @@ public class DatabaseAccessor {
   public static void changeRideStatus(int userID, int dummyRideID, int newRideStatusID) {
     //Before we change the ride, we add the notification about it.
     Rides dummyRide = getRide(dummyRideID);
+    //System.out.println(dummyRide.printRide();
     addNotification(userID, dummyRide, newRideStatusID);
 
     //  Database credentials
@@ -567,16 +568,16 @@ public class DatabaseAccessor {
   private static void addNotification(int userID, Rides dummyRide, int rideStatusID){
     String noteStringPassenger;
     String noteStringDriver;
-
+    dummyRide.printRide();
     //Here i generate the Notification text
     //If the rideStatusID is changing to 0, then the ride has been accepted by a driver
     if (rideStatusID == 0){
-      noteStringPassenger = "'\nYour ride, # "+ dummyRide.getRide_id()+ " has been accepted!'";
-      noteStringDriver = "'\nYou accepted a ride, # '"+ dummyRide.getRide_id();
+      noteStringPassenger = "'\nYour ride from "+ dummyRide.getStart_location()+ " to " + dummyRide.getEnd_location() + " has been accepted!'";
+      noteStringDriver = "'\nYou accepted a ride, from "+ dummyRide.getStart_location()+ " to "+ dummyRide.getEnd_location()+"'";
     } else if (rideStatusID == 2) {
       //If the rideStatusID is changing to 3, then the ride has been marked complete by the driver
-      noteStringPassenger = "'Your ride, # " + dummyRide.getRide_id() + " has been marked complete!\nYour card has been charged.'";
-      noteStringDriver = "'You completed ride # " + dummyRide.getRide_id() + ".\nFunds have ben added to your card.'";
+      noteStringPassenger = "'\nYour ride, to  " + dummyRide.getEnd_location() + " has been marked complete!\nYour card has been charged.'";
+      noteStringDriver = "'\nYou completed ride from " + dummyRide.getStart_location() + " to " + dummyRide.getEnd_location() + ".\nFunds have ben added to your card.'";
     } else {
       noteStringPassenger = "An Error has occurred";
       noteStringDriver = "An Error has occurred";
@@ -595,8 +596,8 @@ public class DatabaseAccessor {
       String sql =
           "INSERT INTO USER_NOTIFICATIONS(USER_ID, NOTIFICATION_TYPE, NOTIFICATION_TEXT)"
               + "VALUES"
-              + "("+dummyRide.getPassenger_id()+ ", 2, '"+noteStringPassenger+"'),"
-              + "("+userID+", 1, '"+noteStringDriver+"');";
+              + "("+dummyRide.getPassenger_id()+ ", 2, "+noteStringPassenger+"),"
+              + "("+userID+", 1, "+noteStringDriver+");";
       stmt.executeUpdate(sql);
       System.out.println("Ride " + dummyRide.getRide_id() + " has been added!");
       // STEP 4: Clean-up environment
