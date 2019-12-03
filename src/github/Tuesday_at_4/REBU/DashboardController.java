@@ -44,6 +44,7 @@ public class DashboardController {
   @FXML
   void logout(MouseEvent event) {
     Main.createNewScene(event,"Login.FXML");
+    Main.currentUser = null;
 
   }
 
