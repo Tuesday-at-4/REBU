@@ -566,18 +566,25 @@ public class DatabaseAccessor {
    * @param rideStatusID - the status that the ride is changing to
    */
   private static void addNotification(int userID, Rides dummyRide, int rideStatusID){
+
     String noteStringPassenger;
     String noteStringDriver;
     dummyRide.printRide();
+
+    String userCreditCard = Main.currentUser.getCreditCard();
+
+    // blocking out all numbers except the last four
+    String protectedCreditCard = "**** **** **** " + userCreditCard.substring(12, 16);
+
     //Here i generate the Notification text
     //If the rideStatusID is changing to 0, then the ride has been accepted by a driver
     if (rideStatusID == 0){
       noteStringPassenger = "'\nYour ride from "+ dummyRide.getStart_location()+ " to " + dummyRide.getEnd_location() + " has been accepted!'";
-      noteStringDriver = "'\nYou accepted a ride, from "+ dummyRide.getStart_location()+ " to "+ dummyRide.getEnd_location()+"'";
+      noteStringDriver = "'\nYou accepted a ride request from "+ dummyRide.getStart_location()+ " to "+ dummyRide.getEnd_location() + ".'";
     } else if (rideStatusID == 2) {
       //If the rideStatusID is changing to 3, then the ride has been marked complete by the driver
-      noteStringPassenger = "'\nYour ride, to  " + dummyRide.getEnd_location() + " has been marked complete!\nYour card has been charged.'";
-      noteStringDriver = "'\nYou completed ride from " + dummyRide.getStart_location() + " to " + dummyRide.getEnd_location() + ".\nFunds have ben added to your card.'";
+      noteStringPassenger = "'\nYour ride to  " + dummyRide.getEnd_location() + " has been marked complete!\nYour card ending in " + protectedCreditCard +" has been charged.'";
+      noteStringDriver = "'\nYou completed ride from " + dummyRide.getStart_location() + " to " + dummyRide.getEnd_location() + ".\nPayment has been processed to your account.'";
     } else {
       noteStringPassenger = "An Error has occurred";
       noteStringDriver = "An Error has occurred";

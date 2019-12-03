@@ -22,7 +22,7 @@ public class DriverController {
 
   @FXML private Button home_Button;
 
-  @FXML private Button Edit_Registration;
+  //@FXML private Button Edit_Registration;
 
   @FXML private Button button_completeRide;
 
@@ -71,10 +71,10 @@ public class DriverController {
   @FXML
   private Button ClearDriverNotifications;
 
-  @FXML
+  /*@FXML
   private void goEdit_Registration(Event event) {
     Main.createNewScene(event, "CarRegistration.fxml");
-  }
+  }*/
 
   @FXML
   private void goHome(Event event) {

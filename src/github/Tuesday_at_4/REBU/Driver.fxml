@@ -27,7 +27,6 @@
                         <Font size="16.0" />
                       </font>
                     </Button>
-                    <Button fx:id="Edit_Registration" layoutX="172.0" layoutY="27.0" mnemonicParsing="false" onAction="#goEdit_Registration" prefHeight="65.0" prefWidth="182.0" text="Edit Car Registration" />
                     <TextArea fx:id="textAreaDriver" editable="true" layoutX="185.0" layoutY="230.0" prefHeight="162.0" prefWidth="426.0" promptText="No notifications for now." />
                     <Label fx:id="lblDriver" layoutX="294.0" layoutY="121.0" stylesheets="@Style.css" text="Driver" textFill="WHITE">
                       <font>
