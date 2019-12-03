@@ -1,3 +1,12 @@
+/**
+ * *********************************************************
+ * File : DriverController.Java
+ * Author: Benjamin Cano
+ * Class:CEN 3031
+ * Purpose : Allows the Driver to 
+ * see their pending Rides, and their accepted Rides.
+ * **********************************************************
+ */
 package github.Tuesday_at_4.REBU;
 
 import java.util.ArrayList;
