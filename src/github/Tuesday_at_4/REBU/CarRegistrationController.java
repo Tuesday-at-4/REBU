@@ -1,6 +1,6 @@
 /**
  * ********************************************************* File : CarRegistrationController.Java
- * Author(s): Ben Cano Class : CEN 3031 Purpose : Populates the tables of regsitered vehicles of the
+ * Author(s): Ben Cano, wilkenson germain Class : CEN 3031 Purpose : Populates the tables of regsitered vehicles of the
  * user. **********************************************************
  */
 package github.Tuesday_at_4.REBU;
