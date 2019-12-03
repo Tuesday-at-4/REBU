@@ -11,10 +11,8 @@ Sabrina Kienholz,
 Breanna Rhodes
 
 Rebu is an application that allows people to sign up to get or provide a ride. 
-Users will be required to create a profile before they can access the core features. 
-Users will be able to choose to be either a driver or a passenger. 
-As a passenger, the user will be able to schedule a start and end location for a ride on a certain date or time. 
-Once the Ride Request has been made, a driver in the area can accept the ride request. 
-After the Ride, the users can provide feedback on the ride, and the payment will be charged. 
-The passengers will pay a fee based on the distance of the ride and the drivers will be paid an amount according to similar metrics.
-
+Users can log in with an existing account, or create a new one by signing up. 
+After signing in, users will choose whether they want to access their driver interface or passenger interface from the dashboard. 
+As a passenger, the user will be able to schedule a start and end location for a ride at a specified date and time. 
+Once a ride request has been made, a driver can see the pending request and choose whether or not to accept it. 
+After the ride, the driver can finalize the ride by confirming its completion. Accurate notifications are sent to driver and passengers updating them on the status of the ride they're involved in, and if they were paid as a driver or charged as a passenger.
