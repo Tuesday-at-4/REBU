@@ -1,7 +1,7 @@
 /**
  * *********************************************************
  * File : DriverController.Java
- * Author: Benjamin Cano
+ * Author: Benjamin Cano, Wilkenson Germain
  * Class:CEN 3031
  * Purpose : Allows the Driver to 
  * see their pending Rides, and their accepted Rides.
