@@ -37,6 +37,9 @@ Breanna Rhodes
 
 ## How to Install & Run
 - Have Java installed and run the REBU.jar file in the REBU folder.
+
+[Install Java](https://www.java.com/en/download/manual.jsp)
+
 - To access the core program, either enter an existing account's username and password, or create a new account.
 - Default User 1:
     - Username: Kali
