@@ -3,12 +3,16 @@
 
 ## Team Name: Rebu
 
-### Team Members: 
+#### Team Members: 
 Benjamin Cano,
 Wilkenson Germain,
 Michael Carracino,
 Sabrina Kienholz,
 Breanna Rhodes
+
+******************************************************************************************************************************************
+
+## Introduction
 
 Rebu is an application that allows people to sign up to get or provide a ride. 
 Users can log in with an existing account, or create a new one by signing up. 
@@ -18,4 +22,8 @@ Once a ride request has been made, a driver can see the pending request and choo
 After the ride, the driver can finalize the ride by confirming its completion. Accurate notifications are sent to driver and passengers updating them on the status of the ride they're involved in, and if they were paid as a driver or charged as a passenger.
 
 ## Video Link
-https://eaglefgcu-my.sharepoint.com/:v:/g/personal/mkcarracino1014_eagle_fgcu_edu/EXftPhprJVRMpZmlfM2absABQvSqNguCEJoHVQepgBuc7A
+[REBU demonstration video](https://eaglefgcu-my.sharepoint.com/:v:/g/personal/mkcarracino1014_eagle_fgcu_edu/EXftPhprJVRMpZmlfM2absABQvSqNguCEJoHVQepgBuc7A)
+
+## How to Install & Run
+Have the latest version of IntelliJ IDEA and install JDK 8 or 11. 
+Access the database for test data. No username or password required.
