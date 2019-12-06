@@ -1,9 +1,9 @@
 # REBU
-Order a Car
+## Order a Car
 
-Team Name: Rebu
+## Team Name: Rebu
 
-Team Members: 
+### Team Members: 
 Benjamin Cano,
 Wilkenson Germain,
 Michael Carracino,
@@ -16,3 +16,6 @@ After signing in, users will choose whether they want to access their driver int
 As a passenger, the user will be able to schedule a start and end location for a ride at a specified date and time. 
 Once a ride request has been made, a driver can see the pending request and choose whether or not to accept it. 
 After the ride, the driver can finalize the ride by confirming its completion. Accurate notifications are sent to driver and passengers updating them on the status of the ride they're involved in, and if they were paid as a driver or charged as a passenger.
+
+## Video Link
+https://eaglefgcu-my.sharepoint.com/:v:/g/personal/mkcarracino1014_eagle_fgcu_edu/EXftPhprJVRMpZmlfM2absABQvSqNguCEJoHVQepgBuc7A
