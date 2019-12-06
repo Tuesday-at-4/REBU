@@ -25,5 +25,5 @@ After the ride, the driver can finalize the ride by confirming its completion. A
 [REBU demonstration video](https://eaglefgcu-my.sharepoint.com/:v:/g/personal/mkcarracino1014_eagle_fgcu_edu/EXftPhprJVRMpZmlfM2absABQvSqNguCEJoHVQepgBuc7A)
 
 ## How to Install & Run
-Have the latest version of IntelliJ IDEA and install JDK 8 or 11. 
-Access the database for test data. No username or password required.
+- Have the latest version of IntelliJ IDEA and install JDK 8 or 11. 
+- Access the database for test data. No username or password required.
