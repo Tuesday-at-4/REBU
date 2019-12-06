@@ -26,8 +26,12 @@ Breanna Rhodes
 - Scene Builder
 - H2 Database
 
-## Video Link
+## Document & Video Links
 [REBU demonstration video](https://eaglefgcu-my.sharepoint.com/:v:/g/personal/mkcarracino1014_eagle_fgcu_edu/EXftPhprJVRMpZmlfM2absABQvSqNguCEJoHVQepgBuc7A)
+
+[SRS](https://docs.google.com/document/d/10VsuBQMewNyYnNsdgPlH9Jm_ZGYEnrPnSFSVripaHu8/edit?usp=sharing)
+
+[Additional documentation](https://docs.google.com/document/d/1ESXZT1wCXqwke05iTc6pGdjNovi39YQa8MxwfJ0w7sk/edit?usp=sharing)
 
 ## How to Install & Run
 - Have the latest version of IntelliJ IDEA and install JDK 8 or 11. 
