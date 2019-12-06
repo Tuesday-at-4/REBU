@@ -31,4 +31,10 @@ Breanna Rhodes
 
 ## How to Install & Run
 - Have the latest version of IntelliJ IDEA and install JDK 8 or 11. 
-- Access the database for test data. No username or password required.
+- To access the core program, either enter an existing account's username and password, or create a new account.
+- Default user 1:
+    -Username: Kali
+    -Password: Ollie
+- Default user 2:
+    -Username: USERNAME
+    -Password: PASSWORD
