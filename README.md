@@ -26,7 +26,7 @@ Breanna Rhodes
 - Scene Builder
 - H2 Database
 
-## Document & Video Links
+## Documentation & Video Links
 [REBU demonstration video](https://eaglefgcu-my.sharepoint.com/:v:/g/personal/mkcarracino1014_eagle_fgcu_edu/EXftPhprJVRMpZmlfM2absABQvSqNguCEJoHVQepgBuc7A)
 
 [SRS](https://docs.google.com/document/d/10VsuBQMewNyYnNsdgPlH9Jm_ZGYEnrPnSFSVripaHu8/edit?usp=sharing)
@@ -37,8 +37,9 @@ Breanna Rhodes
 - Have the latest version of IntelliJ IDEA and install JDK 8 or 11. 
 - To access the core program, either enter an existing account's username and password, or create a new account.
 - Default user 1:
-    -Username: Kali
-    -Password: Ollie
+    - Username: Kali
+    - Password: Ollie
+    
 - Default user 2:
-    -Username: USERNAME
-    -Password: PASSWORD
+    - Username: USERNAME
+    - Password: PASSWORD
