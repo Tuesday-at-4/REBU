@@ -33,8 +33,10 @@ Breanna Rhodes
 
 [Additional documentation](https://docs.google.com/document/d/1ESXZT1wCXqwke05iTc6pGdjNovi39YQa8MxwfJ0w7sk/edit?usp=sharing)
 
+[REBU Presentation](https://docs.google.com/presentation/d/1daHLpTykD2deQDvK9QHpn4FVUANcrWY28mpCcUHxxQc/edit?usp=sharing)
+
 ## How to Install & Run
-- Have Java Runtime Environment installed and run the REBU.jar file in the REBU folder.
+- Have Java installed and run the REBU.jar file in the REBU folder.
 - To access the core program, either enter an existing account's username and password, or create a new account.
 - Default User 1:
     - Username: Kali
