@@ -34,12 +34,12 @@ Breanna Rhodes
 [Additional documentation](https://docs.google.com/document/d/1ESXZT1wCXqwke05iTc6pGdjNovi39YQa8MxwfJ0w7sk/edit?usp=sharing)
 
 ## How to Install & Run
-- Have the latest version of IntelliJ IDEA and install JDK 8 or 11. 
+- Have Java Runtime Environment installed and run the REBU.jar file in the REBU folder.
 - To access the core program, either enter an existing account's username and password, or create a new account.
-- Default user 1:
+- Default User 1:
     - Username: Kali
     - Password: Ollie
     
-- Default user 2:
+- Default User 2:
     - Username: USERNAME
     - Password: PASSWORD
