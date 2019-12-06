@@ -36,9 +36,7 @@ Breanna Rhodes
 [REBU Presentation](https://docs.google.com/presentation/d/1daHLpTykD2deQDvK9QHpn4FVUANcrWY28mpCcUHxxQc/edit?usp=sharing)
 
 ## How to Install & Run
-- Have Java installed and run the REBU.jar file in the REBU folder.
-
-[Install Java](https://www.java.com/en/download/manual.jsp)
+- Have Java installed and run the REBU.jar file in the REBU folder. [Download Java here, if needed.](https://www.java.com/en/download/manual.jsp)
 
 - To access the core program, either enter an existing account's username and password, or create a new account.
 - Default User 1:
