@@ -38,23 +38,23 @@ public class DashboardController {
   }
 
     public void handlePassengerButton(ActionEvent event){
-        Main.createNewScene(event,"Passenger.FXML");
+        Main.createNewScene(event,"Passenger.fxml");
     }
 
   @FXML
   void logout(MouseEvent event) {
-    Main.createNewScene(event,"Login.FXML");
+    Main.createNewScene(event,"Login.fxml");
     Main.currentUser = null;
 
   }
 
     @FXML
     private void handleAccountButton(ActionEvent event){
-        Main.createNewScene(event,"AccountSummary.FXML");
+        Main.createNewScene(event,"AccountSummary.fxml");
     }
 
     @FXML
     private void handleDriverButton(ActionEvent event){
-        Main.createNewScene(event,"Driver.FXML");
+        Main.createNewScene(event,"Driver.fxml");
     }
 }

@@ -574,7 +574,7 @@ public class DatabaseAccessor {
     String userCreditCard = Main.currentUser.getCreditCard();
 
     // blocking out all numbers except the last four
-    String protectedCreditCard = "**** **** **** " + userCreditCard.substring(12, 16);
+    String protectedCreditCard = " **** **** **** " + userCreditCard.substring(12, 16);
 
     //Here i generate the Notification text
     //If the rideStatusID is changing to 0, then the ride has been accepted by a driver
@@ -583,8 +583,8 @@ public class DatabaseAccessor {
       noteStringDriver = "'\nYou accepted a ride request from "+ dummyRide.getStart_location()+ " to "+ dummyRide.getEnd_location() + ".'";
     } else if (rideStatusID == 2) {
       //If the rideStatusID is changing to 3, then the ride has been marked complete by the driver
-      noteStringPassenger = "'\nYour ride to  " + dummyRide.getEnd_location() + " has been marked complete!\nYour card ending in " + protectedCreditCard +" has been charged.'";
-      noteStringDriver = "'\nYou completed ride from " + dummyRide.getStart_location() + " to " + dummyRide.getEnd_location() + ".\nPayment has been processed to your account.'";
+      noteStringPassenger = "'\nYour ride request from "+ dummyRide.getStart_location()+ " to "+ dummyRide.getEnd_location() + " has been marked complete!\nYour card ending in " + protectedCreditCard +" has been charged.'";
+      noteStringDriver = "'\nYou completed the ride request from " + dummyRide.getStart_location() + " to " + dummyRide.getEnd_location() + ".\nPayment has been processed to your account.'";
     } else {
       noteStringPassenger = "An Error has occurred";
       noteStringDriver = "An Error has occurred";
